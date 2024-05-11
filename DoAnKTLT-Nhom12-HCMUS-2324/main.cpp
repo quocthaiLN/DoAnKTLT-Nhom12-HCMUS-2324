@@ -1,5 +1,5 @@
 
-#include "function.h"
+#include "Globals.h"
 
 int main()
 {
