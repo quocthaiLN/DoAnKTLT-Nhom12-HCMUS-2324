@@ -1,6 +1,13 @@
-#ifndef function_h
-#define function_h
+#ifndef Global_h
+#define Global_h
 //Chua thong tin ve struct
+
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+
 
 #include "AcademicStaffs.h"
 #include "Students.h"
@@ -8,10 +15,7 @@
 
 
 
-#include <iostream>
-#include <string>
-#include <fstream>
-using namespace std;
+
 
 struct date
 {

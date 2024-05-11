@@ -3,8 +3,8 @@
 
 int main()
 {
-	std::cout << "Hello World!\n";
-	cout << "100" << endl;
-	cout << "Chinh sua thanh cong";
+	string s1, s2;
+	LoginAccount(s1, s2);
+	cout << s1 << endl << s2;
 	return 0;
 }
