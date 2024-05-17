@@ -3,6 +3,7 @@
 //Chua thong tin ve struct
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <fstream>
 #include <iomanip>
@@ -25,11 +26,12 @@ struct date
 //struct thong tin User khi dang nhap vao, dung chung cho student va academicstaff
 struct User
 {
-	string userName;
+	string id;
 	string password;
 	string firstName;
 	string lastName;
 	string gender;
+	string className;
 	int academicYear;//Nam 1, nam 2,... neu la AcademicStaff thi khong co
 	bool isStaff;
 	date dateOfBirth;
@@ -129,52 +131,14 @@ struct listClass
 	classes* pTail;
 };
 
-
-//
-//struct taiKhoan
-//{
-//	string nickName, password;
-//};
-//
-//
-//
-//
-//struct sinhVien
-//{
-//	string firstName, lastName;
-//	taiKhoan tk;
-//	int no, MSSV;
-//	date birth;
-//	int gender;
-//	long long socialID;
-//	string cls;
-//	int semester, schoolYear;
-//};
-//
-//struct nodeSinhVien
-//{
-//	sinhVien info;
-//	nodeSinhVien* next;
-//};
-//
-//struct ListSinhVien
-//{
-//	nodeSinhVien* pHead,* pTail;
-//};
-//
-//struct giangVien
-//{
-//	string nickName;
-//	string passWord;
-//	int no, MSSV;
-//	date birth;
-//	int gender;
-//	long long socialID;
-//	string firstName, lastName;
-//};
-
-
-
+void LoginAccount(string& userName, string& password);
+listUser InitListUsers();
+nodeUser* GetNodeUser(User info);
+void AddUser(listUser& lu, nodeUser* newUser);
+void ReadingUsersData(listUser& lu, string fileUsersPath);
+User ConvertingUserData(string data);
+nodeUser* IsUser(string userName, string password, listUser lu);//tra ve user co trong danh sach, neu la null nghia la ko co
+date ConvertingDate(string data);
 
 
 
