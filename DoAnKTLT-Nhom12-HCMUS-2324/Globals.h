@@ -1,5 +1,6 @@
 #ifndef Global_h
 #define Global_h
+#define _CRT_SECURE_NO_WARNINGS
 //Chua thong tin ve struct
 
 #include <iostream>
@@ -7,16 +8,13 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
-using namespace std;
+#include <ctime>
 
+using namespace std;
 
 #include "AcademicStaffs.h"
 #include "Students.h"
 #include "LoginSystem.h"
-
-
-
-
 
 struct date
 {
@@ -131,6 +129,12 @@ struct listClass
 	classes* pTail;
 };
 
+struct Semester {
+	int semester;
+	date begin;
+	date end;
+};
+// Thai
 void LoginAccount(string& userName, string& password);
 listUser InitListUsers();
 nodeUser* GetNodeUser(User info);
@@ -140,7 +144,12 @@ User ConvertingUserData(string data);
 nodeUser* IsUser(string userName, string password, listUser lu);//tra ve user co trong danh sach, neu la null nghia la ko co
 date ConvertingDate(string data);
 
-
+// Huu Thang
+date GetCurDate();
+void GetCurSchoolYear(string& curSchoolYear, date curDate);
+int to_date(string day);
+void GetCurSemester(Semester& curSemester);
+date strToDate(string day);
 
 #endif // !function_h
 
