@@ -235,3 +235,129 @@ void GetCurSemester(Semester& curSemester) {
 
 	ifs.close();
 }
+ //ham convert thong tin khoa hoc 
+course* convertingCourse(ifstream& ifs)
+{
+	course* cou = new course;
+	string maxNumStudent;
+	if (ifs.eof())
+	{
+		return NULL;
+	}
+	getline(ifs, cou->id, ',');
+	getline(ifs, cou->courseName, ',');
+	getline(ifs, cou->teacherName, ',');
+	getline(ifs, cou->numberOfCredits, ',');
+	//vi so luong hoc sinh max = 50 nen chi can get cho qua di thong tin k can luu lai vao course
+	getline(ifs, maxNumStudent, ',');
+	getline(ifs, cou->dayOfWeek, ',');
+	getline(ifs, cou->session,'\n');
+	return cou;
+}
+//tao mot node course moi 
+nodeCourse* createNodeCourse(course* c1)
+{
+	nodeCourse* nc = new nodeCourse;
+	if (c1 == NULL)
+		return NULL;
+	nc->info = c1;
+	nc->pNext = NULL;
+	return nc;
+}
+// ham them mot node course vao list
+void addCourse(listCourse& lc, course* c1)
+{
+	nodeCourse* nc = createNodeCourse(c1);
+	if (lc.pHead == NULL)
+	{
+		lc.pHead = lc.pTail = nc;
+		return;
+	}
+	lc.pTail->pNext = nc;
+	lc.pTail = nc;
+	lc.pTail->pNext = NULL;
+}
+// 
+void getListCourse(listCourse& lc)
+{
+	lc.pHead = lc.pTail = NULL;
+	string path = semesterPath + "/course.csv";
+	ifstream ifs;
+	ifs.open(path);
+	if (!ifs.is_open())
+	{
+		cout << "Mo file that bai!\n";
+		return;
+	}
+	string line = new char[255];
+	getline(ifs, line);
+	while (!ifs.eof())
+	{
+		addCourse(lc, convertingCourse(ifs));
+	}
+	ifs.close();
+}
+//in thong tin trong profile
+void printInformationOfUser(User us)
+{
+	cout << "Last Name: " << us.lastName << endl;
+	cout << "First Name: " << us.firstName << endl;
+	cout << "Gender: " << us.gender << endl;
+	if (us.isStaff == false)
+	{
+		cout << "Class Name: " << us.className << endl;
+		cout << "Academic Year: " << us.academicYear << endl;
+	}
+	cout << "Date of Birth: " << us.dateOfBirth.day << "/" << us.dateOfBirth.month << "/" << us.dateOfBirth.year << endl;
+}
+//ham doi mat khau o phan account
+void changePassword(User& us)
+{
+	string tmp(us.password);
+	cout << "Nhap vao mat khau hien tai: ";
+	cin >> us.password;
+	while (tmp != us.password)
+	{
+		cout << "Nhap sai mat khau yeu cau nhap lai!\n";
+		cin >> us.password;
+	}
+	cout << "Nhap vao mat khau moi: ";
+	cin >> us.password;
+}
+// ham log out
+void logout(listUser lu)
+{
+	string password;
+	string id;
+	LoginAccount(id, password);
+	if (IsUser(id, password, lu) == NULL)
+	{
+		cout << "TAI KHOAN VUA NHAP KHONG TON TAI !!!\n\n";
+		LoginAccount(id, password);
+	}
+}
+//ham hien thi thong tin school year
+void printSchoolYearInformation(User us)
+{
+	date curDate = GetCurDate();
+	string curSchoolYear;
+	//lay school year
+	GetCurSchoolYear(curSchoolYear, curDate);
+	cout << "School Year: " << curSchoolYear << endl;
+	//star
+}
+//ham doi ngay bat dau nam hoc
+void changeDateStartSchoolYear(User us)
+{
+	if (us.isStaff == true)
+	{
+		Semester s;
+		GetCurSemester(s);
+		date d;
+		string dateChange;
+		cout << "Current Date: " << endl;
+		cout << "Change Date: ";
+		cin >> dateChange;
+		s.begin = strToDate(dateChange);
+	}
+}

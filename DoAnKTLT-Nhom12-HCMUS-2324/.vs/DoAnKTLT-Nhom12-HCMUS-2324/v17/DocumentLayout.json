@@ -1,42 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\",
+  "WorkspaceRootPath": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:AcademicStaffs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Students.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Students.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:AcademicStaffs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:LoginSystem.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Students.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:AcademicStaffs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:AcademicStaffs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Students.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:LoginSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:LoginSystem.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,13 +50,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "Globals.h",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h",
               "RelativeDocumentMoniker": "Globals.h",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h",
               "RelativeToolTip": "Globals.h",
-              "ViewState": "AQIAAJAAAAAAAAAAAAAAAJsAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-17T07:40:21.516Z",
               "EditorCaption": ""
@@ -65,22 +65,22 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Globals.cpp",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp",
               "RelativeDocumentMoniker": "Globals.cpp",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp",
               "RelativeToolTip": "Globals.cpp",
-              "ViewState": "AQIAANMAAAAAAAAAAAAiwOEAAAApAAAA",
+              "ViewState": "AQIAACMBAAAAAAAAAAA0wCQBAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-05-17T07:40:21.656Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "LoginSystem.h",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.h",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.h",
               "RelativeDocumentMoniker": "LoginSystem.h",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.h",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.h",
               "RelativeToolTip": "LoginSystem.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -89,11 +89,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "LoginSystem.cpp",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.cpp",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.cpp",
               "RelativeDocumentMoniker": "LoginSystem.cpp",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.cpp",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.cpp",
               "RelativeToolTip": "LoginSystem.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
@@ -102,67 +102,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Students.h",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.h",
-              "RelativeDocumentMoniker": "Students.h",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.h",
-              "RelativeToolTip": "Students.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-17T07:40:21.89Z",
+              "DocumentIndex": 3,
+              "Title": "Main.cpp",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Main.cpp",
+              "RelativeDocumentMoniker": "Main.cpp",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Main.cpp",
+              "RelativeToolTip": "Main.cpp",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAAAwAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-17T07:40:21.895Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "AcademicStaffs.h",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h",
               "RelativeDocumentMoniker": "AcademicStaffs.h",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h",
               "RelativeToolTip": "AcademicStaffs.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAZAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-17T07:40:21.892Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "AcademicStaffs.cpp",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp",
               "RelativeDocumentMoniker": "AcademicStaffs.cpp",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp",
               "RelativeToolTip": "AcademicStaffs.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAaAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-05-17T07:40:21.893Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Students.cpp",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp",
               "RelativeDocumentMoniker": "Students.cpp",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp",
               "RelativeToolTip": "Students.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAYAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-05-17T07:40:21.894Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Main.cpp",
-              "DocumentMoniker": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Main.cpp",
-              "RelativeDocumentMoniker": "Main.cpp",
-              "ToolTip": "D:\\University\\Project_KTLT_LT\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Main.cpp",
-              "RelativeToolTip": "Main.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-17T07:40:21.895Z",
+              "DocumentIndex": 2,
+              "Title": "Students.h",
+              "DocumentMoniker": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.h",
+              "RelativeDocumentMoniker": "Students.h",
+              "ToolTip": "D:\\New folder\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.h",
+              "RelativeToolTip": "Students.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-17T07:40:21.89Z",
               "EditorCaption": ""
             }
           ]

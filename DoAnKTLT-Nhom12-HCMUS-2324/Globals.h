@@ -62,7 +62,7 @@ struct course
 
 struct nodeCourse
 {
-	course info;
+	course* info;
 	nodeCourse* pNext;
 };
 
@@ -151,5 +151,14 @@ int to_date(string day);
 void GetCurSemester(Semester& curSemester);
 date strToDate(string day);
 
+// Quang Thang
+course* convertingCourse(ifstream& ifs);
+void addCourse(listCourse& lc, course* c1);
+void getListCourse(listCourse& lc);
+void printInformationOfUser(User us);
+void changePassword(User& us);
+void logout(listUser lu);
+void printSchoolYearInformation(User us);
+void changeDateStartSchoolYear(User us);
 #endif // !function_h
 

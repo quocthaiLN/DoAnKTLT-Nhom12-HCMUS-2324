@@ -50,3 +50,4 @@ void menuManageCourses() {
 	cout << "5. Semester Summary\n";
 	cout << "Back\n";
 }
+
