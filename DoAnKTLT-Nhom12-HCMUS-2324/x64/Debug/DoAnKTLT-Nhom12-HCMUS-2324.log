@@ -1,2 +1,9 @@
-﻿  LoginSystem.cpp
-  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> C:\Users\ADMIN\Desktop\DoAnKTLT\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
+﻿  AcademicStaffs.cpp
+  Globals.cpp
+C:\Users\ADMIN\Desktop\DoAnKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\Globals.cpp(356,8): warning C4101: 'd': unreferenced local variable
+  LoginSystem.cpp
+  Main.cpp
+  Students.cpp
+  Generating Code...
+  LINK : C:\Users\ADMIN\Desktop\DoAnKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe not found or not built by the last incremental link; performing full link
+  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> C:\Users\ADMIN\Desktop\DoAnKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe

@@ -9,7 +9,7 @@ void LoginAccount(string& userName, string& password)
 	cin >> userName;
 	cout << setw(15) << left << "Password" << ":";
 	cin >> password;
-}
+}//chinh lai tra ve User
 
 listUser InitListUsers()
 {
@@ -289,7 +289,7 @@ void getListCourse(listCourse& lc)
 		cout << "Mo file that bai!\n";
 		return;
 	}
-	string line = new char[255];
+	string line;
 	getline(ifs, line);
 	while (!ifs.eof())
 	{
