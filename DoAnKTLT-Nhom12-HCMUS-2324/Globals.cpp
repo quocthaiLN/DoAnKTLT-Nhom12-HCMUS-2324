@@ -3,12 +3,18 @@
 // Đường dẫn thư mục semester để lưu các khóa học có trong kỳ đó
 string semesterPath;
 
-void LoginAccount(string& userName, string& password)
+nodeUser* LoginAccount()
 {
+	string userName, password;
 	cout << setw(15) << left << "User name/ ID" << ":";
 	cin >> userName;
 	cout << setw(15) << left << "Password" << ":";
 	cin >> password;
+	User p;
+	p.id = userName;
+	p.password = password;
+	nodeUser* q = GetNodeUser(p);
+	return q;
 }//chinh lai tra ve User
 
 listUser InitListUsers()
@@ -126,14 +132,14 @@ date ConvertingDate(string data)
 	return day;
 }
 
-nodeUser* IsUser(string userName, string password, listUser lu)
+nodeUser* IsUser(nodeUser* data, listUser lu)
 {
 	nodeUser* p = lu.pHead;
 	while (p != NULL)
 	{
-		if (userName == p->info.id)
+		if (data->info.id == p->info.id)
 		{
-			if (password == p->info.password)
+			if (data->info.password == p->info.password)
 			{
 				return p;
 			}
@@ -325,17 +331,15 @@ void changePassword(User& us)
 	cin >> us.password;
 }
 // ham log out
-void logout(listUser lu)
-{
-	string password;
-	string id;
-	LoginAccount(id, password);
-	if (IsUser(id, password, lu) == NULL)
-	{
-		cout << "TAI KHOAN VUA NHAP KHONG TON TAI !!!\n\n";
-		LoginAccount(id, password);
-	}
-}
+//void logout(listUser lu)
+//{
+//	nodeUser* curUser = LoginAccount();
+//	if (IsUser(curUser , lu) == NULL)
+//	{
+//		cout << "TAI KHOAN VUA NHAP KHONG TON TAI !!!\n\n";
+//		LoginAccount(id, password);
+//	}
+//}
 //ham hien thi thong tin school year
 void printSchoolYearInformation(User us)
 {

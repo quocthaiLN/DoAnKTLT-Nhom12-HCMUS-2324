@@ -135,13 +135,13 @@ struct Semester {
 	date end;
 };
 // Thai
-void LoginAccount(string& userName, string& password);
+nodeUser* LoginAccount();
 listUser InitListUsers();
 nodeUser* GetNodeUser(User info);
 void AddUser(listUser& lu, nodeUser* newUser);
 void ReadingUsersData(listUser& lu, string fileUsersPath);
 User ConvertingUserData(string data);
-nodeUser* IsUser(string userName, string password, listUser lu);//tra ve user co trong danh sach, neu la null nghia la ko co
+nodeUser* IsUser(nodeUser* data, listUser lu);//tra ve user co trong danh sach, neu la null nghia la ko co
 date ConvertingDate(string data);
 
 // Huu Thang
