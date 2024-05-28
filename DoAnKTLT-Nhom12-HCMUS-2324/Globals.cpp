@@ -365,3 +365,199 @@ void changeDateStartSchoolYear(User us)
 		s.begin = strToDate(dateChange);
 	}
 }
+
+
+//void initClass(listClass& list) {
+//	list.pHead = nullptr;
+//	list.pTail = nullptr;
+//	list.size = 0;
+//}
+//
+//void getListClasses(string year, listClass& list) {
+//	initClass(list);
+//	// File sẽ có định dạng là tmp\Data\currentSchoolYear\classes\year\class name\abc.csv
+//	string currentSchoolYear;
+//	GetCurSchoolYear(currentSchoolYear, GetCurDate());
+//	string path = "\\Data\\" + currentSchoolYear + "\\classes\\" + year + "\\";
+//	string extension = ".csv";
+//
+//
+//	// Duyệt qua toàn bộ folder trong project
+//	for (auto& p : filesystem::recursive_directory_iterator(path)) {
+//		if (p.path().extension() == extension) {
+//			classes* cls = new classes;
+//			// Lấy phần thân của đường dẫn, nghĩa là không có đuôi ".csv"
+//			cls->className = p.path().stem().string();
+//			cls->path = p.path();
+//			cls->next = nullptr;
+//			addClass(list, cls);
+//		}
+//	}
+//}
+//
+//void addClass(listClass& list, classes* course) {
+//	if (course == nullptr) return;
+//	course->next = nullptr;
+//	if (list.pHead == nullptr) {
+//		list.pHead = course;
+//	}
+//	else {
+//		classes* last = list.pHead;
+//		while (last->next) last = last->next;
+//		last->next = course;
+//	}
+//}
+//
+//
+//void writeFileClass(string path, ListStudent listSt) {
+//	ofstream ofs;
+//	ofs.open(path);
+//	if (!ofs.is_open()) {
+//		cout << "Not opening File\n";
+//		return;
+//	}
+//
+//	ofs << "No,Student ID,Last name,First name,Gender,Date of Birth,Social ID,Academic year" << endl;
+//	int no = 1;
+//	NodeStudent* p = listSt.pHead;
+//
+//	while (p != nullptr) {
+//		string dob = to_string(p->Info.dateOfBirth.day) + '/' + to_string(p->Info.dateOfBirth.month) + '/' + to_string(p->Info.dateOfBirth.year);
+//		ofs << no << ',' << p->Info.studentID << "," << p->Info.lastName << ',' << p->Info.firstName << ',' << p->Info.gender << "," << dob << ',';
+//		ofs << p->Info.socialID << ',' << p->Info.academicYear;
+//
+//		no++;
+//		p = p->pNext;
+//		if (p != nullptr) ofs << endl;
+//	}
+//
+//	ofs.close();
+//}
+//
+//
+//void initList(ListStudent& list) {
+//	list.pHead = nullptr;
+//	list.pTail = nullptr;
+//}
+//
+//
+//NodeStudent* convertStudentData(ifstream& ifs) {
+//	NodeStudent* st = new NodeStudent;
+//	string ch; 
+//	string dob;
+//	getline(ifs, ch, ',');
+//	if (ch == "") return nullptr;
+//
+//	ifs >> st->Info.studentID; ifs >> ch;	
+//	ifs.ignore();
+//	getline(ifs, st->Info.lastName, ',');
+//	getline(ifs, st->Info.firstName, ',');
+//	getline(ifs, st->Info.gender, ',');
+//	getline(ifs, dob, ',');
+//
+//	st->Info.dateOfBirth = strToDate(dob);
+//
+//	ifs >> st->Info.socialID; ifs >> ch;
+//	ifs.ignore();
+//	ifs >> st->Info.academicYear;
+//
+//	st->pNext = nullptr;
+//
+//	return st;
+//
+//}
+//
+//void addStudent(ListStudent& list, NodeStudent* student) {
+//	if (student == nullptr) return;
+//	student->pNext = nullptr;
+//	if (list.pHead == nullptr) {
+//		list.pHead = list.pTail = student;
+//	}
+//	else {
+//		list.pTail->pNext = student;
+//		list.pTail = student;
+//	}
+//}
+//
+//void removeStudent(ListStudent& list, NodeStudent* student) {
+//	if (student == list.pHead && student == list.pTail) {
+//		list.pHead = list.pTail = nullptr;
+//		delete student;
+//	}
+//	else if (student == list.pHead) {
+//		list.pHead = list.pHead->pNext;
+//		delete student;
+//	}
+//	else if (student == list.pTail) {
+//		NodeStudent* tmp = list.pHead;
+//		while (tmp->pNext != list.pTail)  tmp = tmp->pNext;
+//		list.pTail = tmp;
+//		list.pTail = nullptr;
+//		delete student;
+//	}
+//	else {
+//		NodeStudent* t = list.pHead;
+//		while (t->pNext != student) t = t->pNext;
+//		t->pNext = student->pNext;
+//		delete student;
+//	}
+//}
+
+//string studentYear(int year) {
+//	string s;
+//	switch (year) {
+//	case 1:
+//		s = "first-year classes";
+//		break;
+//	case 2:
+//		s = "second-year classes";
+//		break;
+//	case 3:
+//		s = "third-year classes";
+//		break;
+//	default:
+//		s = "final-year classes";
+//		break;
+//	}
+//	return s;
+//}
+
+void createClass(const string src, string &dest) {
+	ifstream ifs;
+	ifs.open(src);
+	if (!ifs.is_open()) {
+		cout << "Mo file nguon khong thanh cong\n";
+		return;
+	}
+
+	string res, line;
+	while (getline(ifs, line)) {
+		res += line + '\n';
+	}
+
+	ifs.close();
+
+	ofstream ofs;
+	string curSchoolYear;
+	GetCurSchoolYear(curSchoolYear, GetCurDate());
+	// Tạm thời sẽ chưa lấy folder năm nhất, năm hai.... Khi nào viết hàm lấy năm 1, năm 2... của học sinh thì sẽ sửa
+	// Bây giờ thêm tay thông tin folder năm thứ bao nhiêu sau folder class
+	// Và thông tin của ngành, tạm thời chỉ thêm ngành CTT sau folder first-year classes
+	// Sau khi viết các hàm liên quan đến danh sách sinh viên sẽ thêm vào sau.
+	string nameClass;
+
+	// Bây giờ chỉ nhập CTT? chứ chưa nhập năm là 23CTT5. Sau này có hàm lấy studentYear
+	// thì sửa lại + nameClass + ext; để file csv có tên theo đúng năm
+	cout << "Name of Class: "; cin >> nameClass;
+	string ext = ".csv";
+	dest = "Data\\" + curSchoolYear + "\\classes\\" + "first-year classes\\" + "CTT\\" + nameClass + ext;
+	ofs.open(dest);
+	if (!ofs.is_open()) {
+		cout << "Mo file dich khong thanh cong\n";
+		return;
+	}
+
+	ofs << res;
+
+	ofs.close();
+}

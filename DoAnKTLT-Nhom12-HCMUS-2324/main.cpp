@@ -6,7 +6,7 @@ int main()
 	menuUserAccount();*/
 	//menuProfile();
 
-	//ham loginAccount nen tra ve kieu User de thuc hien cac ham con nho hon 
+	/*ham loginAccount nen tra ve kieu User de thuc hien cac ham con nho hon */
 	int lc;
 	while (1)
 	{
@@ -43,5 +43,9 @@ int main()
 	}
 	cout << endl;
 	menuStudentUserAccount();
+
+	/*string src ="D:\\University\\sample\\CourseRegistrationSystem\\Data\\2020-2021\\classes\\first-year classes\\CTT\\20CTT5.csv";
+	string dest;
+	createClass(src, dest);*/
 	return 0;
 }

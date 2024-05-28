@@ -1,4 +1,4 @@
-#ifndef Global_h
+﻿#ifndef Global_h
 #define Global_h
 #define _CRT_SECURE_NO_WARNINGS
 //Chua thong tin ve struct
@@ -9,9 +9,9 @@
 #include <fstream>
 #include <iomanip>
 #include <ctime>
+#include <filesystem>
 
 using namespace std;
-
 #include "AcademicStaffs.h"
 #include "Students.h"
 #include "LoginSystem.h"
@@ -97,6 +97,8 @@ struct Student
 	string lastName;
 	string gender;
 	date dateOfBirth;
+	int academicYear; // Năm học, 2021, 2022, ...
+	string program; // Hệ học : đại trà, clc, ...
 	int socialID;
 	listCourse enrolledCourse;//Cac mon da dang ky
 	courseMark cMark;
@@ -120,13 +122,15 @@ struct ListStudent
 struct classes
 {
 	string className;
-	string path;	//fs:: path path;
+	filesystem::path path;	//fs:: path path;
+	classes* next;
 };
 
 struct listClass
 {
 	classes* pHead;
 	classes* pTail;
+	int size;
 };
 
 struct Semester {
@@ -150,6 +154,18 @@ void GetCurSchoolYear(string& curSchoolYear, date curDate);
 int to_date(string day);
 void GetCurSemester(Semester& curSemester);
 date strToDate(string day);
+
+//void initClass(listClass& list);
+//void getListClasses(string year, listClass& list);
+//void addClass(listClass& list, classes* course);
+//void writeFileClass(string path, ListStudent listSt);
+//void initList(ListStudent& list);
+//NodeStudent* convertStudentData(ifstream& ifs);
+//void addStudent(ListStudent& list, NodeStudent* student);
+//void removeStudent(ListStudent& list, NodeStudent* student);
+//string studentYear(int year);
+
+void createClass(const string src,string &dest);
 
 // Quang Thang
 course* convertingCourse(ifstream& ifs);

@@ -51,3 +51,17 @@ void menuManageCourses() {
 	cout << "Back\n";
 }
 
+
+//void addStudentAccount(ListStudent& listStudent, listUser& lu) {
+//	NodeStudent* tmp = listStudent.pHead;
+//	while (tmp) {
+//		AddUser(lu, )
+//	}
+//}
+//
+//void saveListStudent(ListStudent listStudent);
+//// Hàm nh?p thông tin l?p t? bàn phím
+//void inputClassData() {
+//
+//}
+
