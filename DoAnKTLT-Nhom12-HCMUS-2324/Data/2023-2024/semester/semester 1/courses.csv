@@ -1,0 +1,12 @@
+Courses registration session:,00/00/0-00/00/0
+ID,Course name,Teacher name,Credits,Academic year,Number of students, Number of enroller,Day of the week,Session
+GEO00002,Khoa hoc Trai Dat,Nguyen Van A,2,2020,106,0,MON,S1-S2
+CHE00002,Hoa dai cuong 2,Nguyen Thi B,3,2020,70,0,MON,S1-S2
+ENV00001,Moi truong dai cuong,Nguyen Van F,2,2020,175,0,TUE,S1-S2
+CSC00003,Tin hoc co so,Nguyen Van G,3,2020,29,0,WED,S3-S4
+CSC00004,Nhap mon Cong nghe Thong tin,Huynh Thuy Bao Tran,4,2020,150,0,WED,S1-S2
+CSC10001,Nhap mon lap trinh,Truong Toan Thinh,4,2020,150,0,MON,S3-S4
+MTH00003,Vi tich phan 1B,Le Van Chanh,3,2020,50,0,WED,S3-S4
+MTH00041,Toan roi rac,Nguyen Duy Loc,3,2020,100,0,FRI,S1-S2
+MTH00081,Thuc hanh vi tich phan 1B,Nguyen Cao Dang,1,2020,50,0,MON,S1-S2
+MTH00086,Thuc hanh toan roi rac,Le Van Hop,1,2020,50,0,MON,S3-S4

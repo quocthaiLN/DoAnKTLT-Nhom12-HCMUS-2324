@@ -317,18 +317,18 @@ void printInformationOfUser(User us)
 	cout << "Date of Birth: " << us.dateOfBirth.day << "/" << us.dateOfBirth.month << "/" << us.dateOfBirth.year << endl;
 }
 //ham doi mat khau o phan account
-void changePassword(User& us)
+void changePassword(nodeUser*& us)
 {
-	string tmp(us.password);
+	string tmp(us->info.password);
 	cout << "Nhap vao mat khau hien tai: ";
-	cin >> us.password;
-	while (tmp != us.password)
+	cin >> us->info.password;
+	while (tmp != us->info.password)
 	{
 		cout << "Nhap sai mat khau yeu cau nhap lai!\n";
-		cin >> us.password;
+		cin >> us->info.password;
 	}
 	cout << "Nhap vao mat khau moi: ";
-	cin >> us.password;
+	cin >> us->info.password;
 }
 // ham log out
 //void logout(listUser lu)
@@ -373,27 +373,27 @@ void changeDateStartSchoolYear(User us)
 //	list.size = 0;
 //}
 //
-//void getListClasses(string year, listClass& list) {
-//	initClass(list);
-//	// File sẽ có định dạng là tmp\Data\currentSchoolYear\classes\year\class name\abc.csv
-//	string currentSchoolYear;
-//	GetCurSchoolYear(currentSchoolYear, GetCurDate());
-//	string path = "\\Data\\" + currentSchoolYear + "\\classes\\" + year + "\\";
-//	string extension = ".csv";
-//
-//
-//	// Duyệt qua toàn bộ folder trong project
-//	for (auto& p : filesystem::recursive_directory_iterator(path)) {
-//		if (p.path().extension() == extension) {
-//			classes* cls = new classes;
-//			// Lấy phần thân của đường dẫn, nghĩa là không có đuôi ".csv"
-//			cls->className = p.path().stem().string();
-//			cls->path = p.path();
-//			cls->next = nullptr;
-//			addClass(list, cls);
-//		}
-//	}
-//}
+/*void getListClasses(string year, listClass& list) {
+	initClass(list);
+	// File sẽ có định dạng là tmp\Data\currentSchoolYear\classes\year\class name\abc.csv
+	string currentSchoolYear;
+	GetCurSchoolYear(currentSchoolYear, GetCurDate());
+	string path = "\\Data\\" + currentSchoolYear + "\\classes\\" + year + "\\";
+	string extension = ".csv";
+
+
+	// Duyệt qua toàn bộ folder trong project
+	for (auto& p : filesystem::recursive_directory_iterator(path)) {
+		if (p.path().extension() == extension) {
+			classes* cls = new classes;
+			// Lấy phần thân của đường dẫn, nghĩa là không có đuôi ".csv"
+			cls->className = p.path().stem().string();
+			cls->path = p.path();
+			cls->next = nullptr;
+			addClass(list, cls);
+		}
+	}
+}*/
 //
 //void addClass(listClass& list, classes* course) {
 //	if (course == nullptr) return;
@@ -561,3 +561,105 @@ void createClass(const string src, string &dest) {
 
 	ofs.close();
 }
+// ham copy file danh sach hoc sinh qua danh sach mon hoc trong thu muc semester
+void createFileListStudentInCourse()
+{
+	ofstream ofs;
+	string cou;
+	cout << "Nhap ten mon hoc:";
+	cin >> cou;
+	ofs.open("Data/semester/DSHS-" + cou + ".csv");
+	ifstream ifs;
+	date d = GetCurDate();
+	string nienKhoa;
+	GetCurSchoolYear(nienKhoa, d);
+	string sc_year;
+	string cla;
+	cout << "Nhap vao ten lop hoc se tham gia vao mon hoc: ";
+	cin >> cla;
+	string s1(nienKhoa, 2, 3);
+	string s2(cla, 0, 1);
+	int tmp = stoi(s1) - stoi(s2);
+	while (tmp > 3 || tmp < 0)
+	{
+		cout << "Nhap lai vao ten lop hoc se tham gia vao mon hoc: ";
+		cin >> cla;
+		string s3(cla, 0, 1);
+		tmp = stoi(s1) - stoi(s3);
+	}
+	switch (tmp)
+	{
+	case 0:
+		sc_year = "first-year classes";
+		break;
+	case 1:
+		sc_year = "second-year classes";
+		break;
+	case 2:
+		sc_year = "third-year classes";
+		break;
+	case 3:
+		sc_year = "final-year classes";
+		break;
+	}
+	/*
+	co the them switch case de chon chuong trinh dag hoc la chinh quy hay clc,...
+	*/
+	ifs.open("Data/InfomationOfStudent/" + sc_year + "/CTT/" + cla + ".csv");
+	if (!ifs.is_open())
+	{
+		cout << "Mo file that bai vui long kiem tra lai ten lop hoc!!!\n";
+		return;
+	}
+	string line;
+	while (!ofs.eof())
+	{
+		getline(ifs, line);
+		if (ifs.eof())
+		{
+			ofs << line;
+			break;
+		}
+		else
+		{
+			ofs << line << endl;
+		}
+	}
+	ifs.close();
+	ofs.close();
+}
+// ham trong semester
+void addCourseToSemester(course* c)
+{
+	ofstream ofs;
+	ofs.open(semesterPath + ".csv");
+	if (!ofs.is_open())
+	{
+		cout << "Mo file that bai!!!\n";
+		return;
+	}
+	ofs << endl;
+	ofs << c->id << "," << c->courseName << "," << c->teacherName << ",";
+	ofs << c->numberOfCredits << "," << c->maximunNumberOfStudent << ",";
+	ofs	<< c->dayOfWeek << "," << c->session << "\n";
+	ofs.close();
+}
+//them sinh vien vao khoa hoc
+void addStudentToCourse(Student* s,course* c)
+{
+	ofstream ofs;
+	ofs.open(semesterPath + "/" +c->courseName + ".csv");
+	if (!ofs.is_open())
+	{
+		cout << "Mo file that bai!!!\n";
+		return;
+	}
+	ofs << endl;
+	ofs << s->No << "," << s->studentID << "," << s->firstName << ",";
+	ofs << s->lastName << "," << s->gender << ",";
+	ofs << s->dateOfBirth.day << "-" << s->dateOfBirth.month << "-" << s->dateOfBirth.year;
+	ofs << "," << s->academicYear << "," << s->program << "," << s->socialID << "," << "\n";
+	ofs.close();
+}
+
+//

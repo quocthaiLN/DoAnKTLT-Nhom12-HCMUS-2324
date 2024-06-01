@@ -172,9 +172,12 @@ course* convertingCourse(ifstream& ifs);
 void addCourse(listCourse& lc, course* c1);
 void getListCourse(listCourse& lc);
 void printInformationOfUser(User us);
-void changePassword(User& us);
+void changePassword(nodeUser*& us);
 void logout(listUser lu);
 void printSchoolYearInformation(User us);
 void changeDateStartSchoolYear(User us);
+void createFileListStudentInCourse();
+void addCourseToSemester(Semester s, course* c);
+void addStudentToCourse(Student* s, course* c);
 #endif // !function_h
 

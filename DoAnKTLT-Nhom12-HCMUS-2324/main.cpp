@@ -7,6 +7,8 @@ int main()
 	//menuProfile();
 
 	/*ham loginAccount nen tra ve kieu User de thuc hien cac ham con nho hon */
+	nodeUser* us = new nodeUser;
+	listUser lu = InitListUsers();
 	int lc;
 	while (1)
 	{
@@ -22,12 +24,12 @@ int main()
 			cin >> lc1;
 			switch (lc1) {
 			case 1:
-				//changePassword();
+				changePassword(us);
 			case 2:
-				//LoginAccount(s1, s2);
-				//if(isUser == NULL);
-				// loginAccount(s1,s2);
-				//break;
+				us = LoginAccount();
+				if(IsUser(us, lu) == NULL);
+				 us = LoginAccount();
+				break;
 			case 3:
 				break;
 			}
