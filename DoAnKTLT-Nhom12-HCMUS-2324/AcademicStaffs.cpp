@@ -14,6 +14,7 @@ void menuAcademicStaff() {
 }
 
 void menuUserAccount() {
+	system("cls");
 	cout << "HCMUS PORTAL" << endl;
 	cout << "User Account" << endl;
 	cout << "1. Change Password\n";
@@ -22,6 +23,7 @@ void menuUserAccount() {
 }
 
 void menuProfile() {
+	system("cls");
 	cout << "HCMUS PORTAL" << endl;
 	cout << "Last Name: " << "Nguyen Van" << endl;
 	cout << "First Name: " << "Tuan" << endl;

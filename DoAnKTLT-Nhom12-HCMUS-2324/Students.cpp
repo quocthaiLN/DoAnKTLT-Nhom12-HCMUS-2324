@@ -15,6 +15,7 @@ void menuStudent() {
 }
 
 void menuStudentUserAccount() {
+	system("cls");
 	cout << "HCMUS PORTAL\n";
 	cout << "User Account\n";
 	cout << "1. Change Password\n";
@@ -23,6 +24,7 @@ void menuStudentUserAccount() {
 }
 
 void menuStudentProfile() {
+	system("cls");
 	cout << "HCMUS PORTAL\n";
 	cout << "Profile" << endl;
 	cout << "1. Last name: " << "Nguyen Le Hoang" << endl;
@@ -36,6 +38,7 @@ void menuStudentProfile() {
 }
 
 void menuCoursesRegis() {
+	system("clc");
 	cout << "HCMUS PORTAL\n";
 	cout << "Courses Registration\n";
 	cout << "1. Register Courses\n";

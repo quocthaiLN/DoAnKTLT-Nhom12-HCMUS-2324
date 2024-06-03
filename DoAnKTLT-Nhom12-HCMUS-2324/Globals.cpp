@@ -2,7 +2,7 @@
 
 // Đường dẫn thư mục semester để lưu các khóa học có trong kỳ đó
 string semesterPath;
-
+string schoolYearPath = "C:\\DoAn\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Data";
 nodeUser* LoginAccount()
 {
 	string userName, password;
@@ -662,4 +662,70 @@ void addStudentToCourse(Student* s,course* c)
 	ofs.close();
 }
 
-//
+void CopyFile(string src, string dest)
+{
+	ifstream ifs;
+	ifs.open(src);
+	if (ifs.is_open() == false)
+	{
+		cout << "Mo file nguon khong thanh cong!\n";
+		return;
+	}
+
+	ofstream ofs;
+	ofs.open(dest);
+	if (ofs.is_open() == false)
+	{
+		cout << "Mo file dich khong thang cong!\n";
+		return;
+	}
+
+	string line;
+	while (getline(ifs, line))
+	{
+		ofs << line;
+		ofs << '\n';
+	}
+
+	ifs.close();
+	ofs.close();
+}
+
+void CreateDirectory(string filePath)
+{
+	error_code ec;
+	filesystem::create_directory(filePath, ec);
+
+	if (ec)
+	{
+		cerr << "Error creating directory : " << ec.message() << endl;
+	}
+	else
+	{
+		cout << "Directory created succesfully" << endl;
+	}
+}
+
+void CreatingNewSchoolYear(string schoolYear, string firstYearPath)
+{
+	CreateDirectory(schoolYearPath + '\\' + schoolYear);
+	CreateDirectory(schoolYearPath + '\\' + schoolYear + "classes");
+	string previousSchoolYear = GetPreviousSchoolYear(schoolYear);
+	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "first-year classes", schoolYearPath + schoolYear + "classes" + "second-year classes");
+	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "second-year classes", schoolYearPath + schoolYear + "classes" + "third-year classes");
+	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "third-year classes", schoolYearPath + schoolYear + "classes" + "final-year classes");
+	CopyFile(firstYearPath, schoolYearPath + schoolYear + "classes" + "first-year classes");
+}
+
+string GetPreviousSchoolYear(string schoolYear)
+{
+	string f = schoolYear.substr(0, 4), e = schoolYear.substr(5);
+	int a = stoi(f) - 1;
+	int b = stoi(e) - 1;
+	f = to_string(a);
+	e = to_string(b);
+	return f + '-' + e;
+}
+
+
+

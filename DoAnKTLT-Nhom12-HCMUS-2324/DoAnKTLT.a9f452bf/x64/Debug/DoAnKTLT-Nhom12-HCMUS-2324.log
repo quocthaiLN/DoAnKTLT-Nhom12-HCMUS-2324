@@ -1,9 +1,8 @@
 ﻿  AcademicStaffs.cpp
   Globals.cpp
-D:\123\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\Globals.cpp(360,8): warning C4101: 'd': unreferenced local variable
+C:\DoAn\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\Globals.cpp(360,8): warning C4101: 'd': unreferenced local variable
   LoginSystem.cpp
   Main.cpp
-D:\123\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\Main.cpp(30,31): warning C4390: ';': empty controlled statement found; is this the intent?
   Students.cpp
   Generating Code...
-  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> D:\123\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
+  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> C:\DoAn\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe

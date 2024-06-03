@@ -147,11 +147,17 @@ void ReadingUsersData(listUser& lu, string fileUsersPath);
 User ConvertingUserData(string data);
 nodeUser* IsUser(nodeUser* data, listUser lu);//tra ve user co trong danh sach, neu la null nghia la ko co
 date ConvertingDate(string data);
+void CopyFile(string src, string dest);
+void CreateDirectory(string filePath);
+void CreatingNewSchoolYear(string schoolYear, string firstYearPath);
+string GetPreviousSchoolYear(string schoolYear);
+
+
 
 // Huu Thang
 date GetCurDate();
 void GetCurSchoolYear(string& curSchoolYear, date curDate);
-int to_date(string day);
+//int to_date(string day);
 void GetCurSemester(Semester& curSemester);
 date strToDate(string day);
 
@@ -173,11 +179,11 @@ void addCourse(listCourse& lc, course* c1);
 void getListCourse(listCourse& lc);
 void printInformationOfUser(User us);
 void changePassword(nodeUser*& us);
-void logout(listUser lu);
+//void logout(listUser lu);
 void printSchoolYearInformation(User us);
 void changeDateStartSchoolYear(User us);
 void createFileListStudentInCourse();
-void addCourseToSemester(Semester s, course* c);
+//void addCourseToSemester(Semester s, course* c);
 void addStudentToCourse(Student* s, course* c);
 #endif // !function_h
 
