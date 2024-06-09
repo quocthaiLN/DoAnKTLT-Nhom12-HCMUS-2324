@@ -706,6 +706,7 @@ void CreateDirectory(string filePath)
 	}
 }
 
+//Hàm này có vẻ như sai vì mình cần copyFolder, viết lại
 void CreatingNewSchoolYear(string schoolYear, string firstYearPath)
 {
 	CreateDirectory(schoolYearPath + '\\' + schoolYear);
