@@ -16,6 +16,8 @@ using namespace std;
 #include "Students.h"
 #include "LoginSystem.h"
 
+namespace fs = std::filesystem;
+
 struct date
 {
 	int day, month, year;
@@ -167,11 +169,18 @@ date strToDate(string day);
 //void writeFileClass(string path, ListStudent listSt);
 //void initList(ListStudent& list);
 //NodeStudent* convertStudentData(ifstream& ifs);
-//void addStudent(ListStudent& list, NodeStudent* student);
+void addStudent(ListStudent& list, Student st);
 //void removeStudent(ListStudent& list, NodeStudent* student);
 //string studentYear(int year);
 
 void createClass(const string src,string &dest);
+void createSemester(listCourse& list);
+void addCourseToFile(listCourse& list, course* c1);
+void DisplayCourse(listCourse list);
+void ChangeCourse(listCourse& list, nodeCourse* changedCourse);
+void RemoveCourse(listCourse& list, nodeCourse* removedCourse);
+void DisplayListEnrolledStudents(course enrolledCourse);
+
 
 // Quang Thang
 course* convertingCourse(ifstream& ifs);

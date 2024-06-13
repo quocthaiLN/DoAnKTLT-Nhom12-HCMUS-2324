@@ -261,16 +261,13 @@ course* convertingCourse(ifstream& ifs)
 	return cou;
 }
 //tao mot node course moi 
-nodeCourse* createNodeCourse(course* c1)
+nodeCourse* createNodeCourse(course *c1)
 {
 	nodeCourse* nc = new nodeCourse;
-	if (c1 == NULL)
-		return NULL;
 	nc->info = c1;
 	nc->pNext = NULL;
 	return nc;
 }
-// ham them mot node course vao list
 void addCourse(listCourse& lc, course* c1)
 {
 	nodeCourse* nc = createNodeCourse(c1);
@@ -467,17 +464,7 @@ void changeDateStartSchoolYear(User us)
 //
 //}
 //
-//void addStudent(ListStudent& list, NodeStudent* student) {
-//	if (student == nullptr) return;
-//	student->pNext = nullptr;
-//	if (list.pHead == nullptr) {
-//		list.pHead = list.pTail = student;
-//	}
-//	else {
-//		list.pTail->pNext = student;
-//		list.pTail = student;
-//	}
-//}
+
 //
 //void removeStudent(ListStudent& list, NodeStudent* student) {
 //	if (student == list.pHead && student == list.pTail) {
@@ -728,5 +715,276 @@ string GetPreviousSchoolYear(string schoolYear)
 	return f + '-' + e;
 }
 
+void createSemester(listCourse &list) {
+	getListCourse(list);
+	int semester;
+	string starDate, endDate;
+
+	cout << "HCMUS PORTAl\n";
+	cout << "Create Semester\n";
+
+	cout << "Semester(1/2/3): "; cin >> semester;
+	cout << "Start Date: ";
+	cin >> starDate; // Nhập theo đinh dạng d/m/y
+	cout << "End Date: ";
+	cin >> endDate;
+
+	string semesterFolder = "semester " + to_string(semester);
+	const string path = schoolYearPath + "\\semester.dat";
+
+	fs::create_directories(schoolYearPath + "\\" + semesterFolder + "\\courses.csv");
+
+	nodeCourse* p = list.pHead;
+
+	while (p) {
+		fs::create_directories(schoolYearPath + "\\" + semesterFolder + "\\" + p->info->courseName + ".csv");
+		p = p->pNext;
+	}
+}
+
+// ham them mot node course vao list - Quang Thang
+void inputCourse(course& c) {
+	cout << "Course ID: "; cin >> c.id;
+	cout << "Teacher Name: ";
+	cin.ignore();
+	getline(cin, c.teacherName);
+	cout << "Numbers of Credits: "; cin >> c.numberOfCredits;
+	cout << "Day of Weeks: "; 
+	cin >> c.dayOfWeek; // MON, SUN, TUES
+	cout << "Session: ";
+	cin >> c.session;
+}
 
 
+void addCourseToFile(listCourse& list, course* c1) {
+	inputCourse(*c1);
+	nodeCourse* t = new nodeCourse;
+	t->info = c1;
+	t->pNext = NULL;
+
+	if (list.pHead == NULL) list.pHead = list.pTail = t;
+	else {
+		list.pTail->pNext = t;
+		list.pTail = t;
+	}
+	
+	Semester se;
+	GetCurSemester(se);
+
+	string semesterFolder = "semester " + to_string(se.semester);
+	ofstream ofs;
+	ofs.open(schoolYearPath + "\\" + semesterFolder + "\\courses.csv");
+	if (!ofs.is_open()) {
+		cout << "Mo file khong thanh cong\n";
+		return;
+	}
+
+	ofs << c1->id << "," << c1->courseName << "," << c1->teacherName << "," << c1->numberOfCredits << "," << c1->maximunNumberOfStudent << "," << c1->dayOfWeek << "," << c1->session << endl;
+	
+	ofs.close();
+
+	fs::create_directories(schoolYearPath + "\\" + semesterFolder + "\\" + c1->courseName + ".csv");
+	/*ofstream ofs;
+	ofs.open(schoolYearPath + "\\" + semesterFolder + "\\" + c1->courseName + ".csv");
+	if (!ofs.is_open()) {
+		cout << "Mo file khong thanh cong\n";
+		return;
+	}*/
+
+
+}
+
+void DisplayCourse(listCourse list) {
+	if (list.pTail == NULL) {
+		cout << "No Course\n";
+		return;
+	}
+	int cnt = 1;
+
+	nodeCourse* p = list.pHead;
+	while (p) {
+		cout << "Course " << cnt << endl;
+		cout << "ID Course: " << p->info->id << endl;
+		cout << "Teacher: " << p->info->teacherName << endl;
+		cout << "Number of Credits: " << p->info->teacherName << endl;
+		cout << "Max Number of Students: " << p->info->maximunNumberOfStudent << endl;
+		cout << "Day of Week: " << p->info->dayOfWeek << endl;
+		cout << "Session: " << p->info->session << endl;
+		cnt++;
+		p = p->pNext;
+	}
+}
+
+
+void ChangeCourse(listCourse& list, nodeCourse* changedCourse) {
+	if (list.pHead == NULL) {
+		cout << "Empty List\n";
+		return;
+	}
+	else if (changedCourse == NULL) {
+		cout << "Course does not exist\n";
+		return;
+	}
+
+	nodeCourse* p = list.pHead;
+	int choice = 0;
+	cout << "1. Modify Teacher Name\n";
+	cout << "2. Modify Number of Credits\n";
+	cout << "3. Modify Day of weeks\n";
+	cout << "4. Modify Session\n";
+	cout << "Your choice: "; cin >> choice;
+	while (p != changedCourse) {
+		p = p->pNext;
+	}
+	
+	if (p == NULL) {
+		cout << "Not find!!\n";
+		return;
+	}
+
+	if (choice == 1) {
+		string newName;
+		cout << "New Teacher Name: ";
+		cin.ignore();
+		getline(cin, newName);
+		p->info->teacherName = newName;
+	}
+	else if (choice == 2) {
+		string newCredits;
+		cout << "New Credits: ";
+		cin >> newCredits;
+		p->info->numberOfCredits = newCredits;
+	}
+	else if (choice == 3) {
+		string newDow;
+		cout << "New Day of Weeks: ";
+		cin >> newDow;
+		p->info->dayOfWeek = newDow;
+	}
+	else if (choice == 4) {
+		string newSession;
+		cout << "New Session: ";
+		cin >> newSession;
+		p->info->session = newSession;
+	}
+	else {
+		cout << "Errors Choice\n";
+		return;
+	}
+
+}
+
+void RemoveCourse(listCourse& list, nodeCourse* removedCourse) {
+	if (list.pHead == NULL) {
+		cout << "List is Empty\n";
+		return;
+	}
+	else if (removedCourse == NULL) {
+		cout << "Course does not exist\n";
+		return;
+	}
+
+	nodeCourse* p = list.pHead;
+	nodeCourse* q = list.pHead;
+
+	if (removedCourse == list.pHead) {
+		list.pHead = list.pHead->pNext;
+		delete p;
+	}
+
+	while (p != removedCourse) {
+		q = p;
+		p = p->pNext;
+	}
+
+	if (p == NULL) {
+		cout << "Mo file khong thanh cong\n";
+		return;
+	}
+
+	if (p == list.pTail) {
+		list.pTail = q;
+		delete[] p;
+		list.pTail->pNext = NULL;
+	}
+	else {
+		q->pNext = p->pNext;
+		delete p;
+	}
+}
+
+void DisplayStudent(Student st) {
+	cout << "Num: " << st.No << endl;
+	cout << "MSSV: " << st.studentID << endl;
+	cout << "First Name: " << st.firstName << endl;
+	cout << "Last Name: " << st.lastName << endl;
+	cout << "Gender: " << st.gender << endl;
+	cout << "DOB: " << st.dateOfBirth.day << "/" << st.dateOfBirth.month << "/" << st.dateOfBirth.year << endl;
+	cout << "Academic Year: " << st.academicYear << endl;
+	cout << "Program: " << st.program << endl;
+	cout << "Social ID: " << st.socialID << endl;
+}
+
+void DisplayListEnrolledStudents(course enrolledCourse) {
+	ifstream ifs;
+	Semester se;
+	GetCurSemester(se);
+
+	string semesterFolder = "semester " + to_string(se.semester);
+	ifs.open(schoolYearPath + "\\" + semesterFolder + "\\" + enrolledCourse.courseName + ".csv");
+	if (!ifs.is_open()) {
+		cout << "Mo file khong thanh cong\n";
+		return;
+	}
+
+	/*int No;
+	int studentID;
+	string firstName;
+	string lastName;
+	string gender;
+	date dateOfBirth;
+	int academicYear; // Năm học, 2021, 2022, ...
+	string program; // Hệ học : đại trà, clc, ...
+	int socialID;*/
+
+	string line;
+	ifs >> line;
+	
+	Student st;
+	char ch;
+
+	// Hiện tại chưa có cấu trúc file nên sẽ đọc trước các thông tin trên của sinh viên
+	while (!ifs.eof()) {
+		ifs >> st.No;
+		ifs >> ch;
+		ifs.ignore();
+		getline(ifs, st.firstName, ',');
+		getline(ifs, st.lastName, ',');
+		getline(ifs, st.gender, ',');
+		ifs >> st.dateOfBirth.day >> ch;
+		ifs >> st.dateOfBirth.month >> ch;
+		ifs >> st.dateOfBirth.year >> ch;
+		ifs >> st.academicYear >> ch;
+		ifs.ignore();
+		getline(ifs, st.gender, ',');
+		ifs >> st.socialID;
+		DisplayStudent(st);
+		st = {};
+	}
+
+}
+
+void addStudent(ListStudent& list, Student st) {
+
+	NodeStudent* t = new NodeStudent;
+	t->Info = st;
+	t->pNext = NULL;
+	if (t == nullptr) return;
+	if (list.pHead == nullptr) {
+		list.pHead = list.pTail = t;
+	}
+	else {
+		list.pTail->pNext = t;
+		list.pTail = t;
+	}
+}
