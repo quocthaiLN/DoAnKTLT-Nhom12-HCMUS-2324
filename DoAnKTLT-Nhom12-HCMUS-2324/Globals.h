@@ -188,11 +188,15 @@ void addCourse(listCourse& lc, course* c1);
 void getListCourse(listCourse& lc);
 void printInformationOfUser(User us);
 void changePassword(nodeUser*& us);
-//void logout(listUser lu);
+void logout(listUser lu);
 void printSchoolYearInformation(User us);
 void changeDateStartSchoolYear(User us);
 void createFileListStudentInCourse();
 //void addCourseToSemester(Semester s, course* c);
 void addStudentToCourse(Student* s, course* c);
+void addNodeStudent(ListStudent& list, NodeStudent* nS);
+void exportStudentFromCourseToFile(ListStudent& list, course* c);
+void importScoreBoard(ListStudent& list, nodeCourse* c);
+void displayScoreBoardOfCourse(nodeCourse* c);
 #endif // !function_h
 

@@ -328,15 +328,15 @@ void changePassword(nodeUser*& us)
 	cin >> us->info.password;
 }
 // ham log out
-//void logout(listUser lu)
-//{
-//	nodeUser* curUser = LoginAccount();
-//	if (IsUser(curUser , lu) == NULL)
-//	{
-//		cout << "TAI KHOAN VUA NHAP KHONG TON TAI !!!\n\n";
-//		LoginAccount(id, password);
-//	}
-//}
+void logout(listUser lu)
+{
+	nodeUser* curUser = LoginAccount();
+	if (IsUser(curUser , lu) == NULL)
+	{
+		cout << "TAI KHOAN VUA NHAP KHONG TON TAI !!!\n\n";
+		LoginAccount();
+	}
+}
 //ham hien thi thong tin school year
 void printSchoolYearInformation(User us)
 {
@@ -634,6 +634,7 @@ void addCourseToSemester(course* c)
 //them sinh vien vao khoa hoc
 void addStudentToCourse(Student* s,course* c)
 {
+	//s->enrolledCourse->pTail->pNext = ;
 	ofstream ofs;
 	ofs.open(semesterPath + "/" +c->courseName + ".csv");
 	if (!ofs.is_open())
@@ -986,5 +987,86 @@ void addStudent(ListStudent& list, Student st) {
 	else {
 		list.pTail->pNext = t;
 		list.pTail = t;
+	}
+}
+
+void addNodeStudent(ListStudent& list, NodeStudent* nS) {
+	if (list.pHead == NULL)
+	{
+		list.pHead = list.pTail = nS; 
+		return;
+	}
+	list.pTail->pNext = nS;
+	list.pTail = nS;
+	list.pTail->pNext = nullptr;
+}
+void exportStudentFromCourseToFile(ListStudent& list, course* c)
+{
+	string line;
+	ifstream ifs;
+	ifs.open(semesterPath + " / " +c->courseName + ".csv");
+	ofstream ofs;
+	ofs.open("D:/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/export/" + c->courseName + ".csv");
+	ofs << left << setw(5) << "No" << left << setw(12) << "Student ID"
+		<< left << setw(40) << "Student Full Name" << left << setw(14) << "Total Mark"
+		<< left << setw(14) << "Final Mark" << left << setw(15) << "Midterm Mark"
+		<< left << setw(15) << "Other Mark" << endl;
+	getline(ifs, line, '\n');
+	while (!ifs.eof()) {
+		NodeStudent* st = new NodeStudent;
+		string no;
+		string id;
+		getline(ifs, no, ',');
+		st->Info.No = stoi(no);
+		getline(ifs, id, ',');
+		st->Info.studentID = stoi(id);
+		getline(ifs, st->Info.firstName, ',');
+		getline(ifs, st->Info.lastName, '\n');
+		addNodeStudent(list, st);
+		ofs << left << setw(5) << st->Info.No << left << setw(12) << st->Info.studentID
+			<< left << setw(40) << st->Info.firstName +" " + st->Info.lastName << endl;
+	}
+}
+
+void importScoreBoard(ListStudent& list, nodeCourse* c)
+{
+	ofstream ofs;
+	ofs.open("D:/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/import/" + c->info->courseName + ".csv");
+	ifstream ifs;
+	ifs.open("D:/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/export/" + c->info->courseName + ".csv");
+	string l;
+	getline(ifs, l, '\n');
+	ofs << l << endl;
+	cout << l << endl;
+	NodeStudent* temp = list.pHead;
+	while (!ifs.eof() && temp != NULL) {
+		string line;
+		getline(ifs, line, '\n');
+		cout << line;
+		cout << left << setw(14);
+		cin >> temp->Info.cMark.totalMark;
+		cout << left << setw(14);
+		cin >> temp->Info.cMark.finalMark; 
+		cout << left << setw(15);
+		cin >> temp->Info.cMark.midtermMark;
+		cout << left << setw(15);
+		cin >> temp->Info.cMark.otherMark;
+		cout << endl;
+		ofs << line;
+		ofs	<< left << setw(14) << temp->Info.cMark.totalMark
+			<< left << setw(14) << temp->Info.cMark.finalMark 
+			<< left << setw(15) << temp->Info.cMark.midtermMark
+			<< left << setw(15) << temp->Info.cMark.otherMark << endl;
+		temp = temp->pNext;
+	}
+}
+
+void displayScoreBoardOfCourse(nodeCourse* c) {
+	ifstream ifs;
+	ifs.open("D:/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/export/" + c->info->courseName + ".csv");
+	while (!ifs.eof()) {
+		string line;
+		getline(ifs, line);
+		cout << line;
 	}
 }
