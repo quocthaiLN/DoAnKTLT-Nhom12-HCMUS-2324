@@ -1,8 +1,3 @@
-﻿  AcademicStaffs.cpp
-  Globals.cpp
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\Globals.cpp(357,8): warning C4101: 'd': unreferenced local variable
-  LoginSystem.cpp
-  Main.cpp
-  Students.cpp
-  Generating Code...
+﻿  Globals.cpp
+D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\Globals.cpp(363,8): warning C4101: 'd': unreferenced local variable
   DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe

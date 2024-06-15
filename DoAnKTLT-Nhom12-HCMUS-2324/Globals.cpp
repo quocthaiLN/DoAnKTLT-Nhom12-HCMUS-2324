@@ -3,6 +3,10 @@
 // Đường dẫn thư mục semester để lưu các khóa học có trong kỳ đó
 string semesterPath;
 string schoolYearPath = "C:\\DoAn\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Data";
+void clearScreen()
+{
+	system("cls");
+}
 nodeUser* LoginAccount()
 {
 	string userName, password;
@@ -43,14 +47,17 @@ void AddUser(listUser& lu, nodeUser* newUser)
 	{
 		return;
 	}
-	else if (lu.pHead == NULL)
-	{
-		lu.pHead = lu.pTail = newUser;
-	}
-	else
-	{
-		lu.pTail->pNext = newUser;
-		lu.pTail = newUser;
+	else {
+		if (lu.pHead == NULL)
+		{
+			lu.pHead = lu.pTail = newUser;
+		}
+		else
+		{
+			lu.pTail->pNext = newUser;
+			lu.pTail = newUser;
+			//lu.pTail->pNext = NULL;
+		}
 	}
 }
 
@@ -82,23 +89,20 @@ User ConvertingUserData(string data)
 	stringstream SSdata(data);
 
 	getline(SSdata, info.id, ',');
-
+	
 	getline(SSdata, info.password, ',');
 	
 	getline(SSdata, info.lastName, ',');
-
-	getline(SSdata, info.firstName, ' ');
-
+	
+	getline(SSdata, info.firstName, ',');
+	
 	getline(SSdata, info.className, ',');
-
+	
 	getline(SSdata, info.gender, ',');
-
+	
 	string temp;
 	getline(SSdata, temp, ',');
 	info.dateOfBirth = ConvertingDate(temp);
-
-	getline(SSdata, temp, ',');
-	info.academicYear = stoi(temp);
 
 	getline(SSdata, temp, ',');
 	if (temp == "True")
@@ -330,10 +334,12 @@ void changePassword(nodeUser*& us)
 // ham log out
 void logout(listUser lu)
 {
+	clearScreen();
 	nodeUser* curUser = LoginAccount();
 	if (IsUser(curUser , lu) == NULL)
 	{
 		cout << "TAI KHOAN VUA NHAP KHONG TON TAI !!!\n\n";
+		clearScreen();
 		LoginAccount();
 	}
 }
@@ -1043,15 +1049,28 @@ void importScoreBoard(ListStudent& list, nodeCourse* c)
 		string line;
 		getline(ifs, line, '\n');
 		cout << line;
-		cout << left << setw(14);
-		cin >> temp->Info.cMark.totalMark;
-		cout << left << setw(14);
+		clearScreen();
+		cout << "Final Mark:";
 		cin >> temp->Info.cMark.finalMark; 
-		cout << left << setw(15);
+		cout << "Midterm Mark:";
 		cin >> temp->Info.cMark.midtermMark;
-		cout << left << setw(15);
+		cout << "Other Mark:";
 		cin >> temp->Info.cMark.otherMark;
-		cout << endl;
+		cout << "ToTal Mark:";
+		cin >> temp->Info.cMark.totalMark;
+		clearScreen();
+		NodeStudent* tmp = list.pHead;
+		while (tmp != NULL)
+		{
+			cout << l << endl;
+			cout<< left << setw(5) << tmp->Info.No << left << setw(12) << tmp->Info.studentID
+				<< left << setw(40) << tmp->Info.firstName + " " + tmp->Info.lastName
+				<< left << setw(14) << tmp->Info.cMark.totalMark
+				<< left << setw(14) << tmp->Info.cMark.finalMark
+				<< left << setw(15) << tmp->Info.cMark.midtermMark
+				<< left << setw(15) << tmp->Info.cMark.otherMark << endl;
+			tmp = tmp->pNext;
+		}
 		ofs << line;
 		ofs	<< left << setw(14) << temp->Info.cMark.totalMark
 			<< left << setw(14) << temp->Info.cMark.finalMark 
@@ -1070,3 +1089,6 @@ void displayScoreBoardOfCourse(nodeCourse* c) {
 		cout << line;
 	}
 }
+
+
+

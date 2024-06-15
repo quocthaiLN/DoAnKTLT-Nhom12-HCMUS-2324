@@ -3,40 +3,40 @@
   "WorkspaceRootPath": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:AcademicStaffs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Students.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:LoginSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:LoginSystem.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:AcademicStaffs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Students.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:LoginSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:Students.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:AcademicStaffs.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A9F452BF-EA9E-4ADE-BDBA-6CAFAACCC0A1}|DoAnKTLT-Nhom12-HCMUS-2324.vcxproj|solutionrelative:AcademicStaffs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,31 +51,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Globals.cpp",
+              "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp",
+              "RelativeDocumentMoniker": "Globals.cpp",
+              "ToolTip": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp",
+              "RelativeToolTip": "Globals.cpp",
+              "ViewState": "AQIAAEQBAAAAAAAAAAAAAFYBAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-17T07:40:21.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Globals.h",
               "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h",
               "RelativeDocumentMoniker": "Globals.h",
               "ToolTip": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.h",
               "RelativeToolTip": "Globals.h",
-              "ViewState": "AQIAALUAAAAAAAAAAAAYwMcAAAAuAAAA",
+              "ViewState": "AQIAALcAAAAAAAAAAAAAABAAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-17T07:40:21.516Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Globals.cpp",
-              "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp",
-              "RelativeDocumentMoniker": "Globals.cpp",
-              "ToolTip": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Globals.cpp",
-              "RelativeToolTip": "Globals.cpp",
-              "ViewState": "AQIAAPYAAAAAAAAAAAAAAA0AAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-17T07:40:21.656Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "LoginSystem.h",
               "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\LoginSystem.h",
               "RelativeDocumentMoniker": "LoginSystem.h",
@@ -83,7 +84,8 @@
               "RelativeToolTip": "LoginSystem.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-17T07:40:21.886Z"
+              "WhenOpened": "2024-05-17T07:40:21.886Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -99,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AcademicStaffs.h",
               "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.h",
               "RelativeDocumentMoniker": "AcademicStaffs.h",
@@ -111,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "AcademicStaffs.cpp",
               "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\AcademicStaffs.cpp",
               "RelativeDocumentMoniker": "AcademicStaffs.cpp",
@@ -123,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Students.cpp",
               "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.cpp",
               "RelativeDocumentMoniker": "Students.cpp",
@@ -135,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Students.h",
               "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Students.h",
               "RelativeDocumentMoniker": "Students.h",
@@ -147,15 +149,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Main.cpp",
               "DocumentMoniker": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "D:\\project\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-05-17T07:40:21.895Z"
+              "WhenOpened": "2024-05-17T07:40:21.895Z",
+              "EditorCaption": ""
             }
           ]
         }

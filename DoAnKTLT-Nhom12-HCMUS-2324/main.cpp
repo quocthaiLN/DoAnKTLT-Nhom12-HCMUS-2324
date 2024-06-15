@@ -1,8 +1,26 @@
 #include "Globals.h"
 
+//string userPath = "Data\\Accounts\\users.csv";
+string userPath = "D:/project/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/Accounts/users.csv";
+//string userPath = "D:/project/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/file.csv";
 int main()
 {
+	nodeUser* curUser = NULL;
+	nodeUser* tempUser = NULL;
+	listUser listUs = InitListUsers();
+	do
+	{
+		tempUser = LoginAccount();
+		ReadingUsersData(listUs, userPath);
+		curUser = IsUser(tempUser, listUs);
+		if (curUser != NULL)
+		{
+			cout << "Dang nhap thanh cong!\n";
+		}
+	} while (curUser == NULL);
 
+
+	return 0;
 }
 
 
