@@ -1,5 +1,4 @@
-#ifndef LoginSystem_h
-#define LoginSystem_h
+#pragma once
 
 #include "Globals.h"
 
@@ -7,4 +6,3 @@ void LoginAccount(string& userName, string& password);
 
 
 
-#endif LoginSystem_h

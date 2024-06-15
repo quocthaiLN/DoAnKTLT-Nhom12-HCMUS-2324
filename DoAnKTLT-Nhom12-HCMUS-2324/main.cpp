@@ -1,7 +1,6 @@
 #include "Globals.h"
 
-//string userPath = "Data\\Accounts\\users.csv";
-string userPath = "D:/project/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/Accounts/users.csv";
+//string userPath = "D:/project/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/Accounts/users.csv";
 //string userPath = "D:/project/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/file.csv";
 int main()
 {
@@ -18,6 +17,18 @@ int main()
 			cout << "Dang nhap thanh cong!\n";
 		}
 	} while (curUser == NULL);
+	system("cls");
+	if (curUser->info.isStaff == true)
+	{
+		actionAcademicStaff(curUser->info, listUs);
+	}
+	else
+	{
+		menuManageStudent();
+	}
+
+
+
 
 
 	return 0;

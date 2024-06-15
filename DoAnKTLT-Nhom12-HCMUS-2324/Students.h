@@ -1,5 +1,4 @@
-#ifndef Students_h
-#define Students_h
+#pragma once
 #include "Globals.h"
 
 // Huu Thang
@@ -11,4 +10,3 @@ void menuCoursesRegis();
   
 
 
-#endif // !1

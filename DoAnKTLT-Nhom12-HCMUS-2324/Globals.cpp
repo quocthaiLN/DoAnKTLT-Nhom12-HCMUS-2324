@@ -1090,5 +1090,84 @@ void displayScoreBoardOfCourse(nodeCourse* c) {
 	}
 }
 
+void Profile(User info)
+{
+	cout << "INFORMATION OF USER" << endl;
+	cout << setw(20) << "ID: " << info.id << endl;
+	cout << setw(20) << "Firset Name: " << info.firstName << endl;
+	cout << setw(20) << "Last Name: " << info.lastName << endl;
+	cout << setw(20) << "Gender: " << info.gender << endl;
+	if (info.isStaff == false)
+	{
+		cout << setw(20) << "Class name: " << info.className << endl;
+		cout << setw(20) << "Academic Year: " << info.academicYear << endl;
+	}
+	PrintDate(info.dateOfBirth);
+}
+
+void PrintDate(date d)
+{
+	cout << "Date of Birth: " << d.day << "/" << d.month << "/" << d.year << endl;
+}
+
+void ChangePassword(User& info, listUser& lu)
+{
+	string newPass, checkUser;
+	cout << setw(30) << "Enter current password: ";
+	cin >> checkUser;
+
+	while (checkUser != info.password)
+	{
+		cout << "Wrong password, enter password again!" << endl;
+		cin >> checkUser;
+	}
+	
+	cout << setw(30) << "Enter new password: ";
+	cin >> newPass;
+	info.password = newPass;
+	WritingUserData(lu, userPath);
+}
 
 
+void WritingUserData(listUser lu, string fileUsersPath)
+{
+	ofstream ofs;
+	ofs.open(fileUsersPath);
+	if (ofs.is_open() == false)
+	{
+		cout << "Mo file that bai (WritingUserData)!" << endl;
+		return;
+	}
+	if (lu.pHead == NULL)
+	{
+		cout << "Danh sach trong (WritingUserData)!" << endl;
+		return;
+	}
+
+	nodeUser* cur = lu.pHead;
+	ofs << headerUserFile;
+	ofs << '\n';
+
+	while (cur != NULL)
+	{
+		ofs << cur->info.id << ',';
+		ofs << cur->info.password << ',';
+		ofs << cur->info.lastName << ',';
+		ofs << cur->info.firstName << ',';
+		ofs << cur->info.lastName << ',';
+		ofs << cur->info.gender << ',';
+		ofs << cur->info.dateOfBirth.day << '/' << cur->info.dateOfBirth.month << '/' << cur->info.dateOfBirth.year << ',';
+		ofs << cur->info.academicYear << ',';
+		if (cur->info.isStaff == true)
+		{
+			ofs << "TRUE";
+		}
+		else
+		{
+			ofs << "FALSE";
+		}
+		ofs << '\n';
+		cur = cur->pNext;
+	}
+	ofs.close();
+}

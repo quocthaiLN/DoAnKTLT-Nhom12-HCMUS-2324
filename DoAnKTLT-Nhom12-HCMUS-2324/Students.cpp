@@ -1,4 +1,4 @@
-#include "Globals.h"
+#include "Students.h"
 
 void menuStudent() {
 	cout << "HCMUS PORTAL\n";

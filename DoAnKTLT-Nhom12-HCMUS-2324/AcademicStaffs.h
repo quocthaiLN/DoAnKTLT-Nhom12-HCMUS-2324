@@ -1,5 +1,4 @@
-#ifndef AcademicStaff_h
-#define AcademicStaff_h
+#pragma once
 #include "Globals.h"
 
 // Huu Thang
@@ -9,11 +8,17 @@ void menuProfile();
 void menuManageStudent();
 void menuManageCourses();
 
-//void inputClassData();
+//Thai
+void actionAcademicStaff(User& info, listUser& lu);
 
+
+
+
+
+//void inputClassData();
 //void addStudentAccount(ListStudent& listStudent, listUser& lu);
 //void saveListStudent(ListStudent listStudent);
 
-#endif // !1
+
 
 

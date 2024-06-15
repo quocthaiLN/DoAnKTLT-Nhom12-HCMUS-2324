@@ -1,3 +1,29 @@
-﻿  Globals.cpp
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\Globals.cpp(363,8): warning C4101: 'd': unreferenced local variable
-  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
+﻿  AcademicStaffs.cpp
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.cpp(59,12): warning C4101: 'z': unreferenced local variable
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.cpp(59,9): warning C4101: 'y': unreferenced local variable
+  Globals.cpp
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,6): error C2182: 'actionAcademicStaff': this use of 'void' is not valid
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,26): error C2065: 'User': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,32): error C2065: 'info': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,38): error C2065: 'listUser': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,48): error C2065: 'lu': undeclared identifier
+  LoginSystem.cpp
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,6): error C2182: 'actionAcademicStaff': this use of 'void' is not valid
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,26): error C2065: 'User': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,32): error C2065: 'info': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,38): error C2065: 'listUser': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,48): error C2065: 'lu': undeclared identifier
+  Main.cpp
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,6): error C2182: 'actionAcademicStaff': this use of 'void' is not valid
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,26): error C2065: 'User': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,32): error C2065: 'info': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,38): error C2065: 'listUser': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,48): error C2065: 'lu': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\Main.cpp(23,3): error C2064: term does not evaluate to a function taking 2 arguments
+  Students.cpp
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,6): error C2182: 'actionAcademicStaff': this use of 'void' is not valid
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,26): error C2065: 'User': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,32): error C2065: 'info': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,38): error C2065: 'listUser': undeclared identifier
+C:\Users\ASUS\Desktop\DoANKTLT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\AcademicStaffs.h(12,48): error C2065: 'lu': undeclared identifier
+  Generating Code...

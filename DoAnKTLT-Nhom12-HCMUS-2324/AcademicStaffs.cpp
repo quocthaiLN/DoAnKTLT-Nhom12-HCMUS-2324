@@ -1,4 +1,5 @@
-#include "Globals.h"
+
+#include "AcademicStaffs.h"
 
 void menuAcademicStaff() {
 	cout << "HCMUS PORTAL" << endl;
@@ -51,6 +52,30 @@ void menuManageCourses() {
 	cout << "4. List Of Course\n";
 	cout << "5. Semester Summary\n";
 	cout << "Back\n";
+}
+
+void actionAcademicStaff(User& info, listUser& lu)
+{
+	int x, y, z;
+	menuAcademicStaff();
+	cout << endl;
+	cout << "CHOOSE ACTION: ";
+	cin >> x;
+	switch (x)
+	{
+	case 1:
+	{
+
+		ChangePassword(info, lu);
+		break;
+	}
+	case 2:
+	{
+		Profile(info);
+		break;
+	}
+	}
+	return;
 }
 
 

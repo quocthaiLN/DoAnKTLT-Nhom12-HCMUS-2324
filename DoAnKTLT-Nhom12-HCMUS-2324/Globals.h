@@ -1,5 +1,4 @@
-﻿#ifndef Global_h
-#define Global_h
+﻿#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 //Chua thong tin ve struct
 
@@ -18,6 +17,10 @@ using namespace std;
 
 namespace fs = std::filesystem;
 
+string headerUserFile = "ID,Password,Last name,First name,Class,Gender,Date of Birth,Academic year,Staff";
+string userPath = "Data\\Accounts\\users.csv";
+
+
 struct date
 {
 	int day, month, year;
@@ -32,9 +35,10 @@ struct User
 	string lastName;
 	string gender;
 	string className;
+	date dateOfBirth;
 	int academicYear;//Nam 1, nam 2,... neu la AcademicStaff thi khong co
 	bool isStaff;
-	date dateOfBirth;
+	
 };
 
 struct nodeUser
@@ -153,8 +157,10 @@ void CopyFile(string src, string dest);
 void CreateDirectory(string filePath);
 void CreatingNewSchoolYear(string schoolYear, string firstYearPath);
 string GetPreviousSchoolYear(string schoolYear);
-
-
+void Profile(User info);
+void PrintDate(date d);
+void ChangePassword(User& info, listUser& lu);
+void WritingUserData(listUser lu, string fileUsersPath);
 
 // Huu Thang
 date GetCurDate();
@@ -198,5 +204,4 @@ void addNodeStudent(ListStudent& list, NodeStudent* nS);
 void exportStudentFromCourseToFile(ListStudent& list, course* c);
 void importScoreBoard(ListStudent& list, nodeCourse* c);
 void displayScoreBoardOfCourse(nodeCourse* c);
-#endif // !function_h
 
