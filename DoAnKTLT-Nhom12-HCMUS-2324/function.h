@@ -169,6 +169,11 @@ void ChangePassword(User& info, listUser& lu);
 void WritingUserData(listUser lu, string fileUsersPath);
 void returnMenuActionAcademicStaff(User& info, listUser& lu);
 void clearScreen();
+void returnMenuActionStudent(User info, listUser lu);
+void actionStudent(User& info, listUser& lu);
+bool CopyFolder(string source, string destination);
+void DisplayCurSchoolYear();
+
 
 //HỮU THẮNG
 date GetCurDate();

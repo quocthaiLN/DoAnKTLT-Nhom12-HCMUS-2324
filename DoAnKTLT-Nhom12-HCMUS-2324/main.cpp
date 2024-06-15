@@ -3,7 +3,6 @@
 //TKHS: 20126001 1
 //TKGV: 110 111
 
-//File user.csv sau khi sửa 1 lần là không xài đc nữa?
 
 int main()
 {
@@ -27,7 +26,7 @@ int main()
 	}
 	else
 	{
-		menuManageStudent();
+		actionStudent(curUser->info, listUs);
 	}
 
 

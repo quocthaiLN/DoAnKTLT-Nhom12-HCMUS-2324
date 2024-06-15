@@ -5,7 +5,7 @@
 string headerUserFile = "ID,Password,Last name,First name,Class,Gender,Date of Birth,Academic year,Staff";
 string userPath = "Data\\Accounts\\users.csv";
 string semesterPath;
-string schoolYearPath = "C:\\DoAn\\DoAnKTLT-Nhom12-HCMUS-2324\\DoAnKTLT-Nhom12-HCMUS-2324\\Data";
+string schoolYearPath = "Data";
 
 
 void menuAcademicStaff() {
@@ -43,10 +43,11 @@ void menuProfile() {
 void menuManageStudent() {
 	cout << "HCMUS PORTAL" << endl;
 	cout << "Manage Student\n";
-	cout << "1. School Year Information\n";
-	cout << "2. Create Classes\n";
-	cout << "3. List of Classes\n";
-	cout << "4. Back\n";
+	cout << "1. Create School Year\n";
+	cout << "2. School Year Information\n";
+	cout << "3. Create Classes\n";
+	cout << "4. List of Classes\n";
+	cout << "5. Back\n";
 }
 
 void menuManageCourses() {
@@ -63,7 +64,7 @@ void menuManageCourses() {
 void menuStudent() {
 	cout << "HCMUS PORTAL\n";
 	cout << GetCurDate().day << "/" << GetCurDate().month << "/" << GetCurDate().year;
-	cout << "\t\t\t" << "Nguyen Van A" << endl;
+	cout <<  endl;
 	cout << "1. User account\n";
 	cout << "2. Profile\n";
 	cout << "3. Courses registration\n";
@@ -106,9 +107,29 @@ void menuCoursesRegis() {
 	cout << "3. Back" << endl;
 }
 
+void DisplayCurSchoolYear()
+{
+	const int openingMonth = 9;
+	date d = GetCurDate();
+	string str1, str2;
+	GetCurSchoolYear(str1, d);
+	cout << setw(30) << "Current School Year: " << str1 << endl;
+	// Nếu tháng hiện tại mà nhỏ hơn tháng 9
+	if (d.month < openingMonth) {
+		// Niên khóa sẽ là: năm hiện tại-1 -> năm hiện tại, vd: 2023 - 2024
+		str2 = to_string(d.year - 1);
+	}// Nếu tháng hiện tại mà lớn hơn hoặc bằng 9
+	else {
+		// Năm học sẽ bắt đầu là năm hiện tại cho đến năm hiện tại + 1, vd: 2024 - 2025
+		str2 = to_string(d.year) + '-' + to_string(d.year + 1);
+	}
+	cout << setw(30) << "Begin Day: 5/9/" << str2 << endl;
+	cout << setw(30) << "End Day: 9/" << to_string(stoi(str2) + 1) << endl;
+ 
+}
+
 void returnMenuActionAcademicStaff(User& info, listUser& lu)
 {
-	
 	int x;
 	do
 	{
@@ -133,8 +154,14 @@ void actionAcademicStaff(User& info, listUser& lu)
 	{
 		clearScreen();
 		cout << setw(30) << "ID: " << info.id << endl;
-		cout << setw(30) << "Password: " << info.password << endl;
-		ChangePassword(info, lu);
+		cout << "1. Change password." << endl;
+		cout << "CHOOSE ACTION: ";
+		cin >> y;
+		if (y == 1)
+		{
+			clearScreen();
+			ChangePassword(info, lu);
+		}
 		returnMenuActionAcademicStaff(info, lu);
 		break;
 	}
@@ -144,11 +171,86 @@ void actionAcademicStaff(User& info, listUser& lu)
 		returnMenuActionAcademicStaff(info, lu);
 		break;
 	}
+	case 3:
+	{
+		clearScreen();
+		menuManageStudent();
+		cout << "CHOOSE ACTION: ";
+		cin >> y;
+		switch(y)
+		{
+		case 1:
+		{
+			clearScreen();
+			string schoolYear, firstYearPath;
+			cout << "Curren School Year (Ex: 2023-2024): ";
+			cin >> schoolYear;
+			cout << "New First Year Student Path: ";
+			cin >> firstYearPath;
+			CreatingNewSchoolYear(schoolYear, firstYearPath);
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 2:
+		{
+			clearScreen();
+			DisplayCurSchoolYear();
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+
+		}
+	}
 	}
 	return;
 }
 
+void returnMenuActionStudent(User info, listUser lu)
+{
+	int x;
+	do
+	{
+		cout << "An phim '0' de quay ve Menu" << endl;
+		cin >> x;
+	} while (x != 0);
+	clearScreen();
+	actionStudent(info, lu);
+}
 
+void actionStudent(User& info, listUser& lu)
+{
+	int x, y, z;
+	menuStudent();
+	cout << endl;
+	cout << "CHOOSE ACTION: ";
+	cin >> x;
+	switch (x)
+	{
+	case 1:
+	{
+		clearScreen();
+		cout << setw(30) << "ID: " << info.id << endl;
+		cout << "1. Change password." << endl;
+		returnMenuActionStudent(info, lu);
+		cin >> y;
+		if (y == 1)
+		{
+			clearScreen();
+			ChangePassword(info, lu);
+			
+		}
+		returnMenuActionStudent(info, lu);
+		break;
+	}
+	case 2:
+	{
+		Profile(info);
+		returnMenuActionStudent(info, lu);
+		break;
+	}
+	}
+	return;
+}
 
 
 //void addStudentAccount(ListStudent& listStudent, listUser& lu) {
@@ -868,12 +970,18 @@ void CreateDirectory(string filePath)
 void CreatingNewSchoolYear(string schoolYear, string firstYearPath)
 {
 	CreateDirectory(schoolYearPath + '\\' + schoolYear);
-	CreateDirectory(schoolYearPath + '\\' + schoolYear + "classes");
+	CreateDirectory(schoolYearPath + '\\' + schoolYear + '\\' + "classes");
 	string previousSchoolYear = GetPreviousSchoolYear(schoolYear);
+	CopyFolder(schoolYearPath + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "first-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "second-year classes");
+	CopyFolder(schoolYearPath + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "second-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "third-year classes");
+	CopyFolder(schoolYearPath + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "third-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "final-year classes");
+	CopyFolder(firstYearPath, schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "first-year classes");
+
+	/*
 	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "first-year classes", schoolYearPath + schoolYear + "classes" + "second-year classes");
 	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "second-year classes", schoolYearPath + schoolYear + "classes" + "third-year classes");
 	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "third-year classes", schoolYearPath + schoolYear + "classes" + "final-year classes");
-	CopyFile(firstYearPath, schoolYearPath + schoolYear + "classes" + "first-year classes");
+	CopyFile(firstYearPath, schoolYearPath + schoolYear + "classes" + "first-year classes");*/
 }
 
 string GetPreviousSchoolYear(string schoolYear)
@@ -1312,10 +1420,10 @@ void WritingUserData(listUser lu, string fileUsersPath)
 
 	nodeUser* cur = lu.pHead;
 	ofs << headerUserFile;
-	ofs << '\n';
 
 	while (cur != NULL)
 	{
+		ofs << '\n';
 		ofs << cur->info.id << ',';
 		ofs << cur->info.password << ',';
 		ofs << cur->info.lastName << ',';
@@ -1332,11 +1440,53 @@ void WritingUserData(listUser lu, string fileUsersPath)
 		{
 			ofs << "FALSE";
 		}
-		ofs << '\n';
 		cur = cur->pNext;
 	}
 	ofs.close();
 }
 
+bool CopyFolder(string source, string destination)
+{
+	cout << source << endl;
+	cout << destination << endl;
+	try {
+		filesystem::path source(source);
+		filesystem::path destination(destination);
 
+		// Kiểm tra thư mục nguồn
+		if (!filesystem::is_directory(source)) {
+			throw runtime_error("Thu muc nguon khong ton tai! (CopyFolder)\n");
+		}
+
+		// Tạo thư mục đích nếu không tồn tại
+		if (!filesystem::exists(destination)) {
+			filesystem::create_directories(destination);
+		}
+
+		// Duyệt qua các mục con trong thư mục nguồn
+		for (const auto& entry : filesystem::recursive_directory_iterator(source)) {
+			const filesystem::path& current_path = entry.path();
+			const filesystem::path relative_path = filesystem::relative(current_path, source);
+
+			// Xác định đường dẫn đích cho mục con hiện tại
+			const filesystem::path destination_path = destination / relative_path;
+
+			// Kiểm tra loại mục con
+			if (filesystem::is_directory(current_path)) {
+				// Tạo thư mục con tương ứng trong thư mục đích
+				filesystem::create_directories(destination_path);
+			}
+			else if (filesystem::is_regular_file(current_path) && current_path.extension() == ".txt") {
+				// Sao chép tệp .txt
+				filesystem::copy_file(current_path, destination_path, filesystem::copy_options::overwrite_existing);
+			}
+		}
+
+		return true;
+	}
+	catch (const exception& e) {
+		cerr << "Loi khi sao chep thu muc! (CopyFolder)\n" << e.what() << endl;
+		return false;
+	}
+}
 
