@@ -1,7 +1,10 @@
-#include "Globals.h"
+﻿#include "function.h"
 
-//string userPath = "D:/project/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/Accounts/users.csv";
-//string userPath = "D:/project/DoAnKTLT-Nhom12-HCMUS-2324/DoAnKTLT-Nhom12-HCMUS-2324/Data/file.csv";
+//TKHS: 20126001 1
+//TKGV: 110 111
+
+//File user.csv sau khi sửa 1 lần là không xài đc nữa?
+
 int main()
 {
 	nodeUser* curUser = NULL;
