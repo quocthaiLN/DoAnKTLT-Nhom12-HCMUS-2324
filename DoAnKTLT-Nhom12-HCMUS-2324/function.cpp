@@ -198,11 +198,54 @@ void actionAcademicStaff(User& info, listUser& lu)
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
+		//case 3 là tạo lớp, tạm thời bỏ làm sau
+		case 4:
+		{
+			string str1, str2;
+			clearScreen();
+			cout << setw(30) << "Enter school year: ";
+			cin >> str1;
+			menuClassYear();
+			cout << setw(30) << "Enter class year: ";
+			cin >> str2;
+			
 
+		}
 		}
 	}
 	}
 	return;
+}
+
+void menuClassYear()
+{
+	cout << "1. First-year classes.\n";
+	cout << "2. Second-year classes.\n";
+	cout << "3. Third-year classes.\n";
+	cout << "4. Final-year classes.\n";
+}
+
+void menuChooseClass(string source)
+{
+	string str;
+	DisplayFilesInDirectory(source);
+	cout << "Enter class name: ";
+	cin >> str;
+	//Viết 1 hàm đọc file class rồi hiển thị lên màn hình
+}
+
+//Viết 1 hàm đọc file class rồi hiển thị lên màn hình
+
+void DisplayFilesInDirectory(const std::string& directoryPath)
+{
+	int count = 0;
+	for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
+		if (entry.is_regular_file()) {
+			cout << count << ". ";
+			count++;
+			cout << entry.path().filename().string() << std::endl;
+		}
+	}
 }
 
 void returnMenuActionStudent(User info, listUser lu)
@@ -969,13 +1012,13 @@ void CreateDirectory(string filePath)
 //Hàm này có vẻ như sai vì mình cần copyFolder, viết lại
 void CreatingNewSchoolYear(string schoolYear, string firstYearPath)
 {
-	CreateDirectory(schoolYearPath + '\\' + schoolYear);
-	CreateDirectory(schoolYearPath + '\\' + schoolYear + '\\' + "classes");
+	CreateDirectory(schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear);
+	CreateDirectory(schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes");
 	string previousSchoolYear = GetPreviousSchoolYear(schoolYear);
-	CopyFolder(schoolYearPath + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "first-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "second-year classes");
-	CopyFolder(schoolYearPath + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "second-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "third-year classes");
-	CopyFolder(schoolYearPath + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "third-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "final-year classes");
-	CopyFolder(firstYearPath, schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "first-year classes");
+	CopyFolder(schoolYearPath + '\\' + "SchoolYear" + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "first-year classes", schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes" + '\\' + "second-year classes");
+	CopyFolder(schoolYearPath + '\\' + "SchoolYear" + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "second-year classes", schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes" + '\\' + "third-year classes");
+	CopyFolder(schoolYearPath + '\\' + "SchoolYear" + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "third-year classes", schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes" + '\\' + "final-year classes");
+	CopyFolder(firstYearPath, schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes" + '\\' + "first-year classes");
 
 	/*
 	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "first-year classes", schoolYearPath + schoolYear + "classes" + "second-year classes");
@@ -1445,48 +1488,45 @@ void WritingUserData(listUser lu, string fileUsersPath)
 	ofs.close();
 }
 
-bool CopyFolder(string source, string destination)
-{
-	cout << source << endl;
-	cout << destination << endl;
-	try {
-		filesystem::path source(source);
-		filesystem::path destination(destination);
+void CopyFile(std::filesystem::path src, std::filesystem::path dest) {
+	std::ifstream source(src, std::ios::binary);
+	std::ofstream destination(dest, std::ios::binary);
+	destination << source.rdbuf();
+}
 
-		// Kiểm tra thư mục nguồn
-		if (!filesystem::is_directory(source)) {
-			throw runtime_error("Thu muc nguon khong ton tai! (CopyFolder)\n");
-		}
+void CopyFolder(string src, string dest) {
+	std::filesystem::path sourcePath(src);
+	std::filesystem::path destPath(dest);
 
-		// Tạo thư mục đích nếu không tồn tại
-		if (!filesystem::exists(destination)) {
-			filesystem::create_directories(destination);
-		}
+    try {
+        if (!std::filesystem::exists(sourcePath) || !std::filesystem::is_directory(sourcePath)) {
+            std::cerr << "Source path does not exist or is not a directory." << std::endl;
+            return;
+        }
 
-		// Duyệt qua các mục con trong thư mục nguồn
-		for (const auto& entry : filesystem::recursive_directory_iterator(source)) {
-			const filesystem::path& current_path = entry.path();
-			const filesystem::path relative_path = filesystem::relative(current_path, source);
+        if (std::filesystem::exists(destPath)) {
+            std::cerr << "Destination path already exists." << std::endl;
+            return;
+        }
 
-			// Xác định đường dẫn đích cho mục con hiện tại
-			const filesystem::path destination_path = destination / relative_path;
+        std::filesystem::create_directories(destPath);
 
-			// Kiểm tra loại mục con
-			if (filesystem::is_directory(current_path)) {
-				// Tạo thư mục con tương ứng trong thư mục đích
-				filesystem::create_directories(destination_path);
-			}
-			else if (filesystem::is_regular_file(current_path) && current_path.extension() == ".txt") {
-				// Sao chép tệp .txt
-				filesystem::copy_file(current_path, destination_path, filesystem::copy_options::overwrite_existing);
-			}
-		}
-
-		return true;
-	}
-	catch (const exception& e) {
-		cerr << "Loi khi sao chep thu muc! (CopyFolder)\n" << e.what() << endl;
-		return false;
-	}
+        for (const auto& entry : std::filesystem::recursive_directory_iterator(sourcePath)) {
+            const auto& path = entry.path();
+            auto relativePath = std::filesystem::relative(path, sourcePath);
+            if (entry.is_directory()) {
+                std::filesystem::create_directories(destPath / relativePath);
+            }
+            else if (entry.is_regular_file()) {
+                CopyFile(path, destPath / relativePath);
+            }
+            else {
+                std::cerr << "Skipping non-regular file " << path << std::endl;
+            }
+        }
+    }
+    catch (std::filesystem::filesystem_error& e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 

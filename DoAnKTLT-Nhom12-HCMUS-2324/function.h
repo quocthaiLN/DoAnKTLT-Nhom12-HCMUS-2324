@@ -171,9 +171,11 @@ void returnMenuActionAcademicStaff(User& info, listUser& lu);
 void clearScreen();
 void returnMenuActionStudent(User info, listUser lu);
 void actionStudent(User& info, listUser& lu);
-bool CopyFolder(string source, string destination);
+void CopyFolder(string src, string dest);
 void DisplayCurSchoolYear();
-
+void DisplayFilesInDirectory(const std::string& directoryPath);
+void menuChooseClass(string source);
+void menuClassYear();
 
 //HỮU THẮNG
 date GetCurDate();
