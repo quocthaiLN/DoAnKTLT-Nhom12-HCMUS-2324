@@ -5,7 +5,7 @@
 string headerUserFile = "ID,Password,Last name,First name,Class,Gender,Date of Birth,Academic year,Staff";
 string userPath = "Data\\Accounts\\users.csv";
 string semesterPath;
-string schoolYearPath = "Data";
+string schoolYearPath = "Data\\SchoolYear";
 
 
 void menuAcademicStaff() {
@@ -201,20 +201,41 @@ void actionAcademicStaff(User& info, listUser& lu)
 		//case 3 là tạo lớp, tạm thời bỏ làm sau
 		case 4:
 		{
-			string str1, str2;
-			clearScreen();
-			cout << setw(30) << "Enter school year: ";
-			cin >> str1;
-			menuClassYear();
-			cout << setw(30) << "Enter class year: ";
-			cin >> str2;
-			
-
+			DisplayClassInfo();
+			//Đọc file class và hiển thị lên màn hình
 		}
 		}
 	}
 	}
 	return;
+}
+
+void DisplayClassInfo()
+{
+	int z;
+	clearScreen();
+	string* item;
+	string SchYear, ClaYear, ClaName;
+	int n;
+	DisplayFilesInDirectory(schoolYearPath, item, n);
+	DisplayArrString(item, n);
+	cout << setw(20) << "Enter school year: ";
+	cin >> z;
+	SchYear = item[z - 1];
+	DisplayFilesInDirectory(schoolYearPath + '\\' + SchYear + '\\' + "classes", item, n);
+	DisplayArrString(item, n);
+	cout << setw(20) << "Enter class year: ";
+	cin >> z;
+	ClaYear = item[z - 1];
+	DisplayFilesInDirectory(schoolYearPath + '\\' + SchYear + '\\' + "classes" + '\\' + ClaYear, item, n);
+	DisplayArrString(item, n);
+	cout << setw(20) << "Enter class name: ";
+	cin >> z;
+	ClaName = item[z - 1];
+	string path = schoolYearPath + '\\' + SchYear + '\\' + "classes" + '\\' + ClaYear + '\\' + ClaName;
+	ListStudent lSt = InitListStudent();
+	getListStudentInCLass(lSt, path);
+	DisplayListStudent(lSt);
 }
 
 void menuClassYear()
@@ -225,30 +246,43 @@ void menuClassYear()
 	cout << "4. Final-year classes.\n";
 }
 
-void menuChooseClass(string source)
-{
-	string str;
-	DisplayFilesInDirectory(source);
-	cout << "Enter class name: ";
-	cin >> str;
-	//Viết 1 hàm đọc file class rồi hiển thị lên màn hình
-}
+//void menuChooseClass(string source)
+//{
+//	string str;
+//	DisplayFilesInDirectory(source);
+//	cout << "Enter class name: ";
+//	cin >> str;
+//	//Viết 1 hàm đọc file class rồi hiển thị lên màn hình
+//}
 
 //Viết 1 hàm đọc file class rồi hiển thị lên màn hình
 
-void DisplayFilesInDirectory(const std::string& directoryPath)
-{
-	int count = 0;
-	for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
-		if (entry.is_regular_file()) {
-			cout << count << ". ";
-			count++;
-			cout << entry.path().filename().string() << std::endl;
-		}
+void DisplayFilesInDirectory(string directoryPath, string*& files, int& n) {
+	n = 0; // Initialize count of files
+	// Count files first to allocate memory for array
+	for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
+			n++;
+	}
+
+	files = new string[n]; // Allocate memory for file names
+	int i = 0;
+
+	// Store file names into the array
+	for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
+			files[i] = entry.path().filename().string();
+			i++;
 	}
 }
 
-void returnMenuActionStudent(User info, listUser lu)
+void DisplayArrString(string* arrStr, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << i + 1 << ". " << arrStr[i] << endl;
+	}
+}
+
+void returnMenuActionStudent(User info, listUser lu, Student& infoSt)
 {
 	int x;
 	do
@@ -257,10 +291,10 @@ void returnMenuActionStudent(User info, listUser lu)
 		cin >> x;
 	} while (x != 0);
 	clearScreen();
-	actionStudent(info, lu);
+	actionStudent(info, lu, infoSt);
 }
 
-void actionStudent(User& info, listUser& lu)
+void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 {
 	int x, y, z;
 	menuStudent();
@@ -272,29 +306,82 @@ void actionStudent(User& info, listUser& lu)
 	case 1:
 	{
 		clearScreen();
-		cout << setw(30) << "ID: " << info.id << endl;
+		cout << setw(30) << "ID: " << infoUs.id << endl;
 		cout << "1. Change password." << endl;
-		returnMenuActionStudent(info, lu);
+		returnMenuActionStudent(infoUs, lu, infoSt);
 		cin >> y;
 		if (y == 1)
 		{
 			clearScreen();
-			ChangePassword(info, lu);
+			ChangePassword(infoUs, lu);
 			
 		}
-		returnMenuActionStudent(info, lu);
+		returnMenuActionStudent(infoUs, lu, infoSt);
 		break;
 	}
 	case 2:
 	{
-		Profile(info);
-		returnMenuActionStudent(info, lu);
+		Profile(infoUs);
+		returnMenuActionStudent(infoUs, lu, infoSt);
+		break;
+	}
+	case 3:
+	{
+		RegistCourse(infoSt);
+		returnMenuActionStudent(infoUs, lu, infoSt);
+		break;
+	}
+	case 5:
+	{
+		DisplayClassInfo();
+		returnMenuActionStudent(infoUs, lu, infoSt);
 		break;
 	}
 	}
 	return;
 }
 
+
+void RegistCourse(Student& infoSt)
+{
+	clearScreen();
+	int x, y, z, n;
+	string* item, SchYear, Sem;
+	DisplayFilesInDirectory(schoolYearPath, item, n);
+	DisplayArrString(item, n);
+	cout << setw(20) << "Enter school year: ";
+	cin >> x;
+	SchYear = item[x - 1];
+
+	DisplayFilesInDirectory(schoolYearPath + '\\' + SchYear + '\\' + "semester", item, n);
+	cout << setw(20) << "Enter Semester: ";
+	cin >> x;
+	Sem = item[x - 1];
+
+	clearScreen();
+
+	Semester sem;
+	ReadingSemesterInfo(sem, schoolYearPath + '\\' + SchYear + '\\' + "semester" + '\\' + Sem + '\\' + "course");
+	DisplaySemester(sem);
+
+
+}
+
+void DisplaySemester(Semester sem)
+{
+	cout << setw(20) << "Semester: " << sem.semester << endl;
+
+	cout << setw(20) << "Start date: ";
+	PrintDate(sem.begin);
+	cout << endl;
+
+	cout << setw(20) << "End date: ";
+	PrintDate(sem.end);
+	cout << endl;
+
+	cout << "List Of Course In Semester: " << endl;
+	DisplayCourse(sem.lC);
+}
 
 //void addStudentAccount(ListStudent& listStudent, listUser& lu) {
 //	NodeStudent* tmp = listStudent.pHead;
@@ -566,7 +653,9 @@ course* convertingCourse(ifstream& ifs)
 	getline(ifs, cou->id, ',');
 	getline(ifs, cou->courseName, ',');
 	getline(ifs, cou->teacherName, ',');
-	getline(ifs, cou->numberOfCredits, ',');
+	string temp;
+	getline(ifs, temp, ',');
+	cou->numberOfCredits = stoi(temp);
 	//vi so luong hoc sinh max = 50 nen chi can get cho qua di thong tin k can luu lai vao course
 	getline(ifs, maxNumStudent, ',');
 	getline(ifs, cou->dayOfWeek, ',');
@@ -1012,13 +1101,13 @@ void CreateDirectory(string filePath)
 //Hàm này có vẻ như sai vì mình cần copyFolder, viết lại
 void CreatingNewSchoolYear(string schoolYear, string firstYearPath)
 {
-	CreateDirectory(schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear);
-	CreateDirectory(schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes");
+	CreateDirectory(schoolYearPath + '\\' + schoolYear);
+	CreateDirectory(schoolYearPath + '\\' + schoolYear + '\\' + "classes");
 	string previousSchoolYear = GetPreviousSchoolYear(schoolYear);
-	CopyFolder(schoolYearPath + '\\' + "SchoolYear" + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "first-year classes", schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes" + '\\' + "second-year classes");
-	CopyFolder(schoolYearPath + '\\' + "SchoolYear" + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "second-year classes", schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes" + '\\' + "third-year classes");
-	CopyFolder(schoolYearPath + '\\' + "SchoolYear" + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "third-year classes", schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes" + '\\' + "final-year classes");
-	CopyFolder(firstYearPath, schoolYearPath + '\\' + "SchoolYear" + '\\' + schoolYear + '\\' + "classes" + '\\' + "first-year classes");
+	CopyFolder(schoolYearPath  + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "first-year classes", schoolYearPath + '\\'+ schoolYear + '\\' + "classes" + '\\' + "second-year classes");
+	CopyFolder(schoolYearPath  + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "second-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "third-year classes");
+	CopyFolder(schoolYearPath  + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "third-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "final-year classes");
+	CopyFolder(firstYearPath, schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "first-year classes");
 
 	/*
 	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "first-year classes", schoolYearPath + schoolYear + "classes" + "second-year classes");
@@ -1172,7 +1261,7 @@ void ChangeCourse(listCourse& list, nodeCourse* changedCourse) {
 		p->info->teacherName = newName;
 	}
 	else if (choice == 2) {
-		string newCredits;
+		int newCredits;
 		cout << "New Credits: ";
 		cin >> newCredits;
 		p->info->numberOfCredits = newCredits;
@@ -1530,3 +1619,133 @@ void CopyFolder(string src, string dest) {
     }
 }
 
+void getListStudentInCLass(ListStudent& list, string source) {
+	ifstream ifs;
+	ifs.open(source);
+	if (!ifs.is_open()) {
+		cout << "Mo file that bai!!!\n";
+		return;
+	}
+	string l;
+	getline(ifs, l);
+	while (!ifs.eof()) {
+		Student st;
+		string No;
+		getline(ifs, No, ',');
+		st.No = stoi(No);
+		string ID;
+		getline(ifs, ID, ',');
+		st.studentID = stoi(ID);
+		getline(ifs, st.lastName, ',');
+		getline(ifs, st.firstName, ',');
+		getline(ifs, st.gender, ',');
+		string D;
+		getline(ifs, D, ',');
+		st.dateOfBirth = ConvertingDate(D);
+		string sID;
+		getline(ifs, sID, ',');
+		st.socialID = stoi(sID);
+		addStudent(list, st);
+	}
+	ifs.close();
+}
+
+ListStudent InitListStudent()
+{
+	ListStudent lSt;
+	lSt.pHead = lSt.pTail = NULL;
+	return lSt;
+}
+
+void DisplayListStudent(ListStudent lSt)
+{
+	if (lSt.pHead == NULL)
+	{
+		cout << "Danh sach lop hoc trong!\n";
+		return;
+	}
+	NodeStudent* p = lSt.pHead;
+	while (p != NULL)
+	{
+		DisplayStudent(p->Info);
+		p = p->pNext;
+	}
+}
+
+course ConvertCourseInfo(string line)
+{
+	course c;
+	stringstream ssData(line);
+	getline(ssData,c.id, ',');
+	getline(ssData, c.courseName, ',');
+	getline(ssData, c.teacherName, ',');
+	string temp;
+	getline(ssData, temp, ',');
+	c.numberOfCredits = stoi(temp);
+	getline(ssData, temp, ',');
+	c.numberOfCredits = stoi(temp);
+	getline(ssData, c.dayOfWeek, ',');
+	getline(ssData, c.session, '\0');
+	return c;
+}
+void ReadingSemesterInfo(Semester& sem, string sourcePath)
+{
+	ifstream ifs;
+	ifs.open(sourcePath);
+	if (ifs.is_open() == false)
+	{
+		cout << "Mo file khong thanh cong! (ReadingSemesterInfo)\n";
+		return;
+	}
+
+	string line, endD, startD;
+	getline(ifs, line);
+	startD = line.substr(line.find(',') + 1, 10);
+	endD = line.substr(line.find(',') + 1);
+	sem.begin = ConvertingDate(startD);
+	sem.end = ConvertingDate(endD);
+	getline(ifs, line);
+	while (ifs.good())
+	{
+		getline(ifs, line);
+		course c = ConvertCourseInfo(line);
+		AddCourse(sem.lC, c);
+	}
+	ifs.close();
+}
+nodeCourse* GetNodeCourse(course info)
+{
+	nodeCourse* p = new nodeCourse;
+	if (p == NULL)
+	{
+		return NULL;
+	}
+	p->info->courseName = info.courseName;
+	p->info->dayOfWeek = info.dayOfWeek;
+	p->info->id = info.id;
+	p->info->numberOfCredits = info.numberOfCredits;
+	p->info->session = info.session;
+	p->info->teacherName = info.teacherName;
+	p->pNext = NULL;
+	return p;
+}
+void AddCourse(listCourse& lC, course info)
+{
+	nodeCourse* p = GetNodeCourse(info);
+	if (lC.pHead == NULL)
+	{
+		lC.pHead = lC.pTail = p;
+	}
+	else
+	{
+		lC.pTail->pNext = p;
+		lC.pTail = p;
+	}
+}
+
+listCourse InitListCourse()
+{
+	listCourse lC;
+	lC.pHead = lC.pTail = NULL;
+	return lC;
+}

@@ -60,7 +60,7 @@ struct course
 	string id;
 	string courseName;
 	string teacherName;
-	string numberOfCredits;//So tin chi
+	int numberOfCredits;//So tin chi
 	const int maximunNumberOfStudent = 50;
 	string dayOfWeek;//MON, WED, THU, ... 
 	string session;//S1, S2, S3, S4
@@ -141,6 +141,7 @@ struct listClass
 
 struct Semester {
 	int semester;
+	listCourse lC;
 	date begin;
 	date end;
 };
@@ -169,13 +170,36 @@ void ChangePassword(User& info, listUser& lu);
 void WritingUserData(listUser lu, string fileUsersPath);
 void returnMenuActionAcademicStaff(User& info, listUser& lu);
 void clearScreen();
-void returnMenuActionStudent(User info, listUser lu);
-void actionStudent(User& info, listUser& lu);
+void returnMenuActionStudent(User info, listUser lu, Student& infoSt);
+void actionStudent(User& infoUs, listUser& lu, Student& infoSt);
 void CopyFolder(string src, string dest);
 void DisplayCurSchoolYear();
-void DisplayFilesInDirectory(const std::string& directoryPath);
-void menuChooseClass(string source);
+void DisplayFilesInDirectory(string directoryPath, string*& files, int& n);
+//void menuChooseClass(string source);
 void menuClassYear();
+void DisplayArrString(string* arrStr, int n);
+ListStudent InitListStudent();
+void DisplayListStudent(ListStudent lSt);
+void DisplayClassInfo();
+course ConvertCourseInfo(string line);
+void ReadingSemesterInfo(Semester& sem, string sourcePath);
+nodeCourse* GetNodeCourse(course info);
+void AddCourse(listCourse& lC, course info);
+listCourse InitListCourse();
+void DisplaySemester(Semester sem);
+void RegistCourse(Student& infoSt);
+//Student LinkedUserAndStudent(User info);
+
+
+
+
+
+
+
+
+
+
+
 
 //HỮU THẮNG
 date GetCurDate();
@@ -231,6 +255,7 @@ void addNodeStudent(ListStudent& list, NodeStudent* nS);
 void exportStudentFromCourseToFile(ListStudent& list, course* c);
 void importScoreBoard(ListStudent& list, nodeCourse* c);
 void displayScoreBoardOfCourse(nodeCourse* c);
+void getListStudentInCLass(ListStudent& list, string source);
 
 
 

@@ -26,7 +26,7 @@ int main()
 	}
 	else
 	{
-		actionStudent(curUser->info, listUs);
+		//actionStudent(curUser->info, listUs, infoSt);
 	}
 
 
