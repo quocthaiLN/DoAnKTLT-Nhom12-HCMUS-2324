@@ -9,15 +9,24 @@ int main()
 	nodeUser* curUser = NULL;
 	nodeUser* tempUser = NULL;
 	listUser listUs = InitListUsers();
+	int n = 0;
 	do
 	{
+		clearScreen();
+		if (n > 1) {
+			cout << "Tai khoan hoac mat khau sai!!\n";
+		}
 		tempUser = LoginAccount();
 		ReadingUsersData(listUs, userPath);
 		curUser = IsUser(tempUser, listUs);
+		clearScreen();
 		if (curUser != NULL)
 		{
 			cout << "Dang nhap thanh cong!\n";
+			Sleep(500);
+			n = -1;
 		}
+		n++;
 	} while (curUser == NULL);
 	system("cls");
 	if (curUser->info.isStaff == true)
