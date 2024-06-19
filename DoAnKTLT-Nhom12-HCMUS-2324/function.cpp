@@ -201,7 +201,10 @@ void actionAcademicStaff(User& info, listUser& lu)
 		//case 3 là tạo lớp, tạm thời bỏ làm sau
 		case 4:
 		{
+			clearScreen();
 			DisplayClassInfo();
+			returnMenuActionAcademicStaff(info, lu);
+			break;
 			//Đọc file class và hiển thị lên màn hình
 		}
 		}
@@ -1354,15 +1357,16 @@ void RemoveCourse(listCourse& list, nodeCourse* removedCourse) {
 }
 
 void DisplayStudent(Student st) {
-	cout << "Num: " << st.No << endl;
-	cout << "MSSV: " << st.studentID << endl;
-	cout << "First Name: " << st.firstName << endl;
-	cout << "Last Name: " << st.lastName << endl;
-	cout << "Gender: " << st.gender << endl;
-	cout << "DOB: " << st.dateOfBirth.day << "/" << st.dateOfBirth.month << "/" << st.dateOfBirth.year << endl;
-	cout << "Academic Year: " << st.academicYear << endl;
-	cout << "Program: " << st.program << endl;
-	cout << "Social ID: " << st.socialID << endl;
+	string d = to_string(st.dateOfBirth.day) + "/" + to_string(st.dateOfBirth.month) + "/" + to_string(st.dateOfBirth.year);
+	cout << left << setw(5) << st.No
+		<< left << setw(12) << st.studentID
+		<< left << setw(20) << st.lastName
+		<< left << setw(12) << st.firstName
+		<< left << setw(8) << st.gender
+		<< left << setw(14) << d
+		<< left << setw(15) << st.academicYear
+		// << left << setw(9) /* << "Program: " */<< st.program
+		<< left << setw(15) << st.socialID << endl;
 }
 
 void DisplayListEnrolledStudents(course enrolledCourse) {
@@ -1698,6 +1702,17 @@ void DisplayListStudent(ListStudent lSt)
 		return;
 	}
 	NodeStudent* p = lSt.pHead;
+	clearScreen();
+	cout << right << setw(55) << "Danh sach hoc sinh" << endl;
+	cout << left << setw(5) << "No"
+		<< left << setw(12) << "Student ID"
+		<< left << setw(20) << "Last Name"
+		<< left << setw(12) << "First Name"
+		<< left << setw(8) << "Gender"
+		<< left << setw(14) << "Day Of Birth"
+		<< left << setw(15) << "Academic Year"
+		// << left << setw(9) << "Program"
+		<< left << setw(15) << "Social ID" << endl;
 	while (p != NULL)
 	{
 		DisplayStudent(p->Info);
