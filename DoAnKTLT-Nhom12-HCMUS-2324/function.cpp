@@ -206,6 +206,35 @@ void actionAcademicStaff(User& info, listUser& lu)
 		}
 		}
 	}
+	case 4:
+	{
+		clearScreen();
+		menuManageCourses();
+		cout << endl;
+		cout << "CHOOSE ACTION: ";
+		cin >> x;
+		listCourse l = InitListCourse();
+		switch (x)
+		{
+		case 1:
+		{
+			clearScreen();
+			createSemester(l);
+		}
+		case 2:
+		{
+			clearScreen();
+
+		}
+		case 3:
+		{
+			/*clearScreen();
+			course* c1;
+
+			addCourse(l, c1);*/
+		}
+		}
+	}
 	}
 	return;
 }
@@ -1645,7 +1674,11 @@ void getListStudentInCLass(ListStudent& list, string source) {
 		string sID;
 		getline(ifs, sID, ',');
 		st.socialID = stoi(sID);
+		string year;
+		getline(ifs, year);
+		st.academicYear = stoi(year);
 		addStudent(list, st);
+		
 	}
 	ifs.close();
 }
@@ -1749,3 +1782,28 @@ listCourse InitListCourse()
 	lC.pHead = lC.pTail = NULL;
 	return lC;
 }
+
+
+void displayListClass(ListStudent list) {
+	NodeStudent* temp = list.pHead;
+	if (temp == NULL)
+	{
+		return;
+	}
+	while (temp != NULL)
+	{
+		cout << left << setw(5) << temp->Info.No << left << setw(10) << temp->Info.studentID
+			<< left << setw(30) << temp->Info.lastName << left << setw(10) << temp->Info.firstName
+			<< left << setw(8) << temp->Info.gender << temp->Info.dateOfBirth.day
+			<< "/" << temp->Info.dateOfBirth.month << "/" << left << setw(6) << temp->Info.dateOfBirth.year
+			<< left << setw(14) << temp->Info.socialID << endl;
+		temp = temp->pNext;
+	}
+}
+
+//listCourse initListCourse() {
+//	listCourse l;
+//	l.pHead = l.pTail = NULL;
+//	return l;
+//}
+

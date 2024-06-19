@@ -188,7 +188,7 @@ void AddCourse(listCourse& lC, course info);
 listCourse InitListCourse();
 void DisplaySemester(Semester sem);
 void RegistCourse(Student& infoSt);
-//Student LinkedUserAndStudent(User info);
+Student LinkedUserAndStudent(User info);
 
 
 
@@ -228,8 +228,6 @@ void menuStudentUserAccount();
 void menuStudentProfile();
 void menuCoursesRegis();
 
-
-
 void createClass(const string src, string& dest);
 void createSemester(listCourse& list);
 void addCourseToFile(listCourse& list, course* c1);
@@ -256,6 +254,8 @@ void exportStudentFromCourseToFile(ListStudent& list, course* c);
 void importScoreBoard(ListStudent& list, nodeCourse* c);
 void displayScoreBoardOfCourse(nodeCourse* c);
 void getListStudentInCLass(ListStudent& list, string source);
+void displayListClass(ListStudent list);
+listCourse InitListCourse();
 
 
 
