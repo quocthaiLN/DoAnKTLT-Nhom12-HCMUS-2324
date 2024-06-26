@@ -22,7 +22,7 @@ int main()
 		clearScreen();
 		if (curUser != NULL)
 		{
-			cout << "Dang nhap thanh cong!\n";
+			cout << "DANG NHAP THANH CONG!\n";
 			Sleep(500);
 			n = -1;
 		}
