@@ -13,7 +13,7 @@ int main()
 	do
 	{
 		clearScreen();
-		if (n > 1) {
+		if (n >= 1) {
 			cout << "Tai khoan hoac mat khau sai!!\n";
 		}
 		tempUser = LoginAccount();

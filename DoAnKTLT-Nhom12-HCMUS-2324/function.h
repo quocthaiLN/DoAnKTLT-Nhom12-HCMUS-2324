@@ -248,7 +248,7 @@ void logout(listUser lu);
 void printSchoolYearInformation(User us);
 void changeDateStartSchoolYear(User us);
 void createFileListStudentInCourse();
-//void addCourseToSemester(Semester s, course* c);
+void addCourseToSemester(listCourse& l);
 void addStudentToCourse(Student* s, course* c);
 void addNodeStudent(ListStudent& list, NodeStudent* nS);
 void exportStudentFromCourseToFile(ListStudent& list, course* c);
@@ -257,7 +257,7 @@ void displayScoreBoardOfCourse(nodeCourse* c);
 void getListStudentInCLass(ListStudent& list, string source);
 void displayListClass(ListStudent list);
 listCourse InitListCourse();
-
-
-
+void createRegistrationSession(date& star, date& end);
+void importCourseData(listCourse& l);
+void printListCourse(listCourse l);
 

@@ -6,7 +6,9 @@ string headerUserFile = "ID,Password,Last name,First name,Class,Gender,Date of B
 string userPath = "Data\\Accounts\\users.csv";
 string semesterPath;
 string schoolYearPath = "Data\\SchoolYear";
-
+listCourse listInReg = InitListCourse();
+date starDateReg;
+date endDateReg;
 
 void menuAcademicStaff() {
 	cout << "HCMUS PORTAL" << endl;
@@ -177,7 +179,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 		menuManageStudent();
 		cout << "CHOOSE ACTION: ";
 		cin >> y;
-		switch(y)
+		switch (y)
 		{
 		case 1:
 		{
@@ -212,30 +214,67 @@ void actionAcademicStaff(User& info, listUser& lu)
 	case 4:
 	{
 		clearScreen();
+		//listCourse l = InitListCourse();
 		menuManageCourses();
 		cout << endl;
 		cout << "CHOOSE ACTION: ";
 		cin >> x;
-		listCourse l = InitListCourse();
 		switch (x)
 		{
 		case 1:
 		{
 			clearScreen();
-			createSemester(l);
+			createSemester(listInReg);
+			returnMenuActionAcademicStaff(info, lu);
+			break;
 		}
 		case 2:
 		{
 			clearScreen();
-
+			createRegistrationSession(starDateReg, endDateReg);
+			returnMenuActionAcademicStaff(info, lu);
+			break;
 		}
 		case 3:
 		{
-			/*clearScreen();
-			course* c1;
-
-			addCourse(l, c1);*/
+			clearScreen();
+			cout << "HCMUS PORTAl\n";
+			cout << "1.Input Courses Data\n";
+			cout << "2.Import Courses Data File\n";
+			int lch;
+			cout << "Nhap lua chon: ";
+			cin >> lch;
+			switch (lch) {
+			case 1:
+				clearScreen();
+				addCourseToSemester(listInReg);
+				clearScreen();
+				cout << "Them khoa hoc thanh cong\n";
+				Sleep(1000);
+				returnMenuActionAcademicStaff(info, lu);
+				break;
+			case 2:
+				clearScreen();
+				importCourseData(listInReg);
+				clearScreen();
+				cout << "Them khoa hoc thanh cong\n";
+				Sleep(1000);
+				returnMenuActionAcademicStaff(info, lu);
+				break;
+			}
+			break;
 		}
+		case 4:
+			clearScreen();
+			if (listInReg.pHead == NULL) {
+				cout << "LIST IS EMPTY!!!\n";
+				Sleep(1000);
+			}
+			else {
+				printListCourse(listInReg);
+			}
+			returnMenuActionAcademicStaff(info, lu);
+			break;
 		}
 	}
 	}
@@ -680,18 +719,23 @@ course* convertingCourse(ifstream& ifs)
 	string maxNumStudent;
 	if (ifs.eof())
 	{
+		delete cou;
 		return NULL;
 	}
 	getline(ifs, cou->id, ',');
 	getline(ifs, cou->courseName, ',');
 	getline(ifs, cou->teacherName, ',');
-	string temp;
-	getline(ifs, temp, ',');
-	cou->numberOfCredits = stoi(temp);
+	string tmp;
+	getline(ifs, tmp, ',');
+	if (tmp < "0" || tmp > "9") {
+		delete cou;
+		return NULL;
+	}
+	cou->numberOfCredits = stoi(tmp);
 	//vi so luong hoc sinh max = 50 nen chi can get cho qua di thong tin k can luu lai vao course
 	getline(ifs, maxNumStudent, ',');
 	getline(ifs, cou->dayOfWeek, ',');
-	getline(ifs, cou->session, '\n');
+	getline(ifs, cou->session);
 	return cou;
 }
 //tao mot node course moi 
@@ -704,6 +748,7 @@ nodeCourse* createNodeCourse(course* c1)
 }
 void addCourse(listCourse& lc, course* c1)
 {
+	if (c1 == NULL) return;
 	nodeCourse* nc = createNodeCourse(c1);
 	if (lc.pHead == NULL)
 	{
@@ -718,9 +763,11 @@ void addCourse(listCourse& lc, course* c1)
 void getListCourse(listCourse& lc)
 {
 	lc.pHead = lc.pTail = NULL;
-	string path = semesterPath + "/course.csv";
+	//string path = semesterPath + "/course.csv";
+	string path;
+
 	ifstream ifs;
-	ifs.open(path);
+	ifs.open("ImportData\\courses1.csv");
 	if (!ifs.is_open())
 	{
 		cout << "Mo file that bai!\n";
@@ -730,7 +777,8 @@ void getListCourse(listCourse& lc)
 	getline(ifs, line);
 	while (!ifs.eof())
 	{
-		addCourse(lc, convertingCourse(ifs));
+		course* c = convertingCourse(ifs);
+		addCourse(lc, c);
 	}
 	ifs.close();
 }
@@ -1052,19 +1100,73 @@ void createFileListStudentInCourse()
 	ofs.close();
 }
 // ham trong semester
-void addCourseToSemester(course* c)
+void addCourseToSemester(listCourse& l)
 {
+	int n;
+	cout << "Nhap vao so mon duoc them: ";
+	cin >> n;
+	
+	clearScreen();
+	cout << "Nhap vao danh sach mon hoc duoc them \n";
+	for (int i = 0; i < n; i++) {
+		course* c = new course;
+		cout << "Thong tin mon hoc thu " << i + 1 << endl;
+		cout << "ID: "; cin >> c->id; cin.ignore();
+		cout << "Course Name: "; getline(cin, c->courseName);
+		cout << "Teacher Name: "; getline(cin, c->teacherName);
+		cout << "Number Of Credits: "; cin >> c->numberOfCredits; cin.ignore();
+		cout << "NumBer Of Student: 50\n"; 
+		cout << "Day Of Week: "; getline(cin, c->dayOfWeek);
+		cout << "Session: "; getline(cin, c->session);
+		addCourse(l, c);
+	}
 	ofstream ofs;
-	ofs.open(semesterPath + ".csv");
+	//
+	ofs.open("");
 	if (!ofs.is_open())
 	{
 		cout << "Mo file that bai!!!\n";
 		return;
 	}
-	ofs << endl;
-	ofs << c->id << "," << c->courseName << "," << c->teacherName << ",";
-	ofs << c->numberOfCredits << "," << c->maximunNumberOfStudent << ",";
-	ofs << c->dayOfWeek << "," << c->session << "\n";
+	nodeCourse* n1 = l.pHead;
+	while (n1 != NULL) {
+		ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+		ofs << n1->info->numberOfCredits << "," << n1->info->maximunNumberOfStudent << ",";
+		ofs << n1->info->dayOfWeek << "," << n1->info->session << "\n";
+		n1 = n1->pNext;
+	}
+	ofs.close();
+}
+void importCourseData(listCourse& l) {
+	string path;
+	cout << "Nhap vao duong dan den file:\n";
+	cin >> path;
+	ifstream ifs;
+	ifs.open(path);
+	if (!ifs.is_open())
+	{
+		cout << "Mo file that bai!!!\n";
+		return;
+	}
+	while (!ifs.eof()) {
+		course* c = convertingCourse(ifs);
+		addCourse(l, c);
+	}
+	ofstream ofs;
+	//
+	ofs.open("");
+	if (!ofs.is_open())
+	{
+		cout << "Mo file that bai!!!\n";
+		return;
+	}
+	nodeCourse* n1 = l.pHead;
+	while (n1 != NULL) {
+		ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+		ofs << n1->info->numberOfCredits << "," << n1->info->maximunNumberOfStudent << ",";
+		ofs << n1->info->dayOfWeek << "," << n1->info->session << "\n";
+		n1 = n1->pNext;
+	}
 	ofs.close();
 }
 //them sinh vien vao khoa hoc
@@ -1162,6 +1264,9 @@ void createSemester(listCourse& list) {
 	getListCourse(list);
 	int semester;
 	string starDate, endDate;
+	string curSchoolYear;
+	GetCurSchoolYear(curSchoolYear, GetCurDate());
+	string _schoolYearPath = "Data\\SchoolYear\\" + curSchoolYear;
 
 	cout << "HCMUS PORTAl\n";
 	cout << "Create Semester\n";
@@ -1173,16 +1278,28 @@ void createSemester(listCourse& list) {
 	cin >> endDate;
 
 	string semesterFolder = "semester " + to_string(semester);
-	const string path = schoolYearPath + "\\semester.dat";
+	const string path = _schoolYearPath + "\\semester.dat";
+	//cout << "Number of Courses: " << countCourse(list) << endl;
+	std::filesystem::create_directories(_schoolYearPath + "\\" + semesterFolder);
 
-	std::filesystem::create_directories(schoolYearPath + "\\" + semesterFolder + "\\courses.csv");
 
+	ofstream ofs(_schoolYearPath + "\\" + semesterFolder + "\\courses.csv");
+	ofs.close();
+
+	ofstream fileDat(path);
+	ofs.close();
+	CopyFile("ImportData\\courses1.csv", _schoolYearPath + "\\" + semesterFolder + "\\courses.csv");
 	nodeCourse* p = list.pHead;
 
 	while (p) {
-		std::filesystem::create_directories(schoolYearPath + "\\" + semesterFolder + "\\" + p->info->courseName + ".csv");
+		string coursePath = _schoolYearPath + "\\" + semesterFolder;
+		std::filesystem::create_directories(coursePath);
+		ofstream courseFile(coursePath + "\\" + p->info->id + ".csv");
+		courseFile.close();
 		p = p->pNext;
 	}
+
+	cout << "Create Semester Successfully\n";
 }
 
 // ham them mot node course vao list - Quang Thang
@@ -1509,10 +1626,10 @@ void importScoreBoard(ListStudent& list, nodeCourse* c)
 			tmp = tmp->pNext;
 		}
 		ofs << line;
-		ofs << left << setw(14) << temp->Info.cMark.totalMark
-			<< left << setw(14) << temp->Info.cMark.finalMark
-			<< left << setw(15) << temp->Info.cMark.midtermMark
-			<< left << setw(15) << temp->Info.cMark.otherMark << endl;
+		ofs << temp->Info.cMark.totalMark << ","
+			<< temp->Info.cMark.finalMark << ","
+			<< temp->Info.cMark.midtermMark << ","
+			<< temp->Info.cMark.otherMark << endl;
 		temp = temp->pNext;
 	}
 
@@ -1816,9 +1933,32 @@ void displayListClass(ListStudent list) {
 	}
 }
 
-//listCourse initListCourse() {
-//	listCourse l;
-//	l.pHead = l.pTail = NULL;
-//	return l;
-//}
+void createRegistrationSession(date& star, date& end) {
+	cout << "HCMUS PORTAl\n";
+	cout << "Create Registration Session\n";
+	string starDate, endDate;
+	cout << "Start Date(dd/mm/yyyy): ";
+	cin >> starDate; 
+	star = ConvertingDate(starDate);
+	cout << "End Date(dd/mm/yyyy): ";
+	cin >> endDate;
+	end = ConvertingDate(endDate);
+}
+void expireReg() {
+
+}
+void printListCourse(listCourse l) {
+	nodeCourse* n1 = l.pHead;
+	cout << left << setw(10) << "ID" << left << setw(25) << "Course Name"
+		 << left << setw(25) << "Teacher Name" << left << setw(19) << "Number Of Credits"
+		 << left << setw(17) << "Number Of Student" << left << setw(14) << "Day Of Week"
+		 << left << setw(9) << "Session" << endl;
+	while (n1 != NULL) {
+		cout << left << setw(10) << n1->info->id << left << setw(25) << n1->info->courseName
+			<< left << setw(25) << n1->info->teacherName << left << setw(19) << n1->info->numberOfCredits
+			<< left << setw(17) << n1->info->maximunNumberOfStudent << left << setw(14) << n1->info->dayOfWeek
+			<< left << setw(9) << n1->info->session << endl;
+		n1 = n1->pNext;
+	}
+}
 
