@@ -1288,7 +1288,16 @@ void createSemester(listCourse& list) {
 
 	ofstream fileDat(path);
 	ofs.close();
-	CopyFile("ImportData\\courses1.csv", _schoolYearPath + "\\" + semesterFolder + "\\courses.csv");
+	string fileCSV;
+	cout << "Enter file csv: ImportData/";
+	cin >> fileCSV;
+	fs::path filePath = fileCSV;
+
+	if (filePath.extension() != ".csv") {
+		fileCSV += ".csv";
+	}
+
+	CopyFile("ImportData\\" + fileCSV, _schoolYearPath + "\\" + semesterFolder + "\\courses.csv");
 	nodeCourse* p = list.pHead;
 
 	while (p) {

@@ -12,7 +12,7 @@
 #include <filesystem>
 #include <windows.h>
 using namespace std;
-//namespace fs = std::filesystem;
+namespace fs = std::filesystem;
 
 
 //KHAI BÁO CÁC ĐƯỜNG DẪN FILE VÀ CHUỖI CẦN THIẾT

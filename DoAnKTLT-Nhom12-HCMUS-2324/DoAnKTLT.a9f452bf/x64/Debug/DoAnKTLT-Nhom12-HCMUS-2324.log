@@ -1,7 +1,9 @@
-﻿  function.cpp
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(148,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(370,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(419,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(419,9): warning C4101: 'y': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(841,8): warning C4101: 'd': unreferenced local variable
-  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
+﻿  Main.cpp
+  function.cpp
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(148,12): warning C4101: 'z': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(370,12): warning C4101: 'z': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(419,12): warning C4101: 'z': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(419,9): warning C4101: 'y': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(841,8): warning C4101: 'd': unreferenced local variable
+  Generating Code...
+  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
