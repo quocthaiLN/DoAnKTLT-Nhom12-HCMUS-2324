@@ -223,6 +223,8 @@ void ChangeCourse(listCourse& list, nodeCourse* changedCourse);
 void RemoveCourse(listCourse& list, nodeCourse* removedCourse);
 void DisplayListEnrolledStudents(course enrolledCourse);
 void CreateClass();
+void getListCourse2(listCourse& lc, ifstream& ifs);
+void createPathSemes();
 
 
 //QUANG THẮNG
