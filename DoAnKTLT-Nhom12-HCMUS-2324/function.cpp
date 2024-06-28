@@ -214,6 +214,13 @@ void actionAcademicStaff(User& info, listUser& lu)
 			break;
 		}
 		//case 3 là tạo lớp, tạm thời bỏ làm sau
+		case 3 :
+		{
+			clearScreen();
+			CreateClass();
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
 		case 4:
 		{
 			clearScreen();
@@ -1006,45 +1013,6 @@ void changeDateStartSchoolYear(User us)
 //	return s;
 //}
 
-void createClass(const string src, string& dest) {
-	ifstream ifs;
-	ifs.open(src);
-	if (!ifs.is_open()) {
-		cout << "Mo file nguon khong thanh cong\n";
-		return;
-	}
-
-	string res, line;
-	while (getline(ifs, line)) {
-		res += line + '\n';
-	}
-
-	ifs.close();
-
-	ofstream ofs;
-	string curSchoolYear;
-	GetCurSchoolYear(curSchoolYear, GetCurDate());
-	// Tạm thời sẽ chưa lấy folder năm nhất, năm hai.... Khi nào viết hàm lấy năm 1, năm 2... của học sinh thì sẽ sửa
-	// Bây giờ thêm tay thông tin folder năm thứ bao nhiêu sau folder class
-	// Và thông tin của ngành, tạm thời chỉ thêm ngành CTT sau folder first-year classes
-	// Sau khi viết các hàm liên quan đến danh sách sinh viên sẽ thêm vào sau.
-	string nameClass;
-
-	// Bây giờ chỉ nhập CTT? chứ chưa nhập năm là 23CTT5. Sau này có hàm lấy studentYear
-	// thì sửa lại + nameClass + ext; để file csv có tên theo đúng năm
-	cout << "Name of Class: "; cin >> nameClass;
-	string ext = ".csv";
-	dest = "Data\\" + curSchoolYear + "\\classes\\" + "first-year classes\\" + "CTT\\" + nameClass + ext;
-	ofs.open(dest);
-	if (!ofs.is_open()) {
-		cout << "Mo file dich khong thanh cong\n";
-		return;
-	}
-
-	ofs << res;
-
-	ofs.close();
-}
 // ham copy file danh sach hoc sinh qua danh sach mon hoc trong thu muc semester
 void createFileListStudentInCourse()
 {
@@ -1292,15 +1260,18 @@ void createSemester(listCourse& list) {
 
 	string semesterFolder = "semester " + to_string(semester);
 	const string path = _schoolYearPath + "\\semester.dat";
-	//cout << "Number of Courses: " << countCourse(list) << endl;
 	std::filesystem::create_directories(_schoolYearPath + "\\" + semesterFolder);
 
 
 	ofstream ofs(_schoolYearPath + "\\" + semesterFolder + "\\courses.csv");
 	ofs.close();
 
-	ofstream fileDat(path);
-	ofs.close();
+	ofstream fileDat;
+	fileDat.open(path);
+	fileDat << starDate << endl;
+	fileDat << endDate;
+	fileDat.close();
+
 	string fileCSV;
 	cout << "Enter file csv: ImportData/";
 	cin >> fileCSV;
@@ -1317,6 +1288,7 @@ void createSemester(listCourse& list) {
 		string coursePath = _schoolYearPath + "\\" + semesterFolder;
 		std::filesystem::create_directories(coursePath);
 		ofstream courseFile(coursePath + "\\" + p->info->id + ".csv");
+		courseFile << headerCourseBoard << endl;
 		courseFile.close();
 		p = p->pNext;
 	}
@@ -1984,3 +1956,59 @@ void printListCourse(listCourse l) {
 	}
 }
 
+
+void CreateClass() {
+	string SchoolYear;
+
+	// School Year: 2023-2024 , 2022-2023
+	cout << "Enter School Year: ";
+	cin >> SchoolYear;
+
+	int year;
+	cout << "1. first-year classes.\n";
+	cout << "2. second-year classes.\n";
+	cout << "3. third-year classes.\n";
+	cout << "4. final-year classes.\n";
+	cout << "Enter X-year: "; cin >> year;
+	string x_year;
+	switch (year)
+	{
+	case 1:
+		x_year = "first-year classes";
+		break;
+	case 2:
+		x_year = "second-year classes";
+		break;
+	case 3:
+		x_year = "third-year classes";
+		break;
+	case 4:
+		x_year = "final-year classes";
+		break;
+	default:
+		break;
+	}
+
+	string _class;
+	cout << "Enter Class: "; cin >> _class;
+	
+	string dir;
+	cout << ".ImportData/";
+	cin >> dir;
+
+	fs::path fileDir = dir;
+
+	if (fileDir.extension() != ".csv") {
+		dir += ".csv";
+	}
+
+	const string SrcPath = "ImportData\\" + dir;
+	const string DestPath = "Data\\SchoolYear\\" + SchoolYear + "\\classes\\" + x_year + "\\" + _class + ".csv";
+
+	ofstream fcreate(DestPath);
+	fcreate.close();
+
+	CopyFile(SrcPath, DestPath);
+
+	cout << "Create Class Successfully\n";
+}

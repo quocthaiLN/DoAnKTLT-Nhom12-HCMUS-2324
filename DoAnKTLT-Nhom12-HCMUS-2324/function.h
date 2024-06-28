@@ -125,7 +125,6 @@ struct ListStudent
 };
 
 //struct class
-//Chua biet su dung nhu the nao nhung thu lam theo
 struct classes
 {
 	string className;
@@ -192,16 +191,6 @@ void RegistCourse(Student& infoSt);
 Student LinkedUserAndStudent(User info);
 
 
-
-
-
-
-
-
-
-
-
-
 //HỮU THẮNG
 date GetCurDate();
 void GetCurSchoolYear(string& curSchoolYear, date curDate);
@@ -217,8 +206,6 @@ date strToDate(string day);
 void addStudent(ListStudent& list, Student st);
 //void removeStudent(ListStudent& list, NodeStudent* student);
 //string studentYear(int year);
-
-
 void menuAcademicStaff();
 void menuUserAccount();
 void menuProfile();
@@ -228,7 +215,6 @@ void menuStudent();
 void menuStudentUserAccount();
 void menuStudentProfile();
 void menuCoursesRegis();
-
 void createClass(const string src, string& dest);
 void createSemester(listCourse& list);
 void addCourseToFile(listCourse& list, course* c1);
@@ -236,6 +222,7 @@ void DisplayCourse(listCourse list);
 void ChangeCourse(listCourse& list, nodeCourse* changedCourse);
 void RemoveCourse(listCourse& list, nodeCourse* removedCourse);
 void DisplayListEnrolledStudents(course enrolledCourse);
+void CreateClass();
 
 
 //QUANG THẮNG
