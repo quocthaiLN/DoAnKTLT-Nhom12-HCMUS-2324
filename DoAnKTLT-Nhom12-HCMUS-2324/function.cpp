@@ -279,6 +279,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 					//neu da create thi se duoc them vao luon
 					//neu khong thi phai nhap nam hoc va hoc ki can them mon hoc
 					//neu hoc ki do da duoc tao thi se thuc hien duoc neu k se hien thi SEMESTER IS NOT CREATED!!!
+					//ben duoi o dong 2067 co them 1 ham hien thi thong tin khac voi duong dan duoc truyen vao
 					createPathSemes();
 					clearScreen();
 					ifstream ifs;
@@ -2055,6 +2056,17 @@ void printListCourse(listCourse l) {
 	}
 }
 
+//ham doc file voi duong dan co the tu nhap
+void printListCourse(listCourse& l, string path) {
+	ifstream ifs;
+	ifs.open(path);
+	if (!ifs.is_open()) {
+		cout << "Mo file k thanh cong!!!\n";
+		return;
+	}
+	getListCourse2(l, ifs);
+	printListCourse(l);
+}
 
 void CreateClass() {
 	string SchoolYear;

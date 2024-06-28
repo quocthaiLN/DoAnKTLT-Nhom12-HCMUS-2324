@@ -249,4 +249,9 @@ listCourse InitListCourse();
 void createRegistrationSession(date& star, date& end);
 void importCourseData(listCourse& l);
 void printListCourse(listCourse l);
-
+//tao duong dan 
+void createPathSemes();
+//doc tu file va luu vao listCourse
+void getListCourse2(listCourse& lc, ifstream& ifs);
+//ham doc file voi duong dan co the tu nhap
+void printListCourse(listCourse& l, string path);
