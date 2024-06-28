@@ -1,7 +1,7 @@
 ﻿#include "function.h"
 
-
-
+string headerCourseBoard = "No,Student ID,StudentFull Name,Total Mark,Final Mark,Midterm Mark,Other Mark";
+string headerRegistList = "ID,Password,Last name,First name,Class,Gender,Date of Birth,Academic year,Staff";
 string headerUserFile = "ID,Password,Last name,First name,Class,Gender,Date of Birth,Academic year,Staff";
 string userPath = "Data\\Accounts\\users.csv";
 string semesterPath;
@@ -16,7 +16,7 @@ void menuAcademicStaff() {
 	cout << "1. User account\n";
 	cout << "2. Profile\n";
 	cout << "3. Manage Student\n";
-	cout << "4. Manage courses\n";
+	cout << "4. Manage Courses\n";
 	cout << "5. Setting\n";
 	cout << "0. Exit\n";
 
@@ -125,8 +125,8 @@ void DisplayCurSchoolYear()
 		// Năm học sẽ bắt đầu là năm hiện tại cho đến năm hiện tại + 1, vd: 2024 - 2025
 		str2 = to_string(d.year) + '-' + to_string(d.year + 1);
 	}
-	cout << setw(30) << "Begin Day: 5/9/" << str2 << endl;
-	cout << setw(30) << "End Day: 9/" << to_string(stoi(str2) + 1) << endl;
+	cout << setw(30) << "Begin Day:" << "5/9/" << str2 << endl;
+	cout << setw(30) << "End Day:" << "9/" << to_string(stoi(str2) + 1) << endl;
  
 }
 
@@ -135,7 +135,7 @@ void returnMenuActionAcademicStaff(User& info, listUser& lu)
 	int x;
 	do
 	{
-		cout << "An phim '0' de quay ve Menu" << endl;
+		cout << "An phim '0' de quay ve Menu: ";
 		cin >> x;
 	} while (x != 0);
 	clearScreen();
@@ -157,15 +157,28 @@ void actionAcademicStaff(User& info, listUser& lu)
 		clearScreen();
 		cout << setw(30) << "ID: " << info.id << endl;
 		cout << "1. Change password." << endl;
+		cout << "2. Back." << endl;
 		cout << "CHOOSE ACTION: ";
 		cin >> y;
-		if (y == 1)
+		switch (y)
 		{
-			clearScreen();
-			ChangePassword(info, lu);
+		case 1:
+		{
+			{
+				clearScreen();
+				ChangePassword(info, lu);
+				returnMenuActionAcademicStaff(info, lu);
+				break;
+			}
 		}
-		returnMenuActionAcademicStaff(info, lu);
-		break;
+		case 2:
+		{
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		}
+		
+		
 	}
 	case 2:
 	{
@@ -1672,7 +1685,7 @@ void Profile(User info)
 
 void PrintDate(date d)
 {
-	cout << "Date of Birth: " << d.day << "/" << d.month << "/" << d.year << endl;
+	cout << setw(20) << "Date of Birth: " << d.day << "/" << d.month << "/" << d.year << endl;
 }
 
 void ChangePassword(User& info, listUser& lu)
