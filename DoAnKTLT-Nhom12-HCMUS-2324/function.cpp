@@ -62,7 +62,7 @@ void menuManageCourses() {
 	cout << "3. Add Course\n";
 	cout << "4. List Of Course\n";
 	cout << "5. Semester Summary\n";
-	cout << "Back\n";
+	cout << "6. Back\n";
 }
 
 void menuStudent() {
@@ -382,8 +382,14 @@ void actionAcademicStaff(User& info, listUser& lu)
 			ReadingCourse(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + sem + '\\' + "courses.csv");
 			//printListCourse(lC);
 			CreateScoreBoardFile(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + sem);
+			cout << "Xuat bang diem hoc ki " << sem << " nam hoc " << SchYear << " thanh cong. Hay kiem tra ExportData!" << endl;
 			returnMenuActionAcademicStaff(info, lu);
 			break;
+		}
+		case 6:
+		{
+			clearScreen();
+			returnMenuActionAcademicStaff(info, lu);
 		}
 		}
 	}
@@ -1842,7 +1848,6 @@ void CopyFile(std::filesystem::path src, std::filesystem::path dest) {
 	std::ifstream source(src, std::ios::binary);
 	std::ofstream destination(dest, std::ios::binary);
 	destination << source.rdbuf();
-	cout << "CopyFile thanh cong" << endl;
 }
 
 void CopyFolder(string src, string dest) {
@@ -2176,7 +2181,6 @@ void ReadingCourse(listCourse& lC, string path)
 
 course ConvertingCourse(string line)
 {
-	cout << line << endl;
 	course c;
 	stringstream ssLine(line);
 	getline(ssLine, c.id, ',');
@@ -2212,10 +2216,7 @@ void CreateScoreBoardFile(listCourse lC, string path)
 	while (p != NULL)
 	{
 		string src = path + '\\' + p->info->id + ".csv", dest = exportPath + '\\' + p->info->id + ".csv";
-		cout << src << " " << dest << endl;
 		CopyFile(src, dest);
-		cout << p->info->id << endl;
 		p = p->pNext;
-		
 	}
 }
