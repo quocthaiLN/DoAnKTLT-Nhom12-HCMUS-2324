@@ -158,9 +158,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 	case 1:
 	{
 		clearScreen();
-		cout << setw(30) << "ID: " << info.id << endl;
-		cout << "1. Change password." << endl;
-		cout << "2. Back." << endl;
+		menuUserAccount();
 		cout << "CHOOSE ACTION: ";
 		cin >> y;
 		switch (y)
@@ -176,6 +174,12 @@ void actionAcademicStaff(User& info, listUser& lu)
 		}
 		case 2:
 		{
+			clearScreen();
+			logout(lu);
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 3: {
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
@@ -509,9 +513,7 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 	case 1:
 	{
 		clearScreen();
-		cout << setw(30) << "HCMUS PORTAL" << endl;
-		cout << "1. Change password." << endl;
-		cout << "2. Back." << endl;
+		menuUserAccount();
 		cout << "CHOOSE ACTION: ";
 		cin >> y;
 		switch (y)
@@ -521,13 +523,19 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 			{
 				clearScreen();
 				ChangePassword(infoUs, lu);
-				returnMenuActionStudent(infoUs, lu, infoSt);
+				returnMenuActionAcademicStaff(infoUs, lu);
 				break;
 			}
 		}
 		case 2:
 		{
-			returnMenuActionStudent(infoUs, lu, infoSt);
+			clearScreen();
+			logout(lu);
+			returnMenuActionAcademicStaff(infoUs, lu);
+			break;
+		}
+		case 3: {
+			returnMenuActionAcademicStaff(infoUs, lu);
 			break;
 		}
 		}
@@ -547,10 +555,15 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 		GetCurSchoolYear(SchYear, GetCurDate());
 		int n;
 		listCourse lC = InitListCourse();
-		ReadingEnrolledCourse(courseID, n, "Data\\InformationOfStudent" + '\\' + infoUs.id + ".txt");
-		FindCourseByID(courseID, n, lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem + '\\' + "course.csv");
+		ReadingEnrolledCourse(courseID, n, "Data/InformationOfStudent/" + infoUs.id + ".txt");
+		FindCourseByID(courseID, n, lC, schoolYearPath + "/" + SchYear + "/semester " + Sem + "/courses.csv");
 		clearScreen();
-		printListCourse(lC);
+		if (lC.pHead == NULL) {
+			cout << "LIST IS EMPTY!!!\n";
+		}
+		else {
+			printListCourse(lC);
+		}
 		returnMenuActionStudent(infoUs, lu, infoSt);
 		break;
 	}
@@ -993,13 +1006,36 @@ void changePassword(nodeUser*& us)
 // ham log out
 void logout(listUser lu)
 {
-	clearScreen();
-	nodeUser* curUser = LoginAccount();
-	if (IsUser(curUser, lu) == NULL)
+	nodeUser* curUser = NULL;
+	nodeUser* tempUser = NULL;
+	int n = 0;
+	do
 	{
-		cout << "TAI KHOAN VUA NHAP KHONG TON TAI !!!\n\n";
 		clearScreen();
-		LoginAccount();
+		if (n >= 1) {
+			cout << "Tai khoan hoac mat khau sai!!\n";
+		}
+		tempUser = LoginAccount();
+		ReadingUsersData(lu, userPath);
+		curUser = IsUser(tempUser, lu);
+		clearScreen();
+		if (curUser != NULL)
+		{
+			cout << "DANG NHAP THANH CONG!\n";
+			Sleep(500);
+			n = -1;
+		}
+		n++;
+	} while (curUser == NULL);
+	system("cls");
+	if (curUser->info.isStaff == true)
+	{
+		actionAcademicStaff(curUser->info, lu);
+	}
+	else
+	{
+		Student infoSt = createInfoStFromUserInfo(curUser->info);
+		actionStudent(curUser->info, lu, infoSt);
 	}
 }
 //ham hien thi thong tin school year
@@ -2532,10 +2568,11 @@ void ReadingEnrolledCourse(string ID[], int& n, string path)
 		return;
 	}
 	n = 0;
-	while (ifs.eof() == false)
+	while (!ifs.eof())
 	{
-		getline(ifs, ID[n]);
-		cout << ID[n] << endl;
+		getline(ifs, ID[n], '\n');
+		/*cout << ID[n] << endl;
+		Sleep(500);*/
 		n++;
 	}
 	ifs.close();
@@ -2552,22 +2589,20 @@ void FindCourseByID(string ID[], int n, listCourse& lC, string path)
 		cout << "Mo file khong thanh cong!(FindCourseByID)\n";
 		return;
 	}
-	
+
 	listCourse lcSRC = InitListCourse();
-	string line;
-	getline(ifs, line);
+	/*string line;
+	getline(ifs, line);*/
 	getListCourse2(lcSRC, ifs);
 	ifs.close();
-
-	int cnt = 0;
-	nodeCourse* p = new nodeCourse;
-	p = lcSRC.pHead;
+	nodeCourse* p = lcSRC.pHead;
 	while (p != NULL)
 	{
-		if (p->info->id == ID[0])
-		{
-			addCourse(lC, p->info);
-			cnt++;
+		for (int i = 0; i < n; i++) {
+			if (p->info->id == ID[i])
+			{
+				addCourse(lC, p->info);
+			}
 		}
 		p = p->pNext;
 	}
