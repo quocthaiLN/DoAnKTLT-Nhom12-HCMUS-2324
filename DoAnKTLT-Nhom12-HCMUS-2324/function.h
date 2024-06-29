@@ -160,7 +160,7 @@ User ConvertingUserData(string data);
 nodeUser* IsUser(nodeUser* data, listUser lu);
 //tra ve user co trong danh sach, neu la null nghia la ko co
 date ConvertingDate(string data);
-void CopyFile(string src, string dest);
+//void CopyFile(string src, string dest);
 void CreateDirectory(string filePath);
 void CreatingNewSchoolYear(string schoolYear, string firstYearPath);
 string GetPreviousSchoolYear(string schoolYear);
@@ -189,6 +189,9 @@ listCourse InitListCourse();
 void DisplaySemester(Semester sem);
 void RegistCourse(Student& infoSt);
 Student LinkedUserAndStudent(User info);
+void ReadingCourse(listCourse& lC, string path);
+void CreateScoreBoardFile(listCourse lC, string path);
+course ConvertingCourse(string line);
 
 
 //HỮU THẮNG
@@ -225,7 +228,7 @@ void DisplayListEnrolledStudents(course enrolledCourse);
 void CreateClass();
 void getListCourse2(listCourse& lc, ifstream& ifs);
 void createPathSemes();
-
+void CopyFile(std::filesystem::path src, std::filesystem::path dest);
 
 //QUANG THẮNG
 course* convertingCourse(ifstream& ifs);

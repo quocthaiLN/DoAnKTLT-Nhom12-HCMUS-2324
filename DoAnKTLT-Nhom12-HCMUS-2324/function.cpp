@@ -10,6 +10,7 @@ listCourse listInReg = InitListCourse();
 date starDateReg;
 date endDateReg;
 string pathSemes = " ";
+string exportPath = "ExportData";
 
 void menuAcademicStaff() {
 	cout << "HCMUS PORTAL" << endl;
@@ -365,6 +366,22 @@ void actionAcademicStaff(User& info, listUser& lu)
 					printListCourse(listInReg);
 				}
 			}
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 5:
+		{
+			clearScreen();
+			string SchYear, sem;
+			cout << "School year (Ex: 2023-2024): ";
+			cin >> SchYear;
+			cout << "Semester (1/2/3): ";
+			cin >> sem;
+			string srcPath;
+			listCourse lC = InitListCourse();
+			ReadingCourse(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + sem + '\\' + "courses.csv");
+			//printListCourse(lC);
+			CreateScoreBoardFile(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + sem);
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
@@ -1269,34 +1286,34 @@ void addStudentToCourse(Student* s, course* c)
 	ofs.close();
 }
 
-void CopyFile(string src, string dest)
-{
-	ifstream ifs;
-	ifs.open(src);
-	if (ifs.is_open() == false)
-	{
-		cout << "Mo file nguon khong thanh cong!\n";
-		return;
-	}
-
-	ofstream ofs;
-	ofs.open(dest);
-	if (ofs.is_open() == false)
-	{
-		cout << "Mo file dich khong thang cong!\n";
-		return;
-	}
-
-	string line;
-	while (getline(ifs, line))
-	{
-		ofs << line;
-		ofs << '\n';
-	}
-
-	ifs.close();
-	ofs.close();
-}
+//void CopyFile(string src, string dest)
+//{
+//	ifstream ifs;
+//	ifs.open(src);
+//	if (ifs.is_open() == false)
+//	{
+//		cout << "Mo file nguon khong thanh cong!\n";
+//		return;
+//	}
+//
+//	ofstream ofs;
+//	ofs.open(dest);
+//	if (ofs.is_open() == false)
+//	{
+//		cout << "Mo file dich khong thang cong!\n";
+//		return;
+//	}
+//
+//	string line;
+//	while (getline(ifs, line))
+//	{
+//		ofs << line;
+//		ofs << '\n';
+//	}
+//
+//	ifs.close();
+//	ofs.close();
+//}
 
 void CreateDirectory(string filePath)
 {
@@ -1825,6 +1842,7 @@ void CopyFile(std::filesystem::path src, std::filesystem::path dest) {
 	std::ifstream source(src, std::ios::binary);
 	std::ofstream destination(dest, std::ios::binary);
 	destination << source.rdbuf();
+	cout << "CopyFile thanh cong" << endl;
 }
 
 void CopyFolder(string src, string dest) {
@@ -1979,12 +1997,13 @@ nodeCourse* GetNodeCourse(course info)
 	{
 		return NULL;
 	}
-	p->info->courseName = info.courseName;
+	/*p->info->courseName = info.courseName;
 	p->info->dayOfWeek = info.dayOfWeek;
 	p->info->id = info.id;
 	p->info->numberOfCredits = info.numberOfCredits;
 	p->info->session = info.session;
-	p->info->teacherName = info.teacherName;
+	p->info->teacherName = info.teacherName;*/
+	p->info = &info;
 	p->pNext = NULL;
 	return p;
 }
@@ -1993,7 +2012,8 @@ void AddCourse(listCourse& lC, course info)
 	nodeCourse* p = GetNodeCourse(info);
 	if (lC.pHead == NULL)
 	{
-		lC.pHead = lC.pTail = p;
+		lC.pHead = p;
+		lC.pTail = p;
 	}
 	else
 	{
@@ -2122,4 +2142,80 @@ void CreateClass() {
 	CopyFile(SrcPath, DestPath);
 
 	cout << "Create Class Successfully\n";
+}
+
+
+void ReadingCourse(listCourse& lC, string path)
+{
+	ifstream ifs;
+	ifs.open(path);
+	if (ifs.is_open() == false)
+	{
+		cout << "Mo file khong thanh cong!(Reading Course)\n";
+		return;
+	}
+	string line;
+	getline(ifs, line);
+	//while (ifs.good())
+	//{
+	//	/*getline(ifs, line);
+	//	course c = ConvertingCourse(line);
+	//	AddCourse(lC, c);*/
+	//	/*cout << c.id << endl; 
+	//	cout << c.courseName << endl;
+	//	cout << c.teacherName << endl;
+	//	cout << c.numberOfCredits << endl;
+	//	cout << c.maximunNumberOfStudent << endl;
+	//	cout << c.dayOfWeek << endl;
+	//	cout << c.session << endl;*/
+	//}
+		getListCourse2(lC, ifs);
+	
+	ifs.close();
+}
+
+course ConvertingCourse(string line)
+{
+	cout << line << endl;
+	course c;
+	stringstream ssLine(line);
+	getline(ssLine, c.id, ',');
+	
+	getline(ssLine, c.courseName, ',');
+	
+	getline(ssLine, c.teacherName, ',');
+	
+	string temp;
+	getline(ssLine, temp, ',');
+	c.numberOfCredits = stoi(temp);
+	
+	string temp1, temp2, temp3;
+	getline(ssLine, temp1, ',');
+	
+	getline(ssLine, temp2, ',');
+
+	getline(ssLine, temp3, ',');
+
+
+	getline(ssLine, c.dayOfWeek, ',');
+
+	getline(ssLine, c.session, ',');
+
+	return c;
+}
+
+
+void CreateScoreBoardFile(listCourse lC, string path)
+{
+	nodeCourse* p = lC.pHead;
+	int i = 0;
+	while (p != NULL)
+	{
+		string src = path + '\\' + p->info->id + ".csv", dest = exportPath + '\\' + p->info->id + ".csv";
+		cout << src << " " << dest << endl;
+		CopyFile(src, dest);
+		cout << p->info->id << endl;
+		p = p->pNext;
+		
+	}
 }

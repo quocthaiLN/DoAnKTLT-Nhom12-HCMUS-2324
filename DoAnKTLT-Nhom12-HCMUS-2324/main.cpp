@@ -1,7 +1,7 @@
 ﻿#include "function.h"
 
 //TKHS: 20126001 1
-//TKGV: 110 111
+//TKGV: 110 123
 
 
 int main()
