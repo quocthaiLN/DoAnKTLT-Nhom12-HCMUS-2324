@@ -293,6 +293,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 						break;
 					}
 					else {
+						getListCourse2(listInReg, ifs);
 						addCourseToSemester(listInReg);
 					}
 				}
@@ -317,6 +318,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 						break;
 					}
 					else {
+						getListCourse2(listInReg, ifs);
 						importCourseData(listInReg);
 					}
 				}
@@ -848,8 +850,12 @@ course* convertingCourse(ifstream& ifs)
 		return NULL;
 	}
 	cou->numberOfCredits = stoi(tmp);
+	string academic;
+	getline(ifs, academic, ',');
 	//vi so luong hoc sinh max = 50 nen chi can get cho qua di thong tin k can luu lai vao course
 	getline(ifs, maxNumStudent, ',');
+	string tmp1;
+	getline(ifs, tmp1, ',');
 	getline(ifs, cou->dayOfWeek, ',');
 	getline(ifs, cou->session);
 	return cou;
@@ -2068,14 +2074,14 @@ void expireReg() {
 }
 void printListCourse(listCourse l) {
 	nodeCourse* n1 = l.pHead;
-	cout << left << setw(10) << "ID" << left << setw(40) << "Course Name"
+	cout << left << setw(10) << "ID" << left << setw(31) << "Course Name"
 		<< left << setw(24) << "Teacher Name" << left << setw(8) << "Credits"
-		<< left << setw(17) << "Number Of Student" << left << setw(14) << "Day Of Week"
+		<< left << setw(19) << "Number Of Student" << left << setw(14) << "Day Of Week"
 		<< left << setw(9) << "Session" << endl;
 	while (n1 != NULL) {
-		cout << left << setw(10) << n1->info->id << left << setw(40) << n1->info->courseName
+		cout << left << setw(10) << n1->info->id << left << setw(31) << n1->info->courseName
 			<< left << setw(24) << n1->info->teacherName << left << setw(8) << n1->info->numberOfCredits
-			<< left << setw(17) << n1->info->maximunNumberOfStudent << left << setw(14) << n1->info->dayOfWeek
+			<< left << setw(19) << n1->info->maximunNumberOfStudent << left << setw(14) << n1->info->dayOfWeek
 			<< left << setw(9) << n1->info->session << endl;
 		n1 = n1->pNext;
 	}
