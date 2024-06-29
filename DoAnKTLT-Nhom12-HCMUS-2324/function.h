@@ -258,3 +258,7 @@ void createPathSemes();
 void getListCourse2(listCourse& lc, ifstream& ifs);
 //ham doc file voi duong dan co the tu nhap
 void printListCourse(listCourse& l, string path);
+Student createInfoStFromUserInfo(User us);
+void readInfoOfStudent(ListStudent& list, string cla);
+Student convertingStData(ifstream& ifs);
+void Profile(Student info, User us);

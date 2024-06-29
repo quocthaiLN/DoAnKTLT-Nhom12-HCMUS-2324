@@ -35,7 +35,8 @@ int main()
 	}
 	else
 	{
-		//actionStudent(curUser->info, listUs, infoSt);
+		Student infoSt = createInfoStFromUserInfo(curUser->info);
+		actionStudent(curUser->info, listUs, infoSt);
 	}
 
 

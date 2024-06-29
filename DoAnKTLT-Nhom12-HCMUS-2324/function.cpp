@@ -495,22 +495,32 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 	case 1:
 	{
 		clearScreen();
-		cout << setw(30) << "ID: " << infoUs.id << endl;
+		cout << setw(30) << "HCMUS PORTAL" << endl;
 		cout << "1. Change password." << endl;
-		returnMenuActionStudent(infoUs, lu, infoSt);
+		cout << "2. Back." << endl;
+		cout << "CHOOSE ACTION: ";
 		cin >> y;
-		if (y == 1)
+		switch (y)
 		{
-			clearScreen();
-			ChangePassword(infoUs, lu);
-			
+		case 1:
+		{
+			{
+				clearScreen();
+				ChangePassword(infoUs, lu);
+				returnMenuActionAcademicStaff(infoUs, lu);
+				break;
+			}
 		}
-		returnMenuActionStudent(infoUs, lu, infoSt);
-		break;
+		case 2:
+		{
+			returnMenuActionAcademicStaff(infoUs, lu);
+			break;
+		}
+		}
 	}
 	case 2:
 	{
-		Profile(infoUs);
+		Profile(infoSt, infoUs);
 		returnMenuActionStudent(infoUs, lu, infoSt);
 		break;
 	}
@@ -2225,4 +2235,77 @@ void CreateScoreBoardFile(listCourse lC, string path)
 		CopyFile(src, dest);
 		p = p->pNext;
 	}
+}
+
+Student convertingStData(ifstream& ifs) {
+	Student st;
+	string no;
+	getline(ifs, no, ',');
+	st.No = stoi(no);
+	string id;
+	getline(ifs, id, ',');
+	st.studentID = stoi(id);
+	getline(ifs, st.firstName, ',');
+	getline(ifs, st.lastName, ',');
+	getline(ifs, st.gender, ',');
+	string dob;
+	getline(ifs, dob, ',');
+	st.dateOfBirth = ConvertingDate(dob);
+	string sID;
+	getline(ifs, sID, ',');
+	st.socialID = stoi(sID);
+	string aca;
+	getline(ifs, aca);
+	st.academicYear = stoi(aca);
+	return st;
+}
+
+void readInfoOfStudent(ListStudent& list, string cla) {
+	string path = "ImportData/" + cla + ".csv";
+	ifstream ifs;
+	ifs.open(path);
+	if (!ifs.is_open()) {
+		cout << "Mo file that bai!!!\n";
+		return;
+	}
+	string line;
+	getline(ifs, line);
+	while (!ifs.eof()) {
+		Student st = convertingStData(ifs);
+		//chi co chuong trinh dai tra 
+		string pro{ cla,2,3 };
+		st.program = pro;
+		addStudent(list, st);
+	}
+	ifs.close();
+}
+
+Student createInfoStFromUserInfo(User us) {
+	Student st;
+	ListStudent list = InitListStudent();
+	readInfoOfStudent(list, us.className);
+	NodeStudent* n = list.pHead;
+	while (n != NULL) {
+		string sID = to_string(n->Info.studentID);
+		if (sID == us.id) {
+			st = n->Info;
+			break;
+		}
+		n = n->pNext;
+	}
+	return st;
+}
+
+void Profile(Student info, User us)
+{
+	clearScreen();
+	cout << "INFORMATION OF USER" << endl;
+	cout << setw(20) << "Student ID: " << info.studentID << endl;
+	cout << setw(20) << "Firset Name: " << info.firstName << endl;
+	cout << setw(20) << "Last Name: " << info.lastName << endl;
+	cout << setw(20) << "Gender: " << info.gender << endl;
+	cout << setw(20) << "Class name: " << us.className << endl;
+	cout << setw(20) << "Academic Year: " << info.academicYear << endl;
+	cout << setw(20) << "Social ID: " << info.socialID << endl;
+	PrintDate(info.dateOfBirth);
 }
