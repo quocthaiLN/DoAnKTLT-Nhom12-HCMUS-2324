@@ -1,21 +1,13 @@
-No,Student ID,Last name,First name,Gender,Date of Birth,Social ID,Academic year
-1,231201,Nguyen,Anh,Male,15/01/2001,123456789,2024
-2,231202,Tran,Binh,Female,20/02/2000,987654321,2024
-3,231203,Le,Cuong,Male,25/03/1999,456789012,2024
-4,231204,Pham,Duy,Female,30/04/1998,654321098,2024
-5,231205,Hoang,Thanh,Male,10/05/2001,321548765,2024
-6,231206,Vu,Ngoc,Female,12/06/2000,213659874,2024
-7,231207,Vo,Hoa,Male,22/07/1999,546321987,2024
-8,231208,Do,Lan,Female,02/08/1998,874236578,2024
-9,231209,Phan,Minh,Male,15/09/2001,998543123,2024
-10,231210,Duong,Phuong,Female,25/10/2000,113246578,2024
-11,231211,Bui,Quyen,Male,11/11/1999,657239845,2024
-12,231212,Doan,Tam,Female,19/12/1998,876452134,2024
-13,231213,Luu,Vy,Male,05/01/2001,762983452,2024
-14,231214,Dang,Thi,Female,16/02/2000,839264175,2024
-15,231215,Nguyen,Trung,Male,20/03/2001,624518937,2024
-16,231216,Tran,Thu,Female,18/04/2000,185793624,2024
-17,231217,Le,Van,Male,29/05/1999,937468215,2024
-18,231218,Pham,Huong,Female,07/06/1998,362514879,2024
-19,231219,Hoang,Hai,Male,09/07/2001,945871236,2024
-20,231220,Vo,Thi,Female,14/08/2000,512487693,2024
+ID,Course name,Teacher name,Number of credits,Academic year,Max students,number of enroller,Day of week,Session
+GEO00002,Khoa hoc Trai Dat,Nguyen Van A,2,2020,106,0,MON,S1-S2
+CHE00002,Hoa dai cuong 2,Nguyen Thi B,3,2020,70,0,MON,S1-S2
+ENV00001,Moi truong dai cuong,Nguyen Van F,2,2020,175,0,TUE,S1-S2
+CSC00003,Tin hoc co so,Nguyen Van G,3,2020,29,0,WED,S3-S4
+CSC00004,Nhap mon Cong nghe Thong tin,Huynh Thuy Bao Tran,4,2020,150,0,WED,S1-S2
+CSC10001,Nhap mon lap trinh,Truong Toan Thinh,4,2020,150,0,MON,S3-S4
+MTH00003,Vi tich phan 1B,Le Van Chanh,3,2020,50,0,WED,S3-S4
+MTH00041,Toan roi rac,Nguyen Duy Loc,3,2020,100,0,FRI,S1-S2
+MTH00081,Thuc hanh vi tich phan 1B,Nguyen Cao Dang,1,2020,50,0,MON,S1-S2
+MTH00086,Thuc hanh toan roi rac,Le Van Hop,1,2020,50,0,MON,S3-S4
+CSC10009,He thong may tinh,Tran Van C,2,2020,100,0,SAT,S3-S4
+BAA00003,Tu tuong Ho Chi Minh,Nguyen Van D,2,2020,140,0,MON,S1-S2

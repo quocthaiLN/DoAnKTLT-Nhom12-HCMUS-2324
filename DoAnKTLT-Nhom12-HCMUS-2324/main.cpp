@@ -1,6 +1,6 @@
 ﻿#include "function.h"
 
-//TKHS: 20126001 1
+//TKHS: 231201 1
 //TKGV: 110 123
 
 

@@ -188,10 +188,14 @@ void AddCourse(listCourse& lC, course info);
 listCourse InitListCourse();
 void DisplaySemester(Semester sem);
 void RegistCourse(Student& infoSt);
-Student LinkedUserAndStudent(User info);
 void ReadingCourse(listCourse& lC, string path);
 void CreateScoreBoardFile(listCourse lC, string path);
 course ConvertingCourse(string line);
+void DisplayExportCourseBoard();
+void DisplayCourseInfo();
+void ReadingEnrolledCourse(string ID[], int &n, string path);
+void FindCourseByID(string ID[], int n, listCourse &lC, string path);
+
 
 
 //HỮU THẮNG
