@@ -229,6 +229,7 @@ void CreateClass();
 void getListCourse2(listCourse& lc, ifstream& ifs);
 void createPathSemes();
 void CopyFile(std::filesystem::path src, std::filesystem::path dest);
+void AddStudentToCourse(listCourse& list);
 
 //QUANG THẮNG
 course* convertingCourse(ifstream& ifs);

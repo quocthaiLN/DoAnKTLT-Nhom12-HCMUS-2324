@@ -51,7 +51,8 @@ void menuManageStudent() {
 	cout << "2. School Year Information\n";
 	cout << "3. Create Classes\n";
 	cout << "4. List of Classes\n";
-	cout << "5. Back\n";
+	cout << "5. Add Student To Course\n";
+	cout << "6. Back\n";
 }
 
 void menuManageCourses() {
@@ -230,8 +231,15 @@ void actionAcademicStaff(User& info, listUser& lu)
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 			//Đọc file class và hiển thị lên màn hình
-		}
+		}// Add Student To Course
 		case 5: {
+			listCourse list = InitListCourse();
+			clearScreen();
+			AddStudentToCourse(list);
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 6: {
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
@@ -811,8 +819,7 @@ void GetCurSemester(Semester& curSemester) {
 	string schoolYear;
 	GetCurSchoolYear(schoolYear, GetCurDate());
 	// Lấy path có dạng thư mục Data \\ thư mục niên khóa \\ file semester.dat
-	const string path = "Data\\" + schoolYear + "\\semester.dat";
-
+	const string path = "Data\\SchoolYear\\" + schoolYear + "\\semester.dat";
 	ifstream ifs;
 	ifs.open(path);
 	if (!ifs.is_open()) {
@@ -1290,23 +1297,23 @@ void importCourseData(listCourse& l) {
 	ofs.close();
 }
 //them sinh vien vao khoa hoc
-void addStudentToCourse(Student* s, course* c)
-{
-	//s->enrolledCourse->pTail->pNext = ;
-	ofstream ofs;
-	ofs.open(semesterPath + "/" + c->courseName + ".csv");
-	if (!ofs.is_open())
-	{
-		cout << "Mo file that bai!!!\n";
-		return;
-	}
-	ofs << endl;
-	ofs << s->No << "," << s->studentID << "," << s->firstName << ",";
-	ofs << s->lastName << "," << s->gender << ",";
-	ofs << s->dateOfBirth.day << "-" << s->dateOfBirth.month << "-" << s->dateOfBirth.year;
-	ofs << "," << s->academicYear << "," << s->program << "," << s->socialID << "," << "\n";
-	ofs.close();
-}
+//void AddStudentToCourse(Student* s, course* c)
+//{
+//	//s->enrolledCourse->pTail->pNext = ;
+//	ofstream ofs;
+//	ofs.open(semesterPath + "/" + c->courseName + ".csv");
+//	if (!ofs.is_open())
+//	{
+//		cout << "Mo file that bai!!!\n";
+//		return;
+//	}
+//	ofs << endl;
+//	ofs << s->No << "," << s->studentID << "," << s->firstName << ",";
+//	ofs << s->lastName << "," << s->gender << ",";
+//	ofs << s->dateOfBirth.day << "-" << s->dateOfBirth.month << "-" << s->dateOfBirth.year;
+//	ofs << "," << s->academicYear << "," << s->program << "," << s->socialID << "," << "\n";
+//	ofs.close();
+//}
 
 //void CopyFile(string src, string dest)
 //{
@@ -1407,6 +1414,7 @@ void createSemester(listCourse& list) {
 
 	ofstream fileDat;
 	fileDat.open(path);
+	fileDat << semester << endl;
 	fileDat << starDate << endl;
 	fileDat << endDate;
 	fileDat.close();
@@ -1499,7 +1507,7 @@ void DisplayCourse(listCourse list) {
 		cout << "Course " << cnt << endl;
 		cout << "ID Course: " << p->info->id << endl;
 		cout << "Teacher: " << p->info->teacherName << endl;
-		cout << "Number of Credits: " << p->info->teacherName << endl;
+		cout << "Number of Credits: " << p->info->numberOfCredits << endl;
 		cout << "Max Number of Students: " << p->info->maximunNumberOfStudent << endl;
 		cout << "Day of Week: " << p->info->dayOfWeek << endl;
 		cout << "Session: " << p->info->session << endl;
@@ -2308,4 +2316,169 @@ void Profile(Student info, User us)
 	cout << setw(20) << "Academic Year: " << info.academicYear << endl;
 	cout << setw(20) << "Social ID: " << info.socialID << endl;
 	PrintDate(info.dateOfBirth);
+}
+
+void DisplayIDCourse(listCourse list) {
+	if (list.pTail == NULL) {
+		cout << "No Course\n";
+		return;
+	}
+	int cnt = 1;
+
+	nodeCourse* p = list.pHead;
+	while (p) {
+		cout << "Course " << cnt << endl;
+		cout << "ID Course: " << p->info->id << endl;
+		cnt++;
+		p = p->pNext;
+	}
+}
+
+void AddStudentToCourse(listCourse& list) {
+	// Lấy thông tin Course
+	getListCourse(list);
+	DisplayIDCourse(list);
+
+	// Cho người dùng nhập mã môn
+	string PathID;
+	cout << "Enter your ID Course: ";
+	cin >> PathID;
+
+	string tmpPath = PathID;
+	// Lấy shoolYear hiện tại để đi vào folder niên khóa hiện tại(2023-2024)
+	string curSchoolYear;
+	GetCurSchoolYear(curSchoolYear, GetCurDate());
+
+	// Lấy semester hiện tại để đi vào folder semester 1, 2, ....
+	Semester semes;
+	GetCurSemester(semes);
+	string curSemes = to_string(semes.semester);
+
+	
+	// Người dùng nhập mã môn sẽ không có đuôi ".csv" nên ta kiểm tra rồi thêm vào
+	fs::path filePath = PathID;
+	if (filePath.extension() != ".csv") {
+		PathID += ".csv";
+	}
+
+	// Lấy hoàn thành pathCourse
+	const string pathCourse = "Data\\SchoolYear\\" + curSchoolYear + "\\semester " + curSemes + "\\" + PathID;
+	clearScreen();
+	// Path của file csv lớp để lấy danh sách học sinh
+	string pathClass = "ImportData\\";
+	int choice;
+	cout << "1. Add Students using File\n";
+	cout << "2. Add one Student by Hand\n";
+	cout << "Your choice: "; cin >> choice;
+	switch (choice)
+	{
+	case 1:
+	{
+		clearScreen();
+		string className;
+		cout << "Enter Class Name: "; cin >> className;
+
+		fs::path filePath = className;
+		if (filePath.extension() != ".csv") {
+			className += ".csv";
+		}
+
+		pathClass += className;
+
+		// Lấy sinh viên
+		ListStudent listS = InitListStudent();
+		getListStudentInCLass(listS, pathClass);
+
+		// Ghi sinh viên vào file csv môn học
+		ofstream ofs;
+		// Mở file để ghi vào cuối file, chứ không ghi đè
+		ofs.open(pathCourse, ios::app);
+		if (!ofs.is_open()) {
+			cout << "Mo file khong thanh cong\n";
+			cout << "Ham AddStudentToCourse\n";
+			return;
+		}
+
+
+		NodeStudent* st = listS.pHead;
+		while (st) {
+			ofs << st->Info.No << "," << st->Info.studentID << "," << st->Info.lastName + ' ' + st->Info.firstName << ",";
+			// Total Mark
+			ofs << 0 << ",";
+			// Final Mark
+			ofs << 0 << ',';
+			// Midterm Mark
+			ofs << 0 << ',';
+			// Other Mark
+			ofs << 0 << endl;
+
+			// Tạo file mssv và ghi môn học vào File mssv trong folder InformationOfStudent
+			string FileMssv = "Data\\InformationOfStudent\\";
+			FileMssv += to_string(st->Info.studentID) + ".txt";
+			ofstream mssvFile(FileMssv, ios::app);
+			mssvFile << tmpPath << endl;
+			mssvFile.close();
+			st = st->pNext;
+		}
+
+		ofs.close();
+
+		cout << "Add Student Successfully\n";
+
+		break;
+	}
+	case 2: {
+		clearScreen();
+
+		// Đếm số No tiếp theo của student sắp được nhập tay vào
+		ifstream cnt(pathCourse);
+		if (!cnt.is_open()) {
+			cout << "Mo file khong thanh cong\n";
+			return;
+		}
+
+		int count = 0;
+		string line;
+		getline(cnt, line);
+		while (getline(cnt, line)) count++;
+		cnt.close();
+
+		count += 1;
+
+		// Nhập mssv
+		int mssv;
+		cout << "Student ID: "; cin >> mssv;
+
+		// Nhập tên
+		cin.ignore();
+		string tmp;
+		cout << "Full name: "; getline(cin, tmp);
+		
+		// Ghi file
+		ofstream fout;
+		fout.open(pathCourse, ios::app);
+		if (!fout.is_open()) {
+			cout << "Mo file khong thanh cong\n";
+			return;
+		}
+
+		fout << count << "," << mssv << "," << tmp << "," << 0 << "," << 0 << "," << 0 << "," << 0 << endl;
+		
+		fout.close();
+
+
+		// Tạo file mssv và ghi môn học vào File mssv trong folder InformationOfStudent
+		string FileMssv = "Data\\InformationOfStudent\\";
+		FileMssv += to_string(mssv) + ".txt";
+		ofstream mssvFile(FileMssv, ios::app);
+		mssvFile << tmpPath << endl;
+		mssvFile.close();
+
+		cout << "Add Student Successfully\n";
+
+		break;
+	}
+	default:
+		break;
+	}
 }
