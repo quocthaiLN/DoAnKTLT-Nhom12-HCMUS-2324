@@ -1,7 +1,9 @@
 ﻿  function.cpp
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(150,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(488,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(537,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(537,9): warning C4101: 'y': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(975,8): warning C4101: 'd': unreferenced local variable
-  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(150,12): warning C4101: 'z': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(488,12): warning C4101: 'z': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(537,12): warning C4101: 'z': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(537,9): warning C4101: 'y': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(975,8): warning C4101: 'd': unreferenced local variable
+  Main.cpp
+  Generating Code...
+  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
