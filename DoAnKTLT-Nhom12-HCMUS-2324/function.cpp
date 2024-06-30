@@ -304,20 +304,50 @@ void DisplayCurSchoolYear()
 	date d = GetCurDate();
 	string str1, str2;
 	GetCurSchoolYear(str1, d);
-	cout << setw(30) << "Current School Year: " << str1 << endl;
-	// Nếu tháng hiện tại mà nhỏ hơn tháng 9
-	if (d.month < openingMonth) {
-		// Niên khóa sẽ là: năm hiện tại-1 -> năm hiện tại, vd: 2023 - 2024
+
+	// Draw the box for the school year information
+	int boxWidth = 50;
+	int boxHeight = 7;
+	int startX = 35;
+	int startY = 5;
+	drawBox(boxWidth, boxHeight, startX, startY);
+
+	// Draw the header
+	drawHeader("CURRENT SCHOOL YEAR", startX, startY + 1);
+
+	// Set color for the school year information
+	SetColor(14); // Yellow color for labels
+
+	// Adjust coordinates to place school year information inside the box
+	short infoX = static_cast<short>(startX + 5);
+	short infoY = static_cast<short>(startY + 3);
+
+	// Move cursor and print "Current School Year"
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, infoY });
+	cout << setw(20) << "Current School Year: " << str1;
+
+	// Calculate and print "Begin Day" and "End Day"
+	if (d.month < openingMonth)
+	{
 		str2 = to_string(d.year - 1);
-	}// Nếu tháng hiện tại mà lớn hơn hoặc bằng 9
-	else {
-		// Năm học sẽ bắt đầu là năm hiện tại cho đến năm hiện tại + 1, vd: 2024 - 2025
+	}
+	else
+	{
 		str2 = to_string(d.year) + '-' + to_string(d.year + 1);
 	}
-	cout << setw(30) << "Begin Day:" << "5/9/" << str2 << endl;
-	cout << setw(30) << "End Day:" << "9/" << to_string(stoi(str2) + 1) << endl;
- 
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, static_cast<short>(infoY + 1) });
+	cout << setw(20) << "Begin Day:" << " 5/9/" << str2;
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, static_cast<short>(infoY + 2) });
+	cout << setw(20) << "End Day:" << " 9/" << to_string(stoi(str2) + 1);
+
+	// Reset color to default
+	SetColor(7);
 }
+
+
+
 
 void returnMenuActionAcademicStaff(User& info, listUser& lu)
 {
@@ -376,12 +406,12 @@ void actionAcademicStaff(User& info, listUser& lu)
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
-		case 3: {
+		case 0: {
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
 		}
-		break;
+
 
 	}
 	case 2:
@@ -404,7 +434,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 			string schoolYear, firstYearPath;
 			cout << "Curren School Year (Ex: 2023-2024): ";
 			cin >> schoolYear;
-			cout << "New First Year Student Path: ";
+			cout << "New First Year Student File Path: ";
 			cin >> firstYearPath;
 			CreatingNewSchoolYear(schoolYear, firstYearPath);
 			returnMenuActionAcademicStaff(info, lu);
@@ -417,7 +447,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
-		//case 3 là tạo lớp, tạm thời bỏ làm sau
+		
 		case 3:
 		{
 			clearScreen();
@@ -431,8 +461,8 @@ void actionAcademicStaff(User& info, listUser& lu)
 			DisplayClassInfo();
 			returnMenuActionAcademicStaff(info, lu);
 			break;
-			//Đọc file class và hiển thị lên màn hình
-		}// Add Student To Course
+			
+		}
 		case 5: {
 			listCourse list = InitListCourse();
 			clearScreen();
@@ -450,7 +480,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 	case 4:
 	{
 		clearScreen();
-		//listCourse l = InitListCourse();
+		
 		menuManageCourses();
 		cout << endl;
 		cout << "CHOOSE ACTION: ";
@@ -485,12 +515,6 @@ void actionAcademicStaff(User& info, listUser& lu)
 			case 1: {
 				clearScreen();
 				if (pathSemes == " ") {
-					//pathSemes la bien toan cuc
-					//pathSemes duoc lay tu ham createSemester 
-					//neu da create thi se duoc them vao luon
-					//neu khong thi phai nhap nam hoc va hoc ki can them mon hoc
-					//neu hoc ki do da duoc tao thi se thuc hien duoc neu k se hien thi SEMESTER IS NOT CREATED!!!
-					//ben duoi o dong 2067 co them 1 ham hien thi thong tin khac voi duong dan duoc truyen vao
 					createPathSemes(pathSemes);
 					clearScreen();
 					ifstream ifs;
@@ -582,6 +606,9 @@ void actionAcademicStaff(User& info, listUser& lu)
 		{
 			clearScreen();
 			viewScoreBoard();
+
+
+
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
@@ -728,7 +755,22 @@ void DisplayCourseInfo()
 
 void DisplayExportCourseBoard()
 {
-	
+	int z, n;
+	string* item;
+	string SchYear, Sem;
+	DisplayFilesInDirectory(schoolYearPath, item, n);
+	DisplayArrString(item, n);
+	cout << setw(20) << "Choose school year: ";
+	cin >> z;
+	SchYear = item[z - 1];
+
+	cout << "Choose semester(1/2/3): ";
+	cin >> Sem;
+
+	listCourse lC = InitListCourse();
+	ReadingCourse(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem + '\\' + "courses.csv");
+	CreateScoreBoardFile(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem);
+	cout << "Xuat bang diem hoc ki " << Sem << " nam hoc " << SchYear << " thanh cong. Hay kiem tra ExportData!" << endl;
 }
 
 void DisplayClassInfo()
@@ -771,16 +813,16 @@ void menuClassYear()
 //Viết 1 hàm đọc file class rồi hiển thị lên màn hình
 
 void DisplayFilesInDirectory(string directoryPath, string*& files, int& n) {
-	n = 0; // Initialize count of files
-	// Count files first to allocate memory for array
+	n = 0; 
+	
 	for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
 			n++;
 	}
 
-	files = new string[n]; // Allocate memory for file names
+	files = new string[n]; 
 	int i = 0;
 
-	// Store file names into the array
+
 	for (const auto& entry : filesystem::directory_iterator(directoryPath)) {
 			files[i] = entry.path().filename().string();
 			i++;
@@ -817,8 +859,6 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 	switch (x)
 	{
 	case 0: {
-		/*clearScreen();
-		returnMenuActionAcademicStaff(infoUs, lu);*/
 		break;
 	}
 	case 1:
@@ -834,7 +874,7 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 			{
 				clearScreen();
 				ChangePassword(infoUs, lu);
-				returnMenuActionAcademicStaff(infoUs, lu);
+				returnMenuActionStudent(infoUs, lu, infoSt);
 				break;
 			}
 		}
@@ -842,14 +882,15 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 		{
 			clearScreen();
 			logout(lu);
-			returnMenuActionAcademicStaff(infoUs, lu);
+			returnMenuActionStudent(infoUs, lu, infoSt);
 			break;
 		}
-		case 3: {
-			returnMenuActionAcademicStaff(infoUs, lu);
+		case 0: {
+			returnMenuActionStudent(infoUs, lu, infoSt);
 			break;
 		}
 		}
+		break;
 	}
 	case 2:
 	{
@@ -1287,7 +1328,7 @@ void getListCourse(listCourse& lc)
 	string path;
 
 	ifstream ifs;
-	ifs.open("ImportData\\courses1.csv");
+	ifs.open("ImportData\\courses.csv");
 	if (!ifs.is_open())
 	{
 		cout << "Mo file that bai!\n";
@@ -1395,6 +1436,7 @@ void changeDateStartSchoolYear(User us)
 // ham copy file danh sach hoc sinh qua danh sach mon hoc trong thu muc semester
 void createFileListStudentInCourse()
 {
+	
 	ofstream ofs;
 	string cou;
 	cout << "Nhap ten mon hoc:";
@@ -1585,12 +1627,6 @@ void CreatingNewSchoolYear(string schoolYear, string firstYearPath)
 	CopyFolder(schoolYearPath  + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "second-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "third-year classes");
 	CopyFolder(schoolYearPath  + '\\' + previousSchoolYear + '\\' + "classes" + '\\' + "third-year classes", schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "final-year classes");
 	CopyFolder(firstYearPath, schoolYearPath + '\\' + schoolYear + '\\' + "classes" + '\\' + "first-year classes");
-
-	/*
-	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "first-year classes", schoolYearPath + schoolYear + "classes" + "second-year classes");
-	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "second-year classes", schoolYearPath + schoolYear + "classes" + "third-year classes");
-	CopyFile(schoolYear + '\\' + previousSchoolYear + "classes" + "third-year classes", schoolYearPath + schoolYear + "classes" + "final-year classes");
-	CopyFile(firstYearPath, schoolYearPath + schoolYear + "classes" + "first-year classes");*/
 }
 
 string GetPreviousSchoolYear(string schoolYear)
@@ -2828,23 +2864,6 @@ void viewScoreBoard() {
 	string couID;
 	string* item;
 
-	/*cout << "Enter your school year(ex:2023-2024): ";
-	cin >> scy;
-	cout << "Enter semester(ex:1/2/3): "; cin >> semester;
-	cout << "Enter course name: "; getline(cin, cou); getline(cin, cou);
-	ifstream ifs;
-	ifs.open("Data/SchoolYear/" + scy + "/semester " + semester + "/courses.csv");
-	if (!ifs.is_open()) {
-		cout << "SEMESTER OR SCHOOL YEAR IS NOT FOUND!!!\n";
-		Sleep(1000);
-		return;
-	}*/
-	/*int z, n;
-	string* item;
-	string SchYear, Sem;*/
-
-
-
 	DisplayFilesInDirectory(schoolYearPath, item, numItem);
 	DisplayArrString(item, numItem);
 	cout << setw(20) << "Choose school year: ";
@@ -3037,6 +3056,11 @@ void printSt(ListStudent list) {
 	}
 }
 void displayStudentInCourse() {
+
+	listCourse lC = InitListCourse();
+	getListCourse(lC);
+	DisplayIDCourse(lC);
+
 	string cID;
 	cout << "Enter Course Id: "; cin >> cID;
 	ifstream ifs;
@@ -3059,6 +3083,10 @@ void displayStudentInCourse() {
 	printSt(ls);
 }
 void removeSt() {
+
+	listCourse lC = InitListCourse();
+	getListCourse(lC);
+	DisplayIDCourse(lC);
 	string cID;
 	cout << "Enter Course Id: "; cin >> cID;
 	string sID;
@@ -3105,8 +3133,11 @@ void removeSt() {
 }
 
 void deleteCourse(listCourse& list) {
+
+	DisplayIDCourse(list);
+
 	string cID;
-	cout << "Enter the name of id course to be deleted: "; cin >> cID;
+	cout << "Enter id of course to be deleted: "; cin >> cID;
 	ofstream ofs;
 	ofs.open(pathSemes);
 	ofs << "ID, Course name, Teacher name, Number of credits, Academic year, Max students, number of enroller, Day of week, Session\n";
@@ -3138,8 +3169,11 @@ void deleteCourse(listCourse& list) {
 
 
 void changeCourse(listCourse& list) {
+
+	DisplayIDCourse(list);
+
 	string cID;
-	cout << "Enter the name of id course to be changed: "; cin >> cID;
+	cout << "Enter id of course to be changed: "; cin >> cID;
 	int choice = 0;
 	cout << "1. Modify Teacher Name\n";
 	cout << "2. Modify Number of Credits\n";
