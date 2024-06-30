@@ -4,46 +4,52 @@
 //TKGV: 110 123
 
 
-int main()
-{
-	nodeUser* curUser = NULL;
-	nodeUser* tempUser = NULL;
-	listUser listUs = InitListUsers();
-	int n = 0;
-	do
-	{
-		clearScreen();
-		if (n >= 1) {
-			cout << "Tai khoan hoac mat khau sai!!\n";
-		}
-		tempUser = LoginAccount();
-		ReadingUsersData(listUs, userPath);
-		curUser = IsUser(tempUser, listUs);
-		clearScreen();
-		if (curUser != NULL)
-		{
-			cout << "DANG NHAP THANH CONG!\n";
-			Sleep(500);
-			n = -1;
-		}
-		n++;
-	} while (curUser == NULL);
-	system("cls");
-	if (curUser->info.isStaff == true)
-	{
-		actionAcademicStaff(curUser->info, listUs);
-	}
-	else
-	{
-		Student infoSt = createInfoStFromUserInfo(curUser->info);
-		actionStudent(curUser->info, listUs, infoSt);
-	}
+int main() {
+    // Khởi tạo cửa sổ console
+    HWND console = GetConsoleWindow();
+    RECT ConsoleRect;
+    GetWindowRect(console, &ConsoleRect);
+    MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 800, 600, TRUE);
+
+    nodeUser* curUser = nullptr;
+    nodeUser* tempUser = nullptr;
+    listUser listUs = InitListUsers(); // Khởi tạo danh sách người dùng
+    int n = 0;
+
+    do {
+        clearScreen();
+        if (n >= 1) {
+            SetColor(12); // Màu đỏ
+            cout << "Tai khoan hoac mat khau sai!!\n";
+            SetColor(7); // Màu trắng
+        }
+        tempUser = LoginAccount(); // Đăng nhập và lấy thông tin người dùng tạm thời
+        ReadingUsersData(listUs, userPath); // Đọc dữ liệu người dùng từ file
+        curUser = IsUser(tempUser, listUs); // Kiểm tra xem người dùng có tồn tại trong danh sách không
+        clearScreen();
+        if (curUser != nullptr) {
+            SetColor(10); // Màu xanh lá cây
+            cout << "DANG NHAP THANH CONG!\n";
+            SetColor(7); // Màu trắng
+            Sleep(500);
+            n = -1;
+        }
+        n++;
+    } while (curUser == nullptr);
 
 
+    system("cls");
 
+    // Dựa vào loại người dùng, gọi hàm thích hợp để thực hiện các hành động
+    if (curUser->info.isStaff == true) {
+        actionAcademicStaff(curUser->info, listUs);
+    }
+    else {
+        Student infoSt = createInfoStFromUserInfo(curUser->info);
+        actionStudent(curUser->info, listUs, infoSt);
+    }
 
-
-	return 0;
+    return 0;
 }
 
 

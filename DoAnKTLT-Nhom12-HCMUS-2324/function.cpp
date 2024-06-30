@@ -12,106 +12,387 @@ date endDateReg;
 string pathSemes = " ";
 string exportPath = "ExportData";
 
-void menuAcademicStaff() {
-	cout << "HCMUS PORTAL" << endl;
-	cout << GetCurDate().day << "/" << GetCurDate().month << "/" << GetCurDate().year << endl;
-	cout << "1. User account\n";
-	cout << "2. Profile\n";
-	cout << "3. Manage Student\n";
-	cout << "4. Manage Courses\n";
-	//cout << "5. Setting\n";
-	cout << "0. Exit\n";
+//void menuAcademicStaff() {
+//	cout << "HCMUS PORTAL" << endl;
+//	cout << GetCurDate().day << "/" << GetCurDate().month << "/" << GetCurDate().year << endl;
+//	cout << "1. User account\n";
+//	cout << "2. Profile\n";
+//	cout << "3. Manage Student\n";
+//	cout << "4. Manage Courses\n";
+//	//cout << "5. Setting\n";
+//	cout << "0. Exit\n";
+//
+//}
+//
+//void menuUserAccount() {
+//	system("cls");
+//	cout << "HCMUS PORTAL" << endl;
+//	cout << "User Account" << endl;
+//	cout << "1. Change Password\n";
+//	cout << "2. Logout\n";
+//	cout << "0. Back\n";
+//}
+//
+//void menuProfile() {
+//	system("cls");
+//	cout << "HCMUS PORTAL" << endl;
+//	cout << "Last Name: " << "Nguyen Van" << endl;
+//	cout << "First Name: " << "Tuan" << endl;
+//	cout << "Gender: " << "Male" << endl;
+//	cout << "Staff ID: " << "2312.." << endl;
+//	cout << "Date of Birth: " << "01/05/2024" << endl;
+//	cout << "Back." << endl;
+//}
+//
+//void menuManageStudent() {
+//	cout << "HCMUS PORTAL" << endl;
+//	cout << "Manage Student\n";
+//	cout << "1. Create School Year\n";
+//	cout << "2. School Year Information\n";
+//	cout << "3. Create Classes\n";
+//	cout << "4. List of Classes\n";
+//	cout << "5. Add Student To Course\n";
+//	cout << "6. Back\n";
+//}
+//
+//void menuManageCourses() {
+//	cout << "HCMUS PORTAL" << endl;
+//	cout << "Manage Courses\n";
+//	cout << "1. Create Semester\n";
+//	cout << "2. Create Registration Session\n";
+//	cout << "3. Add Course\n";
+//	cout << "4. List Of Course\n";
+//	cout << "5. Semester Summary\n";
+//	cout << "6. View Score Board\n";
+//	cout << "7. Back\n";
+//}
+//
+//void menuStudent() {
+//	cout << "HCMUS PORTAL\n";
+//	cout << GetCurDate().day << "/" << GetCurDate().month << "/" << GetCurDate().year;
+//	cout <<  endl;
+//	cout << "1. User account\n";
+//	cout << "2. Profile\n";
+//	cout << "3. Enrolled Course\n";
+//	cout << "4. Scoreboard\n";
+//	cout << "5. List of classes\n";
+//	cout << "6. List of courses\n";
+//	//cout << "7. Setting\n";
+//	cout << "0. Exit\n";
+//}
+//
+//void menuStudentUserAccount() {
+//	system("cls");
+//	cout << "HCMUS PORTAL\n";
+//	cout << "User Account\n";
+//	cout << "1. Change Password\n";
+//	cout << "2. Logout\n";
+//	cout << "3. Back\n";
+//}
+//
+//void menuStudentProfile() {
+//	system("cls");
+//	cout << "HCMUS PORTAL\n";
+//	cout << "Profile" << endl;
+//	cout << "1. Last name: " << "Nguyen Le Hoang" << endl;
+//	cout << "2. First name: " << "Dung" << endl;
+//	cout << "3. Gender: " << "Female" << endl;
+//	cout << "4. Class: " << "23CTT5A" << endl;
+//	cout << "5. MSSV: " << "231203..." << endl;
+//	cout << "6. Date of Birth: " << "01/05/2024" << endl;
+//	cout << "7. Back" << endl;
+//
+//}
 
+//void menuCoursesRegis() {
+//	system("clc");
+//	cout << "HCMUS PORTAL\n";
+//	cout << "Courses Registration\n";
+//	cout << "1. Register Courses\n";
+//	cout << "2. View Enrolled Courses\n";
+//	cout << "3. Back" << endl;
+//}
+
+void SetColor(int color) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, color);
+}
+
+void gotoxy(int x, int y) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD pos = { x, y };
+	SetConsoleCursorPosition(hConsole, pos);
+}
+
+void drawBox(int width, int height, int startX, int startY) {
+	for (int i = startX; i < startX + width; i++) {
+		gotoxy(i, startY);
+		cout << "-";
+		gotoxy(i, startY + height);
+		cout << "-";
+	}
+	for (int i = startY; i <= startY + height; i++) {
+		gotoxy(startX, i);
+		cout << "|";
+		gotoxy(startX + width, i);
+		cout << "|";
+	}
+	gotoxy(startX, startY);
+	cout << "0";
+	gotoxy(startX + width, startY);
+	cout << "0";
+	gotoxy(startX, startY + height);
+	cout << "0";
+	gotoxy(startX + width, startY + height);
+	cout << "0";
+}
+
+void drawHeader(const string& title, int startX, int startY) {
+	int consoleWidth = 50; // Chiều rộng của console, bạn có thể điều chỉnh
+	int titlePosition = startX + (consoleWidth - title.length()) / 2;
+	SetColor(14); // Màu vàng cho tiêu đề
+	gotoxy(titlePosition, startY); // Căn lề trung tâm
+	cout << title << endl;
+	SetColor(7); // Đặt lại màu mặc định
+}
+
+void drawDate(int startX, int startY) {
+	date curDate = GetCurDate();
+	gotoxy(startX + 2, startY + 2); // Đặt vị trí cho ngày tháng
+	cout << curDate.day << "/" << curDate.month << "/" << curDate.year << endl;
+}
+
+void drawMenuOption(int x, int y, const string& option, int color = 7) {
+	SetColor(color); // Đặt màu được chỉ định
+	gotoxy(x, y); // Đặt vị trí cho tùy chọn menu
+	cout << option << endl;
+	SetColor(7); // Đặt lại màu mặc định
+}
+
+void drawBackOption(int x, int y) {
+	SetColor(4); // Màu đỏ cho tùy chọn quay lại/thông báo thoát
+	gotoxy(x, y); // Đặt vị trí cho tùy chọn
+	cout << "0. Back\n";
+	SetColor(7); // Đặt lại màu mặc định
+}
+
+void menuAcademicStaff() {
+	system("cls");
+
+	// Kích thước của khung
+	int boxWidth = 50;
+	int boxHeight = 10;
+
+	// Lấy kích thước của màn hình console
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+	// Tính toán vị trí bắt đầu để căn giữa khung
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawDate(startX, startY);
+	drawMenuOption(startX + 2, startY + 4, "1. User account", 11); // Màu xanh cyan cho các tùy chọn
+	drawMenuOption(startX + 2, startY + 5, "2. Profile", 11);
+	drawMenuOption(startX + 2, startY + 6, "3. Manage Student", 11);
+	drawMenuOption(startX + 2, startY + 7, "4. Manage Courses", 11);
+	//drawMenuOption(startX + 2, startY + 8, "5. Setting", 11);
+	drawBackOption(startX + 2, startY + 8);
 }
 
 void menuUserAccount() {
 	system("cls");
-	cout << "HCMUS PORTAL" << endl;
-	cout << "User Account" << endl;
-	cout << "1. Change Password\n";
-	cout << "2. Logout\n";
-	cout << "0. Back\n";
+
+	int boxWidth = 50;
+	int boxHeight = 10;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawMenuOption(startX + 2, startY + 3, "User Account", 10); // Màu xanh lá cho tiêu đề phụ
+	drawMenuOption(startX + 2, startY + 4, "1. Change Password", 11);
+	drawMenuOption(startX + 2, startY + 5, "2. Logout", 11);
+	drawBackOption(startX + 2, startY + 6);
 }
 
 void menuProfile() {
 	system("cls");
-	cout << "HCMUS PORTAL" << endl;
-	cout << "Last Name: " << "Nguyen Van" << endl;
-	cout << "First Name: " << "Tuan" << endl;
-	cout << "Gender: " << "Male" << endl;
-	cout << "Staff ID: " << "2312.." << endl;
-	cout << "Date of Birth: " << "01/05/2024" << endl;
-	cout << "Back." << endl;
+
+	int boxWidth = 50;
+	int boxHeight = 10;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawMenuOption(startX + 2, startY + 3, "Profile", 10); // Màu xanh lá cho tiêu đề phụ
+	drawMenuOption(startX + 2, startY + 4, "Last Name: Nguyen Van");
+	drawMenuOption(startX + 2, startY + 5, "First Name: Tuan");
+	drawMenuOption(startX + 2, startY + 6, "Gender: Male");
+	drawMenuOption(startX + 2, startY + 7, "Staff ID: 2312..");
+	drawMenuOption(startX + 2, startY + 8, "Date of Birth: 01/05/2024");
+	drawBackOption(startX + 2, startY + 9);
 }
 
 void menuManageStudent() {
-	cout << "HCMUS PORTAL" << endl;
-	cout << "Manage Student\n";
-	cout << "1. Create School Year\n";
-	cout << "2. School Year Information\n";
-	cout << "3. Create Classes\n";
-	cout << "4. List of Classes\n";
-	cout << "5. Add Student To Course\n";
-	cout << "6. Back\n";
+	system("cls");
+
+	int boxWidth = 50;
+	int boxHeight = 12;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawMenuOption(startX + 2, startY + 3, "Manage Student", 10); // Màu xanh lá cho tiêu đề phụ
+	drawMenuOption(startX + 2, startY + 4, "1. Create School Year", 11);
+	drawMenuOption(startX + 2, startY + 5, "2. School Year Information", 11);
+	drawMenuOption(startX + 2, startY + 6, "3. Create Classes", 11);
+	drawMenuOption(startX + 2, startY + 7, "4. List of Classes", 11);
+	drawMenuOption(startX + 2, startY + 8, "5. Add Student To Course", 11);
+	drawBackOption(startX + 2, startY + 9);
 }
 
 void menuManageCourses() {
-	cout << "HCMUS PORTAL" << endl;
-	cout << "Manage Courses\n";
-	cout << "1. Create Semester\n";
-	cout << "2. Create Registration Session\n";
-	cout << "3. Add Course\n";
-	cout << "4. List Of Course\n";
-	cout << "5. Semester Summary\n";
-	cout << "6. View Score Board\n";
-	cout << "7. Back\n";
+	system("cls");
+
+	int boxWidth = 50;
+	int boxHeight = 13;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawMenuOption(startX + 2, startY + 3, "Manage Courses", 10); // Màu xanh lá cho tiêu đề phụ
+	drawMenuOption(startX + 2, startY + 4, "1. Create Semester", 11);
+	drawMenuOption(startX + 2, startY + 5, "2. Create Registration Session", 11);
+	drawMenuOption(startX + 2, startY + 6, "3. Add Course", 11);
+	drawMenuOption(startX + 2, startY + 7, "4. List Of Course", 11);
+	drawMenuOption(startX + 2, startY + 8, "5. Semester Summary", 11);
+	drawMenuOption(startX + 2, startY + 9, "6. View Score Board", 11);
+	drawBackOption(startX + 2, startY + 10);
 }
 
 void menuStudent() {
-	cout << "HCMUS PORTAL\n";
-	cout << GetCurDate().day << "/" << GetCurDate().month << "/" << GetCurDate().year;
-	cout <<  endl;
-	cout << "1. User account\n";
-	cout << "2. Profile\n";
-	cout << "3. Enrolled Course\n";
-	cout << "4. Scoreboard\n";
-	cout << "5. List of classes\n";
-	cout << "6. List of courses\n";
-	//cout << "7. Setting\n";
-	cout << "0. Exit\n";
+	system("cls");
+
+	int boxWidth = 50;
+	int boxHeight = 12;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawDate(startX, startY);
+	drawMenuOption(startX + 2, startY + 4, "1. User account", 11);
+	drawMenuOption(startX + 2, startY + 5, "2. Profile", 11);
+	drawMenuOption(startX + 2, startY + 6, "3. Enrolled Course", 11);
+	drawMenuOption(startX + 2, startY + 7, "4. Scoreboard", 11);
+	drawMenuOption(startX + 2, startY + 8, "5. List of classes", 11);
+	drawMenuOption(startX + 2, startY + 9, "6. List of courses", 11);
+	//drawMenuOption(startX + 2, startY + 10, "7. Setting", 11);
+	drawBackOption(startX + 2, startY + 10);
 }
 
 void menuStudentUserAccount() {
 	system("cls");
-	cout << "HCMUS PORTAL\n";
-	cout << "User Account\n";
-	cout << "1. Change Password\n";
-	cout << "2. Logout\n";
-	cout << "3. Back\n";
+
+	int boxWidth = 50;
+	int boxHeight = 10;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawMenuOption(startX + 2, startY + 3, "User Account", 10); // Màu xanh lá cho tiêu đề phụ
+	drawMenuOption(startX + 2, startY + 4, "1. Change Password", 11);
+	drawMenuOption(startX + 2, startY + 5, "2. Logout", 11);
+	drawBackOption(startX + 2, startY + 6);
 }
 
 void menuStudentProfile() {
 	system("cls");
-	cout << "HCMUS PORTAL\n";
-	cout << "Profile" << endl;
-	cout << "1. Last name: " << "Nguyen Le Hoang" << endl;
-	cout << "2. First name: " << "Dung" << endl;
-	cout << "3. Gender: " << "Female" << endl;
-	cout << "4. Class: " << "23CTT5A" << endl;
-	cout << "5. MSSV: " << "231203..." << endl;
-	cout << "6. Date of Birth: " << "01/05/2024" << endl;
-	cout << "7. Back" << endl;
 
+	int boxWidth = 50;
+	int boxHeight = 12;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawMenuOption(startX + 2, startY + 3, "Profile", 10); // Màu xanh lá cho tiêu đề phụ
+	drawMenuOption(startX + 2, startY + 4, "Last name: Nguyen Le Hoang");
+	drawMenuOption(startX + 2, startY + 5, "First name: Dung");
+	drawMenuOption(startX + 2, startY + 6, "Gender: Female");
+	drawMenuOption(startX + 2, startY + 7, "Class: 23CTT5A");
+	drawMenuOption(startX + 2, startY + 8, "MSSV: 231203...");
+	drawMenuOption(startX + 2, startY + 9, "Date of Birth: 01/05/2024");
+	drawBackOption(startX + 2, startY + 10);
 }
 
 void menuCoursesRegis() {
-	system("clc");
-	cout << "HCMUS PORTAL\n";
-	cout << "Courses Registration\n";
-	cout << "1. Register Courses\n";
-	cout << "2. View Enrolled Courses\n";
-	cout << "3. Back" << endl;
+	system("cls");
+
+	int boxWidth = 50;
+	int boxHeight = 10;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int columns, rows;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+	int startX = (columns - boxWidth) / 2;
+	int startY = (rows - boxHeight) / 2;
+
+	drawBox(boxWidth, boxHeight, startX, startY);
+	drawHeader("HCMUS PORTAL", startX, startY + 1);
+	drawMenuOption(startX + 2, startY + 3, "Courses Registration", 10); // Màu xanh lá cho tiêu đề phụ
+	drawMenuOption(startX + 2, startY + 4, "1. Register Courses", 11);
+	drawMenuOption(startX + 2, startY + 5, "2. View Enrolled Courses", 11);
+	drawBackOption(startX + 2, startY + 6);
 }
+
 
 void DisplayCurSchoolYear()
 {
@@ -137,14 +418,25 @@ void DisplayCurSchoolYear()
 void returnMenuActionAcademicStaff(User& info, listUser& lu)
 {
 	int x;
+	COORD consoleSize;
+	consoleSize.X = 110; // Width of the console
+	consoleSize.Y = 25; // Height of the console
+
+	// Calculate the position to place the prompt at the bottom left
+	short inputX = 42; // Adjust as needed to position towards the center
+	short inputY = consoleSize.Y - 3; // 3 lines from the bottom
+
 	do
 	{
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { inputX, inputY });
+		SetColor(14); // Yellow color for the prompt
 		cout << "An phim '0' de quay ve Menu: ";
+		SetColor(7); // Reset to default color
 		cin >> x;
 	} while (x != 0);
+
 	clearScreen();
 	actionAcademicStaff(info, lu);
-
 }
 
 void actionAcademicStaff(User& info, listUser& lu)
@@ -185,7 +477,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 			break;
 		}
 		}
-
+		break;
 
 	}
 	case 2:
@@ -249,6 +541,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 			break;
 		}
 		}
+		break;
 	}
 	case 4:
 	{
@@ -673,19 +966,46 @@ void clearScreen()
 	system("cls");
 }
 
+
 nodeUser* LoginAccount()
 {
 	string userName, password;
-	cout << setw(15) << left << "User name/ ID" << ":";
+
+	system("cls");
+	drawBox(50, 10, 35, 5);
+	drawHeader("LOGIN", 35, 6);
+
+
+	SetColor(14);
+
+
+	short inputX = 40; 
+	short inputY = 8;  
+
+	
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { inputX, inputY });
+	cout << "User name/ ID:";
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { static_cast<short>(inputX + 15), inputY });
+	SetColor(7); 
 	cin >> userName;
-	cout << setw(15) << left << "Password" << ":";
+
+	
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { inputX, static_cast<short>(inputY + 2) });
+	SetColor(14); 
+	cout << "Password:";
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { static_cast<short>(inputX + 15), static_cast<short>(inputY + 2) });
+	SetColor(7); 
 	cin >> password;
-	User p;
-	p.id = userName;
-	p.password = password;
-	nodeUser* q = GetNodeUser(p);
-	return q;
-}//chinh lai tra ve User
+
+
+	User newUser;
+	newUser.id = userName;
+	newUser.password = password;
+
+	nodeUser* newUserNode = GetNodeUser(newUser);
+
+	return newUserNode;
+}
 
 listUser InitListUsers()
 {
@@ -1875,17 +2195,51 @@ void displayScoreBoardOfCourse(nodeCourse* c) {
 void Profile(User info)
 {
 	clearScreen();
-	cout << "INFORMATION OF USER" << endl;
-	cout << setw(20) << "ID: " << info.id << endl;
-	cout << setw(20) << "Firset Name: " << info.firstName << endl;
-	cout << setw(20) << "Last Name: " << info.lastName << endl;
-	cout << setw(20) << "Gender: " << info.gender << endl;
+
+	// Draw the box for the profile information
+	int boxWidth = 60;
+	int boxHeight = 12;
+	int startX = 32;
+	int startY = 5;
+	drawBox(boxWidth, boxHeight, startX, startY);
+
+	// Draw the header
+	drawHeader("INFORMATION OF USER", startX + 4, startY + 1);
+
+	// Set color for the profile information
+	SetColor(14); // Yellow color for labels
+
+	// Adjust coordinates to place profile information inside the box
+	short infoX = static_cast<short>(startX + 5);
+	short infoY = static_cast<short>(startY + 3);
+
+	// Print the profile information
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, infoY });
+	cout << setw(20) << "ID: " << info.id;
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, static_cast<short>(infoY + 1) });
+	cout << setw(20) << "First Name: " << info.firstName;
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, static_cast<short>(infoY + 2) });
+	cout << setw(20) << "Last Name: " << info.lastName;
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, static_cast<short>(infoY + 3) });
+	cout << setw(20) << "Gender: " << info.gender;
+
 	if (info.isStaff == false)
 	{
-		cout << setw(20) << "Class name: " << info.className << endl;
-		cout << setw(20) << "Academic Year: " << info.academicYear << endl;
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, static_cast<short>(infoY + 4) });
+		cout << setw(20) << "Class name: " << info.className;
+
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, static_cast<short>(infoY + 5) });
+		cout << setw(20) << "Academic Year: " << info.academicYear;
 	}
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { infoX, static_cast<short>(infoY + 6) });
 	PrintDate(info.dateOfBirth);
+
+	// Reset color to default
+	SetColor(7);
 }
 
 void PrintDate(date d)

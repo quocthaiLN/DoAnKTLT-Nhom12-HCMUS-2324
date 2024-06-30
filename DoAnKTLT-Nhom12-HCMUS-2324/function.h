@@ -234,7 +234,12 @@ void getListCourse2(listCourse& lc, ifstream& ifs);
 void createPathSemes();
 void CopyFile(std::filesystem::path src, std::filesystem::path dest);
 void AddStudentToCourse(listCourse& list);
-
+void drawHeader(const string& title, int startX, int startY);
+void drawDate(int startX, int startY);
+void drawBackOption(int x, int y);
+void SetColor(int color);
+void gotoxy(int x, int y);
+void drawBox(int width, int height, int startX, int startY);
 //QUANG THẮNG
 course* convertingCourse(ifstream& ifs);
 void addCourse(listCourse& lc, course* c1);
