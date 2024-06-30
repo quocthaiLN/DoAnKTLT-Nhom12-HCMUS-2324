@@ -1,8 +1,8 @@
 No,Student ID,StudentFull Name,Total Mark,Final Mark,Midterm Mark,Other Mark
-1,21120001,Nguyen Anh,0,0,0,0
-2,21120002,Tran Binh,0,0,0,0
-3,21120003,Hoang Thanh,0,0,0,0
-4,21120004,Vo Hoa,0,0,0,0
+1,21120001,Nguyen Anh,10,10,10,10
+2,21120002,Tran Binh,9.8,9.8,9.8,9.8
+3,21120003,Hoang Thanh,9,10,6,8
+4,21120004,Vo Hoa,7.8,8,9,5
 5,21120005,Phan Minh,0,0,0,0
 6,21120006,Nguyen Trung,0,0,0,0
 7,21120007,Tran Hien,0,0,0,0
@@ -45,9 +45,9 @@ No,Student ID,StudentFull Name,Total Mark,Final Mark,Midterm Mark,Other Mark
 44,22120044,Nguyen Bao,0,0,0,0
 45,22120045,Tran Thanh,0,0,0,0
 46,23120355,Vo Thang,0,0,0,0
-1,231201,Nguyen Anh,0,0,0,0
-2,231202,Tran Binh,0,0,0,0
-3,231203,Le Cuong,0,0,0,0
+1,231201,Nguyen Anh,10,9.8,10,10
+2,231202,Tran Binh,9,7,10,10
+3,231203,Le Cuong,8,10,6,5
 4,231204,Pham Duy,0,0,0,0
 5,231205,Hoang Thanh,0,0,0,0
 6,231206,Vu Ngoc,0,0,0,0

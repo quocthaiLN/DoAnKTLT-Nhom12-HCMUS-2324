@@ -356,7 +356,27 @@ void actionAcademicStaff(User& info, listUser& lu)
 		case 5:
 		{
 			clearScreen();
-			void DisplayExportCourseBoard();
+			//void DisplayExportCourseBoard();
+
+
+			int z, n;
+			string* item;
+			string SchYear, Sem;
+			DisplayFilesInDirectory(schoolYearPath, item, n);
+			DisplayArrString(item, n);
+			cout << setw(20) << "Choose school year: ";
+			cin >> z;
+			SchYear = item[z - 1];
+
+			cout << "Choose semester(1/2/3): ";
+			cin >> Sem;
+
+			listCourse lC = InitListCourse();
+			ReadingCourse(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem + '\\' + "courses.csv");
+			CreateScoreBoardFile(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem);
+			cout << "Xuat bang diem hoc ki " << Sem << " nam hoc " << SchYear << " thanh cong. Hay kiem tra ExportData!" << endl;
+
+
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
@@ -407,22 +427,7 @@ void DisplayCourseInfo()
 
 void DisplayExportCourseBoard()
 {
-	int z, n;
-	string* item;
-	string SchYear, Sem;
-	DisplayFilesInDirectory(schoolYearPath, item, n);
-	DisplayArrString(item, n);
-	cout << setw(20) << "Choose school year: ";
-	cin >> z;
-	SchYear = item[z - 1];
-
-	cout << "Choose semester(1/2/3): ";
-	cin >> Sem;
 	
-	listCourse lC = InitListCourse();
-	ReadingCourse(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem + '\\' + "courses.csv");
-	CreateScoreBoardFile(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem);
-	cout << "Xuat bang diem hoc ki " << Sem << " nam hoc " << SchYear << " thanh cong. Hay kiem tra ExportData!" << endl;
 }
 
 void DisplayClassInfo()
@@ -502,7 +507,7 @@ void returnMenuActionStudent(User info, listUser lu, Student& infoSt)
 	int x;
 	do
 	{
-		cout << "An phim '0' de quay ve Menu" << endl;
+		cout << "An phim '0' de quay ve Menu: ";
 		cin >> x;
 	} while (x != 0);
 	clearScreen();
@@ -2624,10 +2629,15 @@ void FindCourseByID(string ID[], int n, listCourse& lC, string path)
 
 }
 void viewScoreBoard() {
+
+	int z, numItem;
 	string scy;
 	string semester;
-	string cou;
-	cout << "Enter your school year(ex:2023-2024): "; cin >> scy;
+	string couID;
+	string* item;
+
+	/*cout << "Enter your school year(ex:2023-2024): ";
+	cin >> scy;
 	cout << "Enter semester(ex:1/2/3): "; cin >> semester;
 	cout << "Enter course name: "; getline(cin, cou); getline(cin, cou);
 	ifstream ifs;
@@ -2636,16 +2646,49 @@ void viewScoreBoard() {
 		cout << "SEMESTER OR SCHOOL YEAR IS NOT FOUND!!!\n";
 		Sleep(1000);
 		return;
+	}*/
+	/*int z, n;
+	string* item;
+	string SchYear, Sem;*/
+
+
+
+	DisplayFilesInDirectory(schoolYearPath, item, numItem);
+	DisplayArrString(item, numItem);
+	cout << setw(20) << "Choose school year: ";
+	cin >> z;
+	scy = item[z - 1];
+	cout << "Choose semester(1/2/3): ";
+	cin >> semester;
+	ifstream ifs;
+	ifs.open("Data/SchoolYear/" + scy + "/semester " + semester + "/courses.csv");
+	if (!ifs.is_open()) {
+		cout << "SEMESTER OR SCHOOL YEAR IS NOT FOUND!!!\n";
+		Sleep(1000);
+		return;
 	}
+	
+
+	listCourse tempList = InitListCourse();
+	printListCourse(tempList, "Data/SchoolYear/" + scy + "/semester " + semester + "/courses.csv");
+	cout << "Enter course ID: ";
+	cin.ignore();
+	getline(cin, couID);
+	clearScreen();
+	toLower(couID);
+
+
+
 	listCourse list = InitListCourse();
 	getListCourse2(list, ifs);
 	nodeCourse* n = list.pHead;
-	toLower(cou);
+
+	
 	int cnt = 0;
 	while (n != NULL)
 	{
-		toLower(n->info->courseName);
-		if (n->info->courseName == cou) {
+		toLower(n->info->id);
+		if (n->info->id == couID) {
 			cnt++;
 			break;
 		}
@@ -2656,6 +2699,9 @@ void viewScoreBoard() {
 		Sleep(500);
 		return;
 	}
+
+
+
 	ifs.close();
 	ifstream iFS;
 	iFS.open("Data/SchoolYear/" + scy + "/semester " + semester + "/" + n->info->id + ".csv");

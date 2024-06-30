@@ -1,8 +1,8 @@
 ﻿  function.cpp
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(152,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(514,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(613,12): warning C4101: 'z': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(613,9): warning C4101: 'y': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(1073,8): warning C4101: 'd': unreferenced local variable
-D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(2742,11): warning C4129: 'N': unrecognized character escape sequence
-  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> D:\project\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(152,12): warning C4101: 'z': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(519,12): warning C4101: 'z': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(618,12): warning C4101: 'z': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(618,9): warning C4101: 'y': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(1078,8): warning C4101: 'd': unreferenced local variable
+C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(2788,11): warning C4129: 'N': unrecognized character escape sequence
+  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
