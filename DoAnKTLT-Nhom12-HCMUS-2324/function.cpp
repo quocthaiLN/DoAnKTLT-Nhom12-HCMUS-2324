@@ -179,7 +179,7 @@ void menuManageCourses() {
 	system("cls");
 
 	int boxWidth = 50;
-	int boxHeight = 13;
+	int boxHeight = 16;
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	int columns, rows;
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
@@ -197,7 +197,11 @@ void menuManageCourses() {
 	drawMenuOption(startX + 2, startY + 7, "4. List Of Course", 11);
 	drawMenuOption(startX + 2, startY + 8, "5. Semester Summary", 11);
 	drawMenuOption(startX + 2, startY + 9, "6. View Score Board", 11);
-	drawBackOption(startX + 2, startY + 10);
+	drawMenuOption(startX + 2, startY + 10, "7. Remove A Student From Course", 11);
+	drawMenuOption(startX + 2, startY + 11, "8. View List Student In Course", 11);
+	drawMenuOption(startX + 2, startY + 12, "9. Delete A Course", 11);
+	drawMenuOption(startX + 2, startY + 13, "10. Change Course", 11);
+	drawBackOption(startX + 2, startY + 14);
 }
 
 void menuStudent() {
@@ -436,7 +440,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
-		case 6: {
+		case 0: {
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
@@ -1489,7 +1493,7 @@ void addCourseToSemester(listCourse& l)
 		ofs.close();
 	}
 	ofstream ofs;
-	ofs.open(pathSemes);
+	ofs.open(pathSemes,ios::out);
 	ofs << "ID, Course name, Teacher name, Number of credits, Academic year, Max students, number of enroller, Day of week, Session\n";
 	if (!ofs.is_open())
 	{
@@ -1532,7 +1536,7 @@ void importCourseData(listCourse& l) {
 		ofs.close();
 	}
 	ofstream ofs;
-	ofs.open(pathSemes);
+	ofs.open(pathSemes,ios::out);
 	ofs << "ID, Course name, Teacher name, Number of credits, Academic year, Max students, number of enroller, Day of week, Session\n";
 	if (!ofs.is_open())
 	{
@@ -1647,7 +1651,7 @@ void createSemester(listCourse& list) {
 		string coursePath = _schoolYearPath + "\\" + semesterFolder;
 		std::filesystem::create_directories(coursePath);
 		ofstream courseFile(coursePath + "\\" + p->info->id + ".csv");
-		courseFile << headerCourseBoard << endl;
+		courseFile << headerCourseBoard;
 		courseFile.close();
 		p = p->pNext;
 	}
@@ -2683,6 +2687,7 @@ void AddStudentToCourse(listCourse& list) {
 
 		NodeStudent* st = listS.pHead;
 		while (st) {
+			ofs << endl;
 			ofs << st->Info.No << "," << st->Info.studentID << "," << st->Info.lastName + ' ' + st->Info.firstName << ",";
 			// Total Mark
 			ofs << 0 << ",";
@@ -2691,7 +2696,7 @@ void AddStudentToCourse(listCourse& list) {
 			// Midterm Mark
 			ofs << 0 << ',';
 			// Other Mark
-			ofs << 0 << endl;
+			ofs << 0 ;
 
 			// Tạo file mssv và ghi môn học vào File mssv trong folder InformationOfStudent
 			string FileMssv = "Data\\InformationOfStudent\\";
@@ -2743,7 +2748,7 @@ void AddStudentToCourse(listCourse& list) {
 			return;
 		}
 
-		fout << count << "," << mssv << "," << tmp << "," << 0 << "," << 0 << "," << 0 << "," << 0 << endl;
+		fout << endl << count << "," << mssv << "," << tmp << "," << 0 << "," << 0 << "," << 0 << "," << 0 ;
 		
 		fout.close();
 
