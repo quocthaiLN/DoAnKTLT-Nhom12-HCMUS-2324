@@ -2097,7 +2097,7 @@ void WritingUserData(listUser lu, string fileUsersPath)
 		ofs << cur->info.password << ',';
 		ofs << cur->info.lastName << ',';
 		ofs << cur->info.firstName << ',';
-		ofs << cur->info.lastName << ',';
+		ofs << cur->info.className << ',';
 		ofs << cur->info.gender << ',';
 		ofs << cur->info.dateOfBirth.day << '/' << cur->info.dateOfBirth.month << '/' << cur->info.dateOfBirth.year << ',';
 		ofs << cur->info.academicYear << ',';
