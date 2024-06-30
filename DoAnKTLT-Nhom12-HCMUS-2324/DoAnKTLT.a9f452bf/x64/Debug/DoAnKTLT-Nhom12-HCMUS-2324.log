@@ -1,11 +1,13 @@
-﻿  function.cpp
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(123,16): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(123,19): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(152,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(444,12): warning C4101: 'z': unreferenced local variable
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(812,12): warning C4101: 'z': unreferenced local variable
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(911,12): warning C4101: 'z': unreferenced local variable
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(911,9): warning C4101: 'y': unreferenced local variable
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(1398,8): warning C4101: 'd': unreferenced local variable
-C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(3142,11): warning C4129: 'N': unrecognized character escape sequence
-  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> C:\Users\ASUS\Desktop\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe
+﻿  Main.cpp
+  function.cpp
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(23,16): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(23,19): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(52,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(344,12): warning C4101: 'z': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(808,12): warning C4101: 'z': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(907,12): warning C4101: 'z': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(907,9): warning C4101: 'y': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(1380,8): warning C4101: 'd': unreferenced local variable
+D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\function.cpp(2975,11): warning C4129: 'N': unrecognized character escape sequence
+  Generating Code...
+  DoAnKTLT-Nhom12-HCMUS-2324.vcxproj -> D:\University\Project_KTLT_LT\DoAnKTLT-Nhom12-HCMUS-2324\DoAnKTLT-Nhom12-HCMUS-2324\x64\Debug\DoAnKTLT-Nhom12-HCMUS-2324.exe

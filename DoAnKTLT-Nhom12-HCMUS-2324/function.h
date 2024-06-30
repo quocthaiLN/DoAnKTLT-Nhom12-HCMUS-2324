@@ -201,18 +201,9 @@ void FindCourseByID(string ID[], int n, listCourse &lC, string path);
 //HỮU THẮNG
 date GetCurDate();
 void GetCurSchoolYear(string& curSchoolYear, date curDate);
-//int to_date(string day);
 void GetCurSemester(Semester& curSemester);
 date strToDate(string day);
-//void initClass(listClass& list);
-//void getListClasses(string year, listClass& list);
-//void addClass(listClass& list, classes* course);
-//void writeFileClass(string path, ListStudent listSt);
-//void initList(ListStudent& list);
-//NodeStudent* convertStudentData(ifstream& ifs);
 void addStudent(ListStudent& list, Student st);
-//void removeStudent(ListStudent& list, NodeStudent* student);
-//string studentYear(int year);
 void menuAcademicStaff();
 void menuUserAccount();
 void menuProfile();
@@ -240,6 +231,8 @@ void drawBackOption(int x, int y);
 void SetColor(int color);
 void gotoxy(int x, int y);
 void drawBox(int width, int height, int startX, int startY);
+void setColor(int color);
+
 //QUANG THẮNG
 course* convertingCourse(ifstream& ifs);
 void addCourse(listCourse& lc, course* c1);
@@ -278,3 +271,9 @@ void printScoreBoard(ListStudent list);
 void viewScoreBoard();
 void printScoreBoard1(ListStudent list, listCourse l);
 void viewScoreBoardSt(Student infoUs, User us);
+void printSt(ListStudent list);
+void displayStudentInCourse();
+void removeSt();
+void deleteCourse(listCourse& list);
+void changeCourse(listCourse& list);
+void createPathSemes(string& pathS);

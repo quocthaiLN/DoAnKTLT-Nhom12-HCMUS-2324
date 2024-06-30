@@ -12,106 +12,6 @@ date endDateReg;
 string pathSemes = " ";
 string exportPath = "ExportData";
 
-//void menuAcademicStaff() {
-//	cout << "HCMUS PORTAL" << endl;
-//	cout << GetCurDate().day << "/" << GetCurDate().month << "/" << GetCurDate().year << endl;
-//	cout << "1. User account\n";
-//	cout << "2. Profile\n";
-//	cout << "3. Manage Student\n";
-//	cout << "4. Manage Courses\n";
-//	//cout << "5. Setting\n";
-//	cout << "0. Exit\n";
-//
-//}
-//
-//void menuUserAccount() {
-//	system("cls");
-//	cout << "HCMUS PORTAL" << endl;
-//	cout << "User Account" << endl;
-//	cout << "1. Change Password\n";
-//	cout << "2. Logout\n";
-//	cout << "0. Back\n";
-//}
-//
-//void menuProfile() {
-//	system("cls");
-//	cout << "HCMUS PORTAL" << endl;
-//	cout << "Last Name: " << "Nguyen Van" << endl;
-//	cout << "First Name: " << "Tuan" << endl;
-//	cout << "Gender: " << "Male" << endl;
-//	cout << "Staff ID: " << "2312.." << endl;
-//	cout << "Date of Birth: " << "01/05/2024" << endl;
-//	cout << "Back." << endl;
-//}
-//
-//void menuManageStudent() {
-//	cout << "HCMUS PORTAL" << endl;
-//	cout << "Manage Student\n";
-//	cout << "1. Create School Year\n";
-//	cout << "2. School Year Information\n";
-//	cout << "3. Create Classes\n";
-//	cout << "4. List of Classes\n";
-//	cout << "5. Add Student To Course\n";
-//	cout << "6. Back\n";
-//}
-//
-//void menuManageCourses() {
-//	cout << "HCMUS PORTAL" << endl;
-//	cout << "Manage Courses\n";
-//	cout << "1. Create Semester\n";
-//	cout << "2. Create Registration Session\n";
-//	cout << "3. Add Course\n";
-//	cout << "4. List Of Course\n";
-//	cout << "5. Semester Summary\n";
-//	cout << "6. View Score Board\n";
-//	cout << "7. Back\n";
-//}
-//
-//void menuStudent() {
-//	cout << "HCMUS PORTAL\n";
-//	cout << GetCurDate().day << "/" << GetCurDate().month << "/" << GetCurDate().year;
-//	cout <<  endl;
-//	cout << "1. User account\n";
-//	cout << "2. Profile\n";
-//	cout << "3. Enrolled Course\n";
-//	cout << "4. Scoreboard\n";
-//	cout << "5. List of classes\n";
-//	cout << "6. List of courses\n";
-//	//cout << "7. Setting\n";
-//	cout << "0. Exit\n";
-//}
-//
-//void menuStudentUserAccount() {
-//	system("cls");
-//	cout << "HCMUS PORTAL\n";
-//	cout << "User Account\n";
-//	cout << "1. Change Password\n";
-//	cout << "2. Logout\n";
-//	cout << "3. Back\n";
-//}
-//
-//void menuStudentProfile() {
-//	system("cls");
-//	cout << "HCMUS PORTAL\n";
-//	cout << "Profile" << endl;
-//	cout << "1. Last name: " << "Nguyen Le Hoang" << endl;
-//	cout << "2. First name: " << "Dung" << endl;
-//	cout << "3. Gender: " << "Female" << endl;
-//	cout << "4. Class: " << "23CTT5A" << endl;
-//	cout << "5. MSSV: " << "231203..." << endl;
-//	cout << "6. Date of Birth: " << "01/05/2024" << endl;
-//	cout << "7. Back" << endl;
-//
-//}
-
-//void menuCoursesRegis() {
-//	system("clc");
-//	cout << "HCMUS PORTAL\n";
-//	cout << "Courses Registration\n";
-//	cout << "1. Register Courses\n";
-//	cout << "2. View Enrolled Courses\n";
-//	cout << "3. Back" << endl;
-//}
 
 void SetColor(int color) {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -587,7 +487,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 					//neu khong thi phai nhap nam hoc va hoc ki can them mon hoc
 					//neu hoc ki do da duoc tao thi se thuc hien duoc neu k se hien thi SEMESTER IS NOT CREATED!!!
 					//ben duoi o dong 2067 co them 1 ham hien thi thong tin khac voi duong dan duoc truyen vao
-					createPathSemes();
+					createPathSemes(pathSemes);
 					clearScreen();
 					ifstream ifs;
 					ifs.open(pathSemes);
@@ -612,7 +512,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 			case 2: {
 				clearScreen();
 				if (pathSemes == " ") {
-					createPathSemes();
+					createPathSemes(pathSemes);
 					clearScreen();
 					ifstream ifs;
 					ifs.open(pathSemes);
@@ -627,6 +527,7 @@ void actionAcademicStaff(User& info, listUser& lu)
 						getListCourse2(listInReg, ifs);
 						importCourseData(listInReg);
 					}
+					ifs.close();
 				}
 				else {
 					importCourseData(listInReg);
@@ -642,34 +543,34 @@ void actionAcademicStaff(User& info, listUser& lu)
 		}
 		case 4: {
 			clearScreen();
-			DisplayCourseInfo();
+			if (pathSemes == " ") {
+				createPathSemes(pathSemes);
+				clearScreen();
+				ifstream ifs;
+				ifs.open(pathSemes);
+				if (!ifs.is_open()) {
+					cout << "SEMESTER IS NOT CREATED!!!\n";
+					Sleep(500);
+					pathSemes = " ";
+					returnMenuActionAcademicStaff(info, lu);
+					break;
+				}
+				else {
+					getListCourse2(listInReg, ifs);
+					printListCourse(listInReg);
+				}
+				ifs.close();
+			}
+			else {
+				printListCourse(listInReg);
+			}
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
 		case 5:
 		{
 			clearScreen();
-			//void DisplayExportCourseBoard();
-
-
-			int z, n;
-			string* item;
-			string SchYear, Sem;
-			DisplayFilesInDirectory(schoolYearPath, item, n);
-			DisplayArrString(item, n);
-			cout << setw(20) << "Choose school year: ";
-			cin >> z;
-			SchYear = item[z - 1];
-
-			cout << "Choose semester(1/2/3): ";
-			cin >> Sem;
-
-			listCourse lC = InitListCourse();
-			ReadingCourse(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem + '\\' + "courses.csv");
-			CreateScoreBoardFile(lC, schoolYearPath + '\\' + SchYear + '\\' + "semester " + Sem);
-			cout << "Xuat bang diem hoc ki " << Sem << " nam hoc " << SchYear << " thanh cong. Hay kiem tra ExportData!" << endl;
-
-
+			DisplayExportCourseBoard();
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
@@ -680,15 +581,118 @@ void actionAcademicStaff(User& info, listUser& lu)
 			returnMenuActionAcademicStaff(info, lu);
 			break;
 		}
-		case 7:
+		case 7: {
+			clearScreen();
+			if (pathSemes == " ") {
+				createPathSemes(pathSemes);
+				clearScreen();
+				ifstream ifs;
+				ifs.open(pathSemes);
+				if (!ifs.is_open()) {
+					cout << "SEMESTER IS NOT CREATED!!!\n";
+					Sleep(500);
+					pathSemes = " ";
+					returnMenuActionAcademicStaff(info, lu);
+					break;
+				}
+				else {
+					removeSt();
+				}
+				ifs.close();
+			}
+			else {
+				removeSt();
+			}
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 8: {
+			clearScreen();
+			if (pathSemes == " ") {
+				createPathSemes(pathSemes);
+				clearScreen();
+				ifstream ifs;
+				ifs.open(pathSemes);
+				if (!ifs.is_open()) {
+					cout << "SEMESTER IS NOT CREATED!!!\n";
+					Sleep(500);
+					pathSemes = " ";
+					returnMenuActionAcademicStaff(info, lu);
+					break;
+				}
+				else {
+					displayStudentInCourse();
+				}
+				ifs.close();
+			}
+			else {
+				displayStudentInCourse();
+			}
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 9:
+		{
+			clearScreen();
+			if (pathSemes == " ") {
+				createPathSemes(pathSemes);
+				clearScreen();
+				ifstream ifs;
+				ifs.open(pathSemes);
+				if (!ifs.is_open()) {
+					cout << "SEMESTER IS NOT CREATED!!!\n";
+					Sleep(500);
+					pathSemes = " ";
+					returnMenuActionAcademicStaff(info, lu);
+					break;
+				}
+				else {
+					getListCourse2(listInReg, ifs);
+					deleteCourse(listInReg);
+				}
+				ifs.close();
+			}
+			else {
+				deleteCourse(listInReg);
+			}
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 10: {
+			clearScreen();
+			if (pathSemes == " ") {
+				createPathSemes(pathSemes);
+				clearScreen();
+				ifstream ifs;
+				ifs.open(pathSemes);
+				if (!ifs.is_open()) {
+					cout << "SEMESTER IS NOT CREATED!!!\n";
+					Sleep(500);
+					pathSemes = " ";
+					returnMenuActionAcademicStaff(info, lu);
+					break;
+				}
+				else {
+					getListCourse2(listInReg, ifs);
+					changeCourse(listInReg);
+				}
+				ifs.close();
+			}
+			else {
+				changeCourse(listInReg);
+			}
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 0:
 		{
 			clearScreen();
 			returnMenuActionAcademicStaff(info, lu);
 		}
 		}
+		return;
 	}
 	}
-	return;
 }
 
 void DisplayCourseInfo()
@@ -759,14 +763,6 @@ void menuClassYear()
 	cout << "4. Final-year classes.\n";
 }
 
-//void menuChooseClass(string source)
-//{
-//	string str;
-//	DisplayFilesInDirectory(source);
-//	cout << "Enter class name: ";
-//	cin >> str;
-//	//Viết 1 hàm đọc file class rồi hiển thị lên màn hình
-//}
 
 //Viết 1 hàm đọc file class rồi hiển thị lên màn hình
 
@@ -946,20 +942,6 @@ void DisplaySemester(Semester sem)
 	DisplayCourse(sem.lC);
 }
 
-//void addStudentAccount(ListStudent& listStudent, listUser& lu) {
-//	NodeStudent* tmp = listStudent.pHead;
-//	while (tmp) {
-//		AddUser(lu, )
-//	}
-//}
-//
-//void saveListStudent(ListStudent listStudent);
-//// Hàm nh?p thông tin l?p t? bàn phím
-//void inputClassData() {
-//
-//}
-// 
-// Đường dẫn thư mục semester để lưu các khóa học có trong kỳ đó
 
 void clearScreen()
 {
@@ -1405,150 +1387,6 @@ void changeDateStartSchoolYear(User us)
 }
 
 
-//void initClass(listClass& list) {
-//	list.pHead = nullptr;
-//	list.pTail = nullptr;
-//	list.size = 0;
-//}
-//
-/*void getListClasses(string year, listClass& list) {
-	initClass(list);
-	// File sẽ có định dạng là tmp\Data\currentSchoolYear\classes\year\class name\abc.csv
-	string currentSchoolYear;
-	GetCurSchoolYear(currentSchoolYear, GetCurDate());
-	string path = "\\Data\\" + currentSchoolYear + "\\classes\\" + year + "\\";
-	string extension = ".csv";
-
-
-	// Duyệt qua toàn bộ folder trong project
-	for (auto& p : filesystem::recursive_directory_iterator(path)) {
-		if (p.path().extension() == extension) {
-			classes* cls = new classes;
-			// Lấy phần thân của đường dẫn, nghĩa là không có đuôi ".csv"
-			cls->className = p.path().stem().string();
-			cls->path = p.path();
-			cls->next = nullptr;
-			addClass(list, cls);
-		}
-	}
-}*/
-//
-//void addClass(listClass& list, classes* course) {
-//	if (course == nullptr) return;
-//	course->next = nullptr;
-//	if (list.pHead == nullptr) {
-//		list.pHead = course;
-//	}
-//	else {
-//		classes* last = list.pHead;
-//		while (last->next) last = last->next;
-//		last->next = course;
-//	}
-//}
-//
-//
-//void writeFileClass(string path, ListStudent listSt) {
-//	ofstream ofs;
-//	ofs.open(path);
-//	if (!ofs.is_open()) {
-//		cout << "Not opening File\n";
-//		return;
-//	}
-//
-//	ofs << "No,Student ID,Last name,First name,Gender,Date of Birth,Social ID,Academic year" << endl;
-//	int no = 1;
-//	NodeStudent* p = listSt.pHead;
-//
-//	while (p != nullptr) {
-//		string dob = to_string(p->Info.dateOfBirth.day) + '/' + to_string(p->Info.dateOfBirth.month) + '/' + to_string(p->Info.dateOfBirth.year);
-//		ofs << no << ',' << p->Info.studentID << "," << p->Info.lastName << ',' << p->Info.firstName << ',' << p->Info.gender << "," << dob << ',';
-//		ofs << p->Info.socialID << ',' << p->Info.academicYear;
-//
-//		no++;
-//		p = p->pNext;
-//		if (p != nullptr) ofs << endl;
-//	}
-//
-//	ofs.close();
-//}
-//
-//
-//void initList(ListStudent& list) {
-//	list.pHead = nullptr;
-//	list.pTail = nullptr;
-//}
-//
-//
-//NodeStudent* convertStudentData(ifstream& ifs) {
-//	NodeStudent* st = new NodeStudent;
-//	string ch; 
-//	string dob;
-//	getline(ifs, ch, ',');
-//	if (ch == "") return nullptr;
-//
-//	ifs >> st->Info.studentID; ifs >> ch;	
-//	ifs.ignore();
-//	getline(ifs, st->Info.lastName, ',');
-//	getline(ifs, st->Info.firstName, ',');
-//	getline(ifs, st->Info.gender, ',');
-//	getline(ifs, dob, ',');
-//
-//	st->Info.dateOfBirth = strToDate(dob);
-//
-//	ifs >> st->Info.socialID; ifs >> ch;
-//	ifs.ignore();
-//	ifs >> st->Info.academicYear;
-//
-//	st->pNext = nullptr;
-//
-//	return st;
-//
-//}
-//
-
-//
-//void removeStudent(ListStudent& list, NodeStudent* student) {
-//	if (student == list.pHead && student == list.pTail) {
-//		list.pHead = list.pTail = nullptr;
-//		delete student;
-//	}
-//	else if (student == list.pHead) {
-//		list.pHead = list.pHead->pNext;
-//		delete student;
-//	}
-//	else if (student == list.pTail) {
-//		NodeStudent* tmp = list.pHead;
-//		while (tmp->pNext != list.pTail)  tmp = tmp->pNext;
-//		list.pTail = tmp;
-//		list.pTail = nullptr;
-//		delete student;
-//	}
-//	else {
-//		NodeStudent* t = list.pHead;
-//		while (t->pNext != student) t = t->pNext;
-//		t->pNext = student->pNext;
-//		delete student;
-//	}
-//}
-
-//string studentYear(int year) {
-//	string s;
-//	switch (year) {
-//	case 1:
-//		s = "first-year classes";
-//		break;
-//	case 2:
-//		s = "second-year classes";
-//		break;
-//	case 3:
-//		s = "third-year classes";
-//		break;
-//	default:
-//		s = "final-year classes";
-//		break;
-//	}
-//	return s;
-//}
 
 // ham copy file danh sach hoc sinh qua danh sach mon hoc trong thu muc semester
 void createFileListStudentInCourse()
@@ -1625,12 +1463,13 @@ void createPathSemes() {
 	cout << "Enter semester: "; cin >> semester;
 	pathSemes = "Data\\SchoolYear\\" + scy + "\\semester " + to_string(semester) + "\\courses.csv";
 }
+
 void addCourseToSemester(listCourse& l)
 {
 	int n;
 	cout << "Nhap vao so mon duoc them: ";
 	cin >> n;
-	
+
 	clearScreen();
 	cout << "Nhap vao danh sach mon hoc duoc them \n";
 	for (int i = 0; i < n; i++) {
@@ -1640,7 +1479,7 @@ void addCourseToSemester(listCourse& l)
 		cout << "Course Name: "; getline(cin, c->courseName);
 		cout << "Teacher Name: "; getline(cin, c->teacherName);
 		cout << "Number Of Credits: "; cin >> c->numberOfCredits; cin.ignore();
-		cout << "NumBer Of Student: 50\n"; 
+		cout << "NumBer Of Student: 50\n";
 		cout << "Day Of Week: "; getline(cin, c->dayOfWeek);
 		cout << "Session: "; getline(cin, c->session);
 		addCourse(l, c);
@@ -1650,8 +1489,8 @@ void addCourseToSemester(listCourse& l)
 		ofs.close();
 	}
 	ofstream ofs;
-	//
 	ofs.open(pathSemes);
+	ofs << "ID, Course name, Teacher name, Number of credits, Academic year, Max students, number of enroller, Day of week, Session\n";
 	if (!ofs.is_open())
 	{
 		cout << "Mo file that bai!!!\n";
@@ -1659,9 +1498,16 @@ void addCourseToSemester(listCourse& l)
 	}
 	nodeCourse* n1 = l.pHead;
 	while (n1 != NULL) {
-		ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
-		ofs << n1->info->numberOfCredits << "," << n1->info->maximunNumberOfStudent << ",";
-		ofs << n1->info->dayOfWeek << "," << n1->info->session << "\n";
+		if (n1->pNext != NULL) {
+			ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+			ofs << n1->info->numberOfCredits << "," << 2020 << "," << n1->info->maximunNumberOfStudent << ",";
+			ofs << 0 << "," << n1->info->dayOfWeek << "," << n1->info->session << "\n";
+		}
+		else {
+			ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+			ofs << n1->info->numberOfCredits << "," << 2020 << "," << n1->info->maximunNumberOfStudent << ",";
+			ofs << 0 << "," << n1->info->dayOfWeek << "," << n1->info->session;
+		}
 		n1 = n1->pNext;
 	}
 	ofs.close();
@@ -1686,8 +1532,8 @@ void importCourseData(listCourse& l) {
 		ofs.close();
 	}
 	ofstream ofs;
-	//
 	ofs.open(pathSemes);
+	ofs << "ID, Course name, Teacher name, Number of credits, Academic year, Max students, number of enroller, Day of week, Session\n";
 	if (!ofs.is_open())
 	{
 		cout << "Mo file that bai!!!\n";
@@ -1695,60 +1541,20 @@ void importCourseData(listCourse& l) {
 	}
 	nodeCourse* n1 = l.pHead;
 	while (n1 != NULL) {
-		ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
-		ofs << n1->info->numberOfCredits << "," << n1->info->maximunNumberOfStudent << ",";
-		ofs << n1->info->dayOfWeek << "," << n1->info->session << "\n";
+		if (n1->pNext != NULL) {
+			ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+			ofs << n1->info->numberOfCredits << "," << 2020 << "," << n1->info->maximunNumberOfStudent << ",";
+			ofs << 0 << "," << n1->info->dayOfWeek << "," << n1->info->session << "\n";
+		}
+		else {
+			ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+			ofs << n1->info->numberOfCredits << "," << 2020 << "," << n1->info->maximunNumberOfStudent << ",";
+			ofs << 0 << "," << n1->info->dayOfWeek << "," << n1->info->session;
+		}
 		n1 = n1->pNext;
 	}
 	ofs.close();
 }
-//them sinh vien vao khoa hoc
-//void AddStudentToCourse(Student* s, course* c)
-//{
-//	//s->enrolledCourse->pTail->pNext = ;
-//	ofstream ofs;
-//	ofs.open(semesterPath + "/" + c->courseName + ".csv");
-//	if (!ofs.is_open())
-//	{
-//		cout << "Mo file that bai!!!\n";
-//		return;
-//	}
-//	ofs << endl;
-//	ofs << s->No << "," << s->studentID << "," << s->firstName << ",";
-//	ofs << s->lastName << "," << s->gender << ",";
-//	ofs << s->dateOfBirth.day << "-" << s->dateOfBirth.month << "-" << s->dateOfBirth.year;
-//	ofs << "," << s->academicYear << "," << s->program << "," << s->socialID << "," << "\n";
-//	ofs.close();
-//}
-
-//void CopyFile(string src, string dest)
-//{
-//	ifstream ifs;
-//	ifs.open(src);
-//	if (ifs.is_open() == false)
-//	{
-//		cout << "Mo file nguon khong thanh cong!\n";
-//		return;
-//	}
-//
-//	ofstream ofs;
-//	ofs.open(dest);
-//	if (ofs.is_open() == false)
-//	{
-//		cout << "Mo file dich khong thang cong!\n";
-//		return;
-//	}
-//
-//	string line;
-//	while (getline(ifs, line))
-//	{
-//		ofs << line;
-//		ofs << '\n';
-//	}
-//
-//	ifs.close();
-//	ofs.close();
-//}
 
 void CreateDirectory(string filePath)
 {
@@ -2766,20 +2572,47 @@ void Profile(Student info, User us)
 	PrintDate(info.dateOfBirth);
 }
 
+void setColor(int color) {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
 void DisplayIDCourse(listCourse list) {
 	if (list.pTail == NULL) {
+		setColor(12); // Red
 		cout << "No Course\n";
+		setColor(15); // White
 		return;
 	}
 	int cnt = 1;
 
 	nodeCourse* p = list.pHead;
+
+	setColor(14); // Yellow
+	cout << char(218); // Top left corner
+	for (int i = 0; i < 31; ++i) cout << char(196); // Top edge
+	cout << char(191) << endl; // Top right corner
+
+	setColor(11); // Light cyan
+	cout << char(179) << left << setw(10) << " Course" << setw(21) << "ID Course" << char(179) << endl; // Header
+
+	setColor(14); // Yellow
+	cout << char(195); // Left middle edge
+	for (int i = 0; i < 31; ++i) cout << char(196); // Middle edge
+	cout << char(180) << endl; // Right middle edge
+
 	while (p) {
-		cout << "Course " << cnt << endl;
-		cout << "ID Course: " << p->info->id << endl;
+		setColor(15); // White
+		cout << char(179) << left << setw(10) << (" Course " + to_string(cnt)) << setw(21) << p->info->id << char(179) << endl;
 		cnt++;
 		p = p->pNext;
 	}
+
+	setColor(14); // Yellow
+	cout << char(192); // Bottom left corner
+	for (int i = 0; i < 31; ++i) cout << char(196); // Bottom edge
+	cout << char(217) << endl; // Bottom right corner
+
+	setColor(15); // White
 }
 
 void AddStudentToCourse(listCourse& list) {
@@ -3184,4 +3017,201 @@ void printScoreBoard1(ListStudent list, listCourse l) {
 		n = n->pNext;
 		cnt++;
 	}
+}
+
+//
+
+void printSt(ListStudent list) {
+	cout << left << setw(5) << "No" << left << setw(12) << "studentID"
+		<< left << setw(25) << "Student Full Name" << endl;
+	NodeStudent* tmp = list.pHead;
+	while (tmp != NULL) {
+		cout << left << setw(5) << tmp->Info.No << left << setw(12) << tmp->Info.studentID
+			<< left << setw(25) << tmp->Info.firstName << endl;
+		tmp = tmp->pNext;
+	}
+}
+void displayStudentInCourse() {
+	string cID;
+	cout << "Enter Course Id: "; cin >> cID;
+	ifstream ifs;
+	string path(pathSemes, 0, pathSemes.length() - 11);
+	path += cID + ".csv";
+	ifs.open(path);
+	if (!ifs.is_open()) {
+		cout << "COURSE IS NOT FOUND!!!\n";
+		Sleep(500);
+		return;
+	}
+	ListStudent ls = InitListStudent();
+	string line;
+	getline(ifs, line);
+	while (!ifs.eof()) {
+		Student s = convertingScoreBoardData(ifs);
+		addStudent(ls, s);
+	}
+	ifs.close();
+	printSt(ls);
+}
+void removeSt() {
+	string cID;
+	cout << "Enter Course Id: "; cin >> cID;
+	string sID;
+	cout << "Enter Student Id: "; cin >> sID;
+	ifstream ifs;
+	string path(pathSemes, 0, pathSemes.length() - 11);
+	path += cID + ".csv";
+	ifs.open(path);
+	if (!ifs.is_open()) {
+		cout << "COURSE IS NOT FOUND!!!\n";
+		Sleep(500);
+		return;
+	}
+	ListStudent ls = InitListStudent();
+	string line;
+	getline(ifs, line);
+	while (!ifs.eof()) {
+		Student s = convertingScoreBoardData(ifs);
+		if (s.studentID != stoi(sID)) {
+			addStudent(ls, s);
+		}
+	}
+	ifs.close();
+	ofstream ofs;
+	ofs.open(path, ios::out);
+	ofs << "No,Student ID,StudentFull Name,Total Mark,Final Mark,Midterm Mark,Other Mark\n";
+	NodeStudent* n = ls.pHead;
+	while (n != NULL) {
+		if (n->pNext != NULL) {
+			ofs << n->Info.No << ',' << n->Info.studentID << ','
+				<< n->Info.firstName << ',' << n->Info.cMark.totalMark << ','
+				<< n->Info.cMark.finalMark << ',' << n->Info.cMark.midtermMark << ','
+				<< n->Info.cMark.otherMark << '\n';
+		}
+		else {
+			ofs << n->Info.No << ',' << n->Info.studentID << ','
+				<< n->Info.firstName << ',' << n->Info.cMark.totalMark << ','
+				<< n->Info.cMark.finalMark << ',' << n->Info.cMark.midtermMark << ','
+				<< n->Info.cMark.otherMark;
+		}
+		n = n->pNext;
+	}
+	ofs.close();
+}
+
+void deleteCourse(listCourse& list) {
+	string cID;
+	cout << "Enter the name of id course to be deleted: "; cin >> cID;
+	ofstream ofs;
+	ofs.open(pathSemes);
+	ofs << "ID, Course name, Teacher name, Number of credits, Academic year, Max students, number of enroller, Day of week, Session\n";
+	nodeCourse* n1 = list.pHead;
+	while (n1 != NULL) {
+		if (n1->info->id != cID) {
+			if (n1->pNext != NULL) {
+				ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+				ofs << n1->info->numberOfCredits << "," << 2020 << "," << n1->info->maximunNumberOfStudent << ",";
+				ofs << 0 << "," << n1->info->dayOfWeek << "," << n1->info->session << "\n";
+			}
+			else {
+				ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+				ofs << n1->info->numberOfCredits << "," << 2020 << "," << n1->info->maximunNumberOfStudent << ",";
+				ofs << 0 << "," << n1->info->dayOfWeek << "," << n1->info->session;
+			}
+		}
+		n1 = n1->pNext;
+	}
+	ofs.close();
+	string path(pathSemes, 0, pathSemes.length() - 11);
+	path += cID + ".csv";
+	fs::remove(path);
+	ifstream ifs;
+	ifs.open(pathSemes);
+	list = InitListCourse();
+	getListCourse2(list, ifs);
+}
+
+
+void changeCourse(listCourse& list) {
+	string cID;
+	cout << "Enter the name of id course to be changed: "; cin >> cID;
+	int choice = 0;
+	cout << "1. Modify Teacher Name\n";
+	cout << "2. Modify Number of Credits\n";
+	cout << "3. Modify Day of weeks\n";
+	cout << "4. Modify Session\n";
+	cout << "Your choice: "; cin >> choice;
+	nodeCourse* p = list.pHead;
+	while (p != NULL) {
+		if (p->info->id == cID) {
+			if (choice == 1) {
+				string newName;
+				cout << "New Teacher Name: ";
+				cin.ignore();
+				getline(cin, newName);
+				p->info->teacherName = newName;
+			}
+			else if (choice == 2) {
+				int newCredits;
+				cout << "New Credits: ";
+				cin >> newCredits;
+				p->info->numberOfCredits = newCredits;
+			}
+			else if (choice == 3) {
+				string newDow;
+				cout << "New Day of Weeks: ";
+				cin >> newDow;
+				p->info->dayOfWeek = newDow;
+			}
+			else if (choice == 4) {
+				string newSession;
+				cout << "New Session: ";
+				cin >> newSession;
+				p->info->session = newSession;
+			}
+			else {
+				cout << "Errors Choice\n";
+				return;
+			}
+			break;
+		}
+		p = p->pNext;
+	}
+	ofstream ofs;
+	ofs.open(pathSemes, ios::out);
+	ofs << "ID, Course name, Teacher name, Number of credits, Academic year, Max students, number of enroller, Day of week, Session\n";
+	nodeCourse* n1 = list.pHead;
+	while (n1 != NULL) {
+		if (n1->pNext != NULL) {
+			ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+			ofs << n1->info->numberOfCredits << "," << 2020 << "," << n1->info->maximunNumberOfStudent << ",";
+			ofs << 0 << "," << n1->info->dayOfWeek << "," << n1->info->session << "\n";
+		}
+		else {
+			ofs << n1->info->id << "," << n1->info->courseName << "," << n1->info->teacherName << ",";
+			ofs << n1->info->numberOfCredits << "," << 2020 << "," << n1->info->maximunNumberOfStudent << ",";
+			ofs << 0 << "," << n1->info->dayOfWeek << "," << n1->info->session;
+		}
+		n1 = n1->pNext;
+	}
+	ofs.close();
+	ifstream ifs;
+	ifs.open(pathSemes);
+	list = InitListCourse();
+	getListCourse2(list, ifs);
+	ifs.close();
+}
+void createPathSemes(string& pathS) {
+	int z, n;
+	string* item;
+	string SchYear, Sem;
+	DisplayFilesInDirectory(schoolYearPath, item, n);
+	DisplayArrString(item, n);
+	cout << setw(20) << "Choose school year: ";
+	cin >> z;
+	SchYear = item[z - 1];
+
+	cout << "Choose semester(1/2/3): ";
+	cin >> Sem;
+	pathS = "Data\\SchoolYear\\" + SchYear + "\\semester " + Sem + "\\courses.csv";
 }
