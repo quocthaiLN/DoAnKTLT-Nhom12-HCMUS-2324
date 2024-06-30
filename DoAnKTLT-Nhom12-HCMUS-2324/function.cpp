@@ -63,7 +63,8 @@ void menuManageCourses() {
 	cout << "3. Add Course\n";
 	cout << "4. List Of Course\n";
 	cout << "5. Semester Summary\n";
-	cout << "6. Back\n";
+	cout << "6. View Score Board\n";
+	cout << "7. Back\n";
 }
 
 void menuStudent() {
@@ -360,6 +361,13 @@ void actionAcademicStaff(User& info, listUser& lu)
 			break;
 		}
 		case 6:
+		{
+			clearScreen();
+			viewScoreBoard();
+			returnMenuActionAcademicStaff(info, lu);
+			break;
+		}
+		case 7:
 		{
 			clearScreen();
 			returnMenuActionAcademicStaff(info, lu);
@@ -2607,4 +2615,108 @@ void FindCourseByID(string ID[], int n, listCourse& lC, string path)
 		p = p->pNext;
 	}
 
+}
+void viewScoreBoard() {
+	string scy;
+	string semester;
+	string cou;
+	cout << "Enter your school year(ex:2023-2024): "; cin >> scy;
+	cout << "Enter semester(ex:1/2/3): "; cin >> semester;
+	cout << "Enter course name: "; getline(cin, cou); getline(cin, cou);
+	ifstream ifs;
+	ifs.open("Data/SchoolYear/" + scy + "/semester " + semester + "/courses.csv");
+	if (!ifs.is_open()) {
+		cout << "SEMESTER OR SCHOOL YEAR IS NOT FOUND!!!\n";
+		Sleep(1000);
+		return;
+	}
+	listCourse list = InitListCourse();
+	getListCourse2(list, ifs);
+	nodeCourse* n = list.pHead;
+	toLower(cou);
+	int cnt = 0;
+	while (n != NULL)
+	{
+		toLower(n->info->courseName);
+		if (n->info->courseName == cou) {
+			cnt++;
+			break;
+		}
+		n = n->pNext;
+	}
+	if (cnt == 0) {
+		cout << "COURSE IS NOT FOUND IN SEMESTER!!!\n";
+		Sleep(500);
+		return;
+	}
+	ifs.close();
+	ifstream iFS;
+	iFS.open("Data/SchoolYear/" + scy + "/semester " + semester + "/" + n->info->id + ".csv");
+	if (!iFS.is_open()) {
+		cout << "COURSE IS NOT IN SEMESTER!!!\n";
+		Sleep(1000);
+		return;
+	}
+	ListStudent l = InitListStudent();
+	string line;
+	getline(iFS, line);
+	while (!iFS.eof()) {
+		Student s = convertingScoreBoardData(iFS);
+		addStudent(l, s);
+	}
+	iFS.close();
+	printScoreBoard(l);
+}
+
+Student convertingScoreBoardData(ifstream& ifs) {
+	Student st;
+	string no;
+	string id;
+	getline(ifs, no, ',');
+	st.No = stoi(no);
+	getline(ifs, id, ',');
+	st.studentID = stoi(id);
+	getline(ifs, st.firstName, ',');
+	string total;
+	string final;
+	string midterm;
+	string other;
+	getline(ifs, total, ',');
+	st.cMark.totalMark = stof(total);
+	getline(ifs, final, ',');
+	st.cMark.finalMark = stof(final);
+	getline(ifs, midterm, ',');
+	st.cMark.midtermMark = stof(midterm);
+	getline(ifs, other, '\n');
+	st.cMark.otherMark = stof(other);
+	return st;
+}
+void toLower(string& str) {
+	for (int i = 0; i < str.length(); i++) {
+		str[i] = tolower(str[i]);
+	}
+}
+/*
+2023-2024
+1
+nhap mon lap trinh
+*/
+void printScoreBoard(ListStudent list) {
+	cout << right << setw(57) << "SCORE BOARD" << endl;
+	cout << left << setw(5) << "No" << left << setw(12) << "studentID"
+		<< left << setw(25) << "Student Full Name"
+		<< left << setw(14) << "totalMark"
+		<< left << setw(14) << "finalMark"
+		<< left << setw(15) << "midtermMark"
+		<< left << setw(15) << "otherMark" << endl;
+	NodeStudent* tmp = list.pHead;
+	while (tmp != NULL) {
+		cout << left << setw(5) << tmp->Info.No << left << setw(12) << tmp->Info.studentID
+			<< left << setw(25) << tmp->Info.firstName
+			<< left << setw(14) << tmp->Info.cMark.totalMark
+			<< left << setw(14) << tmp->Info.cMark.finalMark
+			<< left << setw(15) << tmp->Info.cMark.midtermMark
+			<< left << setw(15) << tmp->Info.cMark.otherMark << endl;
+		tmp = tmp->pNext;
+	}
 }

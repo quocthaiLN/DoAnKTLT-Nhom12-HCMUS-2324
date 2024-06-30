@@ -267,3 +267,7 @@ Student createInfoStFromUserInfo(User us);
 void readInfoOfStudent(ListStudent& list, string cla);
 Student convertingStData(ifstream& ifs);
 void Profile(Student info, User us);
+void toLower(string& str);
+Student convertingScoreBoardData(ifstream& ifs);
+void printScoreBoard(ListStudent list);
+void viewScoreBoard();
