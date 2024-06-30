@@ -19,7 +19,7 @@ void menuAcademicStaff() {
 	cout << "2. Profile\n";
 	cout << "3. Manage Student\n";
 	cout << "4. Manage Courses\n";
-	cout << "5. Setting\n";
+	//cout << "5. Setting\n";
 	cout << "0. Exit\n";
 
 }
@@ -77,8 +77,8 @@ void menuStudent() {
 	cout << "4. Scoreboard\n";
 	cout << "5. List of classes\n";
 	cout << "6. List of courses\n";
-	cout << "7. Setting\n";
-	cout << "8. Exit\n";
+	//cout << "7. Setting\n";
+	cout << "0. Exit\n";
 }
 
 void menuStudentUserAccount() {
@@ -518,6 +518,11 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 	cin >> x;
 	switch (x)
 	{
+	case 0: {
+		/*clearScreen();
+		returnMenuActionAcademicStaff(infoUs, lu);*/
+		break;
+	}
 	case 1:
 	{
 		clearScreen();
@@ -577,7 +582,9 @@ void actionStudent(User& infoUs, listUser& lu, Student& infoSt)
 	}
 	case 4:
 	{
-		
+		clearScreen();
+		viewScoreBoardSt(infoSt, infoUs);
+		returnMenuActionStudent(infoUs, lu, infoSt);
 		break;
 	}
 	case 5:
@@ -2718,5 +2725,63 @@ void printScoreBoard(ListStudent list) {
 			<< left << setw(15) << tmp->Info.cMark.midtermMark
 			<< left << setw(15) << tmp->Info.cMark.otherMark << endl;
 		tmp = tmp->pNext;
+	}
+}
+void viewScoreBoardSt(Student infoUs, User us) {
+	int n = 0;
+	string courseID[10], stuID, SchYear, Sem;
+	cout << "Choose Semester(1/2/3): ";
+	cin >> Sem;
+	GetCurSchoolYear(SchYear, GetCurDate());
+	listCourse l = InitListCourse();
+	ReadingEnrolledCourse(courseID, n, "Data/InformationOfStudent/" + us.id + ".txt");
+	FindCourseByID(courseID, n, l, schoolYearPath + "/" + SchYear + "/" + "semester " + Sem + "/" + "courses.csv");
+	cout << right << setw(53) << "SCOREBOARD OF SEMESTER " << Sem << endl;
+	nodeCourse* n1 = l.pHead;
+	if (n1 == NULL) {
+		cout << "YOU HAVE NOT ENROLLED COURSES!!!\N";
+		Sleep(500);
+		return;
+	}
+	ListStudent ls = InitListStudent();
+	while (n1 != NULL) {
+		ifstream ifs;
+		ifs.open("Data/SchoolYear/" + SchYear + "/semester " + Sem + "/" + n1->info->id + ".csv");
+		string line;
+		getline(ifs, line);
+		while (!ifs.eof()) {
+			Student s = convertingScoreBoardData(ifs);
+			if (s.studentID == infoUs.studentID) {
+				addStudent(ls, s);
+				break;
+			}
+		}
+		ifs.close();
+		n1 = n1->pNext;
+	}
+	printScoreBoard1(ls, l);
+}
+void printScoreBoard1(ListStudent list, listCourse l) {
+	cout << left << setw(4) << "No"
+		<< left << setw(12) << "Course ID"
+		<< left << setw(25) << "Course Name"
+		<< left << setw(14) << "totalMark"
+		<< left << setw(14) << "finalMark"
+		<< left << setw(15) << "midtermMark"
+		<< left << setw(15) << "otherMark" << endl;
+	NodeStudent* tmp = list.pHead;
+	nodeCourse* n = l.pHead;
+	int cnt = 1;
+	while (tmp != NULL) {
+		cout << left << setw(4) << cnt
+			<< left << setw(12) << n->info->id
+			<< left << setw(30) << n->info->courseName
+			<< left << setw(14) << tmp->Info.cMark.totalMark
+			<< left << setw(14) << tmp->Info.cMark.finalMark
+			<< left << setw(15) << tmp->Info.cMark.midtermMark
+			<< left << setw(15) << tmp->Info.cMark.otherMark << endl;
+		tmp = tmp->pNext;
+		n = n->pNext;
+		cnt++;
 	}
 }

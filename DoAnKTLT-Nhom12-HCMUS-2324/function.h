@@ -271,3 +271,5 @@ void toLower(string& str);
 Student convertingScoreBoardData(ifstream& ifs);
 void printScoreBoard(ListStudent list);
 void viewScoreBoard();
+void printScoreBoard1(ListStudent list, listCourse l);
+void viewScoreBoardSt(Student infoUs, User us);
